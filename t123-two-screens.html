@@ -145,11 +145,6 @@
       <i><b></b></i>
     </a>
 
-    <div class="fp-hero__index" aria-hidden="true">
-      <span>01</span>
-      <i></i>
-      <span>02</span>
-    </div>
   </section>
 
   <section class="fp-impact" id="fp-impact" aria-labelledby="fp-impact-title">
@@ -262,6 +257,12 @@
 </div>
 
 <style>
+  html,
+  body {
+    margin: 0;
+    background: #090b0d;
+  }
+
   #fp-home-v1 {
     --fp-bg: #090b0d;
     --fp-bg-soft: #111416;
@@ -931,27 +932,6 @@
     animation: fpScroll 2.3s ease-in-out infinite;
   }
 
-  #fp-home-v1 .fp-hero__index {
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    right: 22px;
-    display: grid;
-    gap: 9px;
-    justify-items: center;
-    color: rgba(255,255,255,.3);
-    font-size: 8px;
-    letter-spacing: .1em;
-    transform: translateY(-50%);
-  }
-
-  #fp-home-v1 .fp-hero__index i {
-    display: block;
-    width: 1px;
-    height: 62px;
-    background: linear-gradient(var(--fp-gold-light) 0 45%, rgba(255,255,255,.15) 45% 100%);
-  }
-
   #fp-home-v1 .fp-reveal {
     opacity: 0;
     transform: translateY(18px);
@@ -1578,8 +1558,7 @@
       max-width: 440px;
     }
 
-    #fp-home-v1 .fp-scroll,
-    #fp-home-v1 .fp-hero__index {
+    #fp-home-v1 .fp-scroll {
       display: none;
     }
 
