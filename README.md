@@ -8,6 +8,16 @@
 - карточка проекта «Вихорь-атаман Матвей Платов»;
 - адаптивная версия для мобильных устройств.
 
+## Варианты
+
+- `t123-two-screens.html` — статичный атмосферный фон;
+- `t123-video-background.html` — фоновое видео из VK Video.
+
+Публичный предпросмотр:
+
+- статичный вариант: `https://ivanweb1.github.io/fondplatov-t123/`;
+- вариант с видео: `https://ivanweb1.github.io/fondplatov-t123/video/`.
+
 ## Установка в Tilda
 
 1. Откройте файл `t123-two-screens.html`.
