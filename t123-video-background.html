@@ -19,15 +19,20 @@
   <section class="fp-hero" aria-labelledby="fp-main-title">
     <div class="fp-hero__media" aria-hidden="true">
       <div class="fp-hero__backdrop"></div>
-      <div class="fp-hero__vk-video">
-        <iframe
-          src="https://vkvideo.ru/video_ext.php?oid=-226878202&amp;id=456239031&amp;hd=2&amp;autoplay=1&amp;loop=1&amp;muted=1"
-          title="Фоновое видео проекта фонда"
-          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-          loading="eager"
-          tabindex="-1"
-        ></iframe>
-      </div>
+      <video
+        class="fp-hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="https://static.tildacdn.com/tild3735-3234-4135-a337-633866643065/11.jpg"
+      >
+        <source
+          src="https://ivanweb1.github.io/fondplatov-t123/assets/platov-background-720.mp4"
+          type="video/mp4"
+        >
+      </video>
       <div class="fp-hero__vignette"></div>
       <div class="fp-grain"></div>
     </div>
@@ -345,33 +350,13 @@
 
   #fp-home-v1 .fp-hero__video {
     position: absolute;
+    z-index: 1;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% 42%;
     filter: saturate(.48) contrast(1.08) brightness(.62);
-  }
-
-  #fp-home-v1 .fp-hero__vk-video {
-    position: absolute;
-    z-index: 1;
-    inset: 0;
-    overflow: hidden;
-    background: #07090a;
-    pointer-events: none;
-  }
-
-  #fp-home-v1 .fp-hero__vk-video iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 56.25vw;
-    min-width: 177.78vh;
-    min-height: 100vh;
-    border: 0;
-    filter: saturate(.62) contrast(1.08) brightness(.58);
-    transform: translate(-50%, -50%) scale(1.16);
   }
 
   #fp-home-v1 .fp-hero__portrait {
@@ -1393,6 +1378,13 @@
   @keyframes fpAtmosphereCathedral {
     from { transform: scale(1.03) translate3d(0, 1%, 0); }
     to { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
+  }
+
+  @media (min-width: 881px) {
+    #fp-home-v1 .fp-hero__video {
+      transform: scale(2.7);
+      transform-origin: 50% 42%;
+    }
   }
 
   @media (min-width: 881px) and (max-height: 820px) {
