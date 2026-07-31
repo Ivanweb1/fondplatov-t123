@@ -11,12 +11,14 @@
 ## Варианты
 
 - `t123-two-screens.html` — статичный атмосферный фон;
-- `t123-video-background.html` — фоновое видео из VK Video.
+- `t123-video-background.html` — фоновое видео из VK Video;
+- `t123-light.html` — светлая музейно-редакционная версия с портретом атамана.
 
 Публичный предпросмотр:
 
 - статичный вариант: `https://ivanweb1.github.io/fondplatov-t123/`;
-- вариант с видео: `https://ivanweb1.github.io/fondplatov-t123/video/`.
+- вариант с видео: `https://ivanweb1.github.io/fondplatov-t123/video/`;
+- светлый вариант: `https://ivanweb1.github.io/fondplatov-t123/light/`.
 
 ## Установка в Tilda
 
