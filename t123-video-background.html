@@ -63,12 +63,15 @@
         <a href="#fp-contacts">Контакты</a>
       </nav>
 
-      <a class="fp-header__donate" href="#fp-donate">
-        <span>Помочь фонду</span>
-        <svg viewBox="0 0 20 20" aria-hidden="true">
-          <path d="M4 10h11M11 6l4 4-4 4"/>
-        </svg>
-      </a>
+      <div class="fp-header__actions">
+        <a class="fp-header__donate" href="#fp-donate">
+          <span>Помочь фонду</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M4 10h11M11 6l4 4-4 4"/>
+          </svg>
+        </a>
+        <a class="fp-header__svo" href="#fp-svo"><i></i> Помощь участникам СВО</a>
+      </div>
 
       <button class="fp-menu" type="button" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span>
@@ -80,6 +83,7 @@
       <a href="#fp-projects">Проекты</a>
       <a href="#fp-news">Новости</a>
       <a href="#fp-contacts">Контакты</a>
+      <a class="fp-mobile-nav__svo" href="#fp-svo">Помощь казакам — участникам СВО</a>
       <a class="fp-mobile-nav__donate" href="#fp-donate">Помочь фонду</a>
     </div>
 
@@ -314,6 +318,23 @@
     </div>
   </section>
 
+  <section class="fp-svo" id="fp-svo" aria-labelledby="fp-svo-title">
+    <div class="fp-svo__image" aria-hidden="true"></div>
+    <div class="fp-grain" aria-hidden="true"></div>
+    <div class="fp-shell fp-svo__inner fp-observe">
+      <div class="fp-svo__mark" aria-hidden="true">СВО</div>
+      <div class="fp-svo__copy">
+        <p class="fp-kicker"><span></span> Отдельное направление помощи</p>
+        <h2 id="fp-svo-title">Помощь казакам —<br><em>участникам СВО</em></h2>
+        <p>Поддержите целевой сбор фонда. Средства направляются на оказание помощи казакам, принимающим участие в специальной военной операции.</p>
+      </div>
+      <a class="fp-button fp-button--gold fp-svo__button" href="#fp-donate">
+        <span>Оказать помощь</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg>
+      </a>
+    </div>
+  </section>
+
   <section class="fp-projects" id="fp-projects" aria-labelledby="fp-projects-title">
     <div class="fp-shell">
       <div class="fp-projects__head fp-observe">
@@ -396,10 +417,6 @@
           собраны в одном месте. Благотворитель всегда может проверить,
           как устроена работа фонда.
         </p>
-        <div class="fp-trust__people">
-          <div><span>Председатель попечительского совета</span><strong>Игорь Александрович Матасов</strong></div>
-          <div><span>Директор фонда</span><strong>Сергей Анатольевич Яицкий</strong></div>
-        </div>
       </div>
 
       <div class="fp-documents fp-observe" aria-label="Документы фонда">
@@ -409,6 +426,29 @@
         <a href="https://fondplatov.ru/politika" target="_blank" rel="noopener"><span>04</span><strong>Политика обработки данных</strong><i>PDF ↗</i></a>
         <a href="https://fondplatov.ru/" target="_blank" rel="noopener"><span>05</span><strong>Устав и регистрационные документы</strong><i>PDF ↗</i></a>
       </div>
+    </div>
+
+    <div class="fp-shell fp-council fp-observe" aria-labelledby="fp-council-title">
+      <div class="fp-council__head">
+        <p class="fp-kicker"><span></span> Люди фонда</p>
+        <h3 id="fp-council-title">Попечительский<br>совет фонда</h3>
+      </div>
+      <article class="fp-person">
+        <div class="fp-person__photo">
+          <img src="https://ivanweb1.github.io/fondplatov-t123/assets/igor-matasov.png" loading="lazy" alt="Игорь Александрович Матасов">
+          <span>01</span>
+        </div>
+        <p>Председатель Совета</p>
+        <h4>Игорь Александрович<br>Матасов</h4>
+      </article>
+      <article class="fp-person">
+        <div class="fp-person__photo">
+          <img src="https://ivanweb1.github.io/fondplatov-t123/assets/andrey-bugera.png" loading="lazy" alt="Андрей Борисович Бугера">
+          <span>02</span>
+        </div>
+        <p>Предприниматель</p>
+        <h4>Андрей Борисович<br>Бугера</h4>
+      </article>
     </div>
   </section>
 
@@ -489,7 +529,7 @@
           <p>Сохраняем историческую память и культурное наследие России.</p>
         </div>
         <nav class="fp-footer__nav" aria-label="Навигация в подвале">
-          <a href="#fp-about">О фонде</a><a href="#fp-projects">Проекты</a><a href="#fp-news">Новости</a><a href="#fp-documents">Документы</a>
+          <a href="#fp-about">О фонде</a><a href="#fp-projects">Проекты</a><a href="#fp-news">Новости</a><a href="#fp-documents">Документы</a><a href="#fp-svo">Помощь участникам СВО</a>
         </nav>
         <address class="fp-footer__contacts">
           <a href="tel:+79772505555">+7 (977) 250-55-55</a>
@@ -778,6 +818,36 @@
     border-color: var(--fp-gold-light);
     background: var(--fp-gold-light);
   }
+
+  #fp-home-v1 .fp-header__actions {
+    display: grid;
+    justify-items: end;
+    justify-self: end;
+    gap: 7px;
+  }
+
+  #fp-home-v1 .fp-header__svo {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255,255,255,.68);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    transition: color .25s ease;
+  }
+
+  #fp-home-v1 .fp-header__svo i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #b84239;
+    box-shadow: 0 0 0 4px rgba(184,66,57,.12);
+  }
+
+  #fp-home-v1 .fp-header__svo:hover,
+  #fp-home-v1 .fp-header__svo:focus-visible { color: #fff; }
 
   #fp-home-v1 .fp-menu,
   #fp-home-v1 .fp-mobile-nav {
@@ -1767,7 +1837,7 @@
     }
 
     #fp-home-v1 .fp-nav,
-    #fp-home-v1 .fp-header__donate {
+    #fp-home-v1 .fp-header__actions {
       display: none;
     }
 
@@ -1849,6 +1919,20 @@
       font-size: 11px;
       font-weight: 700;
       letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    #fp-home-v1 .fp-mobile-nav .fp-mobile-nav__svo {
+      margin-top: 10px;
+      padding: 14px;
+      color: #f0ede6;
+      border: 1px solid rgba(184,66,57,.62);
+      background: rgba(184,66,57,.12);
+      font-family: var(--fp-font-body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-align: center;
       text-transform: uppercase;
     }
 
@@ -2128,6 +2212,7 @@
   }
 
   #fp-home-v1 .fp-directions,
+  #fp-home-v1 .fp-svo,
   #fp-home-v1 .fp-projects,
   #fp-home-v1 .fp-trust,
   #fp-home-v1 .fp-news,
@@ -2241,6 +2326,54 @@
     font-size: 13px;
     line-height: 1.72;
   }
+
+  #fp-home-v1 .fp-svo {
+    min-height: 430px;
+    padding: 94px 0;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    background: #111416;
+  }
+
+  #fp-home-v1 .fp-svo__image {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, #111416 0%, rgba(17,20,22,.91) 43%, rgba(17,20,22,.55) 100%),
+      url("https://static.tildacdn.com/tild3232-3535-4632-a531-383937616136/Friedland_mazurovsky.jpg") 70% 47% / cover no-repeat;
+    filter: grayscale(.78) sepia(.14) contrast(1.08) brightness(.68);
+    opacity: .62;
+  }
+
+  #fp-home-v1 .fp-svo__inner {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 58px;
+  }
+
+  #fp-home-v1 .fp-svo__mark {
+    color: transparent;
+    font-family: var(--fp-font-display);
+    font-size: 104px;
+    line-height: 1;
+    letter-spacing: -.08em;
+    -webkit-text-stroke: 1px rgba(226,201,129,.36);
+    opacity: .8;
+  }
+
+  #fp-home-v1 .fp-svo h2 {
+    margin: 0;
+    font-family: var(--fp-font-display);
+    font-size: clamp(40px, 4.5vw, 68px);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -.035em;
+  }
+
+  #fp-home-v1 .fp-svo h2 em { color: var(--fp-gold-light); font-style: normal; }
+  #fp-home-v1 .fp-svo__copy > p:last-child { max-width: 680px; margin: 25px 0 0; color: rgba(240,237,230,.62); font-size: 14px; line-height: 1.75; }
+  #fp-home-v1 .fp-svo__button { min-width: 210px; }
 
   #fp-home-v1 .fp-projects {
     padding: 140px 0 154px;
@@ -2400,6 +2533,27 @@
   #fp-home-v1 .fp-documents strong { font-family: var(--fp-font-display); font-size: 17px; font-weight: 400; }
   #fp-home-v1 .fp-documents i { color: var(--fp-gold-light); font-size: 9px; font-style: normal; letter-spacing: .1em; }
 
+  #fp-home-v1 .fp-council {
+    display: grid;
+    grid-template-columns: minmax(280px, .8fr) repeat(2, minmax(260px, 1fr));
+    gap: 22px;
+    align-items: end;
+    margin-top: 105px;
+    padding-top: 54px;
+    border-top: 1px solid rgba(255,255,255,.15);
+  }
+
+  #fp-home-v1 .fp-council__head { align-self: start; padding-top: 4px; }
+  #fp-home-v1 .fp-council__head h3 { margin: 0; font-family: var(--fp-font-display); font-size: clamp(34px, 3.7vw, 56px); font-weight: 400; line-height: 1.06; letter-spacing: -.03em; }
+  #fp-home-v1 .fp-person { min-width: 0; }
+  #fp-home-v1 .fp-person__photo { position: relative; aspect-ratio: 1 / .92; overflow: hidden; border: 1px solid rgba(255,255,255,.14); background: #e8e5df; }
+  #fp-home-v1 .fp-person__photo::after { content: ""; position: absolute; inset: 0; border: 12px solid rgba(9,11,13,.07); pointer-events: none; }
+  #fp-home-v1 .fp-person__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.68) contrast(1.04); transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .4s ease; }
+  #fp-home-v1 .fp-person:hover .fp-person__photo img { transform: scale(1.035); filter: saturate(.9) contrast(1.02); }
+  #fp-home-v1 .fp-person__photo span { position: absolute; z-index: 2; top: 18px; right: 18px; display: grid; place-items: center; width: 34px; height: 34px; color: #111416; border: 1px solid rgba(17,20,22,.28); background: rgba(240,237,230,.78); font-size: 9px; }
+  #fp-home-v1 .fp-person > p { margin: 22px 0 8px; color: var(--fp-gold-light); font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  #fp-home-v1 .fp-person h4 { margin: 0; font-family: var(--fp-font-display); font-size: 25px; font-weight: 400; line-height: 1.18; }
+
   #fp-home-v1 .fp-news { padding: 140px 0; background: #080a0c; }
   #fp-home-v1 .fp-news__list { border-top: 1px solid rgba(255,255,255,.13); }
   #fp-home-v1 .fp-news-card { display: grid; grid-template-columns: 160px 1fr 48px; align-items: center; gap: 45px; min-height: 190px; border-bottom: 1px solid rgba(255,255,255,.13); transition: background-color .3s ease, padding .3s ease; }
@@ -2465,6 +2619,9 @@
   #fp-home-v1 .fp-footer__bottom a:hover { color: rgba(240,237,230,.7); }
 
   @media (max-width: 1100px) {
+    #fp-home-v1 .fp-svo__inner { grid-template-columns: 120px 1fr; gap: 36px; }
+    #fp-home-v1 .fp-svo__mark { font-size: 76px; }
+    #fp-home-v1 .fp-svo__button { grid-column: 2; justify-self: start; }
     #fp-home-v1 .fp-directions__grid { grid-template-columns: repeat(2, 1fr); }
     #fp-home-v1 .fp-direction:nth-child(2) { border-right: 0; }
     #fp-home-v1 .fp-direction:nth-child(-n+2) { border-bottom: 1px solid var(--fp-line); }
@@ -2472,6 +2629,8 @@
     #fp-home-v1 .fp-project-card:last-child { grid-column: 1 / -1; max-width: calc(50% - 11px); }
     #fp-home-v1 .fp-trust__inner,
     #fp-home-v1 .fp-give__inner { grid-template-columns: 1fr 1fr; gap: 55px; }
+    #fp-home-v1 .fp-council { grid-template-columns: 1fr 1fr; }
+    #fp-home-v1 .fp-council__head { grid-column: 1 / -1; margin-bottom: 20px; }
     #fp-home-v1 .fp-footer__top { gap: 40px; }
     #fp-home-v1 .fp-footer__requisites { grid-template-columns: 1fr 1fr; }
     #fp-home-v1 .fp-footer__requisites div:nth-child(2) { border-right: 0; }
@@ -2481,6 +2640,7 @@
   @media (max-width: 760px) {
     #fp-home-v1 .fp-shell { width: calc(100% - 40px); }
     #fp-home-v1 .fp-directions,
+    #fp-home-v1 .fp-svo,
     #fp-home-v1 .fp-projects,
     #fp-home-v1 .fp-trust,
     #fp-home-v1 .fp-news,
@@ -2496,6 +2656,11 @@
     #fp-home-v1 .fp-direction { min-height: auto; border-right: 0; border-bottom: 1px solid var(--fp-line); }
     #fp-home-v1 .fp-direction:last-child { border-bottom: 0; }
     #fp-home-v1 .fp-direction__icon { margin: 48px 0 30px; }
+    #fp-home-v1 .fp-svo__image { background-position: 63% center; opacity: .42; }
+    #fp-home-v1 .fp-svo__inner { grid-template-columns: 1fr; gap: 30px; }
+    #fp-home-v1 .fp-svo__mark { font-size: 66px; }
+    #fp-home-v1 .fp-svo h2 { font-size: clamp(38px, 11vw, 52px); }
+    #fp-home-v1 .fp-svo__button { grid-column: auto; width: 100%; }
     #fp-home-v1 .fp-project-card:last-child { grid-column: auto; max-width: none; }
     #fp-home-v1 .fp-project-card__visual { min-height: 260px; }
     #fp-home-v1 .fp-project-card h3,
@@ -2505,6 +2670,12 @@
     #fp-home-v1 .fp-give__inner { grid-template-columns: 1fr; gap: 58px; }
     #fp-home-v1 .fp-documents a { grid-template-columns: 26px 1fr auto; gap: 10px; }
     #fp-home-v1 .fp-documents strong { font-size: 14px; }
+    #fp-home-v1 .fp-council { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 72px; padding-top: 42px; }
+    #fp-home-v1 .fp-council__head { grid-column: 1 / -1; margin-bottom: 24px; }
+    #fp-home-v1 .fp-person__photo::after { border-width: 7px; }
+    #fp-home-v1 .fp-person__photo span { top: 10px; right: 10px; width: 28px; height: 28px; }
+    #fp-home-v1 .fp-person > p { margin-top: 16px; font-size: 8px; }
+    #fp-home-v1 .fp-person h4 { font-size: clamp(17px, 5.2vw, 22px); }
     #fp-home-v1 .fp-news-card { grid-template-columns: 76px 1fr 38px; gap: 16px; min-height: 170px; }
     #fp-home-v1 .fp-news-card time { font-size: 8px; }
     #fp-home-v1 .fp-news-card time span { font-size: 32px; }
