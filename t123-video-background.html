@@ -199,70 +199,6 @@
         </article>
       </div>
 
-      <article class="fp-feature fp-observe">
-        <div class="fp-feature__visual">
-          <img
-            src="https://static.tildacdn.com/tild3261-3564-4663-b762-633764376664/Group_20.png"
-            alt="Образ Матвея Ивановича Платова"
-            loading="lazy"
-          >
-          <span class="fp-feature__stamp" aria-hidden="true">
-            <svg viewBox="0 0 100 100">
-              <defs>
-                <path id="fpCirclePath" d="M50,50 m-34,0 a34,34 0 1,1 68,0 a34,34 0 1,1 -68,0"/>
-              </defs>
-              <text>
-                <textPath href="#fpCirclePath">СОХРАНЯЕМ ИСТОРИЮ • СОЗДАЁМ БУДУЩЕЕ • </textPath>
-              </text>
-              <path class="fp-feature__stamp-mark" d="M50 36v28M36 50h28"/>
-            </svg>
-          </span>
-          <div class="fp-feature__visual-caption">
-            <span>Художественный фильм и сериал</span>
-          </div>
-        </div>
-
-        <div class="fp-feature__body">
-          <div class="fp-feature__meta">
-            <span>Проект в фокусе</span>
-            <span>Сценарий готов</span>
-          </div>
-
-          <h3>«Вихорь-атаман<br>Матвей Платов»</h3>
-
-          <p>
-            Художественный фильм и сериал о легендарном атамане.
-            Сценарий написан, идёт поиск продюсеров.
-          </p>
-
-          <div class="fp-progress">
-            <div class="fp-progress__labels">
-              <span>Собрано <strong>1 200 000 ₽</strong></span>
-              <span>из 400 000 000 ₽</span>
-            </div>
-            <div class="fp-progress__track" role="progressbar" aria-valuenow="0.3" aria-valuemin="0" aria-valuemax="100">
-              <span></span>
-            </div>
-            <div class="fp-progress__note">
-              <span>0,3% от цели</span>
-              <span>Каждый вклад приближает начало производства</span>
-            </div>
-          </div>
-
-          <div class="fp-feature__actions">
-            <a class="fp-button fp-button--gold" href="#fp-donate">
-              <span>Поддержать фильм</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h13M14 7l5 5-5 5"/>
-              </svg>
-            </a>
-            <a class="fp-text-link" href="#fp-projects">
-              Подробнее о проекте
-              <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </article>
     </div>
   </section>
 
@@ -431,7 +367,7 @@
     <div class="fp-shell fp-council fp-observe" aria-labelledby="fp-council-title">
       <div class="fp-council__head">
         <p class="fp-kicker"><span></span> Люди фонда</p>
-        <h3 id="fp-council-title">Попечительский<br>совет фонда</h3>
+        <h3 id="fp-council-title">Попечительский совет<br>фонда</h3>
       </div>
       <article class="fp-person">
         <div class="fp-person__photo">
@@ -439,7 +375,7 @@
           <span>01</span>
         </div>
         <p>Председатель Совета</p>
-        <h4>Игорь Александрович<br>Матасов</h4>
+        <h4>Игорь Александрович Матасов</h4>
       </article>
       <article class="fp-person">
         <div class="fp-person__photo">
@@ -447,7 +383,7 @@
           <span>02</span>
         </div>
         <p>Предприниматель</p>
-        <h4>Андрей Борисович<br>Бугера</h4>
+        <h4>Андрей Борисович Бугера</h4>
       </article>
     </div>
   </section>
@@ -1277,7 +1213,7 @@
 
   #fp-home-v1 .fp-impact {
     position: relative;
-    min-height: 100svh;
+    min-height: auto;
     padding: clamp(90px, 9vw, 150px) 48px;
     overflow: hidden;
     background:
@@ -2515,12 +2451,14 @@
 
   #fp-home-v1 .fp-trust__inner {
     display: grid;
-    grid-template-columns: minmax(0, .9fr) minmax(480px, 1.1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(460px, .92fr);
     gap: 100px;
     align-items: center;
   }
 
   #fp-home-v1 .fp-trust__copy > p:not(.fp-kicker) { max-width: 590px; margin: 30px 0 0; color: rgba(240,237,230,.62); line-height: 1.8; }
+  #fp-home-v1 .fp-trust h2 { font-size: clamp(44px, 4.1vw, 66px); }
+  #fp-home-v1 .fp-trust h2 em { white-space: nowrap; }
   #fp-home-v1 .fp-trust__people { display: grid; gap: 17px; margin-top: 42px; }
   #fp-home-v1 .fp-trust__people div { padding-left: 17px; border-left: 1px solid var(--fp-gold-light); }
   #fp-home-v1 .fp-trust__people span { display: block; color: rgba(240,237,230,.42); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
@@ -2535,16 +2473,19 @@
 
   #fp-home-v1 .fp-council {
     display: grid;
-    grid-template-columns: minmax(280px, .8fr) repeat(2, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, minmax(260px, 350px));
     gap: 22px;
     align-items: end;
+    justify-content: end;
+    width: min(100%, 722px);
     margin-top: 105px;
+    margin-left: auto;
     padding-top: 54px;
     border-top: 1px solid rgba(255,255,255,.15);
   }
 
-  #fp-home-v1 .fp-council__head { align-self: start; padding-top: 4px; }
-  #fp-home-v1 .fp-council__head h3 { margin: 0; font-family: var(--fp-font-display); font-size: clamp(34px, 3.7vw, 56px); font-weight: 400; line-height: 1.06; letter-spacing: -.03em; }
+  #fp-home-v1 .fp-council__head { grid-column: 1 / -1; align-self: start; margin-bottom: 24px; padding-top: 4px; }
+  #fp-home-v1 .fp-council__head h3 { margin: 0; scroll-margin-top: 24px; font-family: var(--fp-font-display); font-size: clamp(36px, 3.2vw, 50px); font-weight: 400; line-height: 1.06; letter-spacing: -.03em; }
   #fp-home-v1 .fp-person { min-width: 0; }
   #fp-home-v1 .fp-person__photo { position: relative; aspect-ratio: 1 / .92; overflow: hidden; border: 1px solid rgba(255,255,255,.14); background: #e8e5df; }
   #fp-home-v1 .fp-person__photo::after { content: ""; position: absolute; inset: 0; border: 12px solid rgba(9,11,13,.07); pointer-events: none; }
@@ -2552,7 +2493,7 @@
   #fp-home-v1 .fp-person:hover .fp-person__photo img { transform: scale(1.035); filter: saturate(.9) contrast(1.02); }
   #fp-home-v1 .fp-person__photo span { position: absolute; z-index: 2; top: 18px; right: 18px; display: grid; place-items: center; width: 34px; height: 34px; color: #111416; border: 1px solid rgba(17,20,22,.28); background: rgba(240,237,230,.78); font-size: 9px; }
   #fp-home-v1 .fp-person > p { margin: 22px 0 8px; color: var(--fp-gold-light); font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-  #fp-home-v1 .fp-person h4 { margin: 0; font-family: var(--fp-font-display); font-size: 25px; font-weight: 400; line-height: 1.18; }
+  #fp-home-v1 .fp-person h4 { margin: 0; font-family: var(--fp-font-display); font-size: 23px; font-weight: 400; line-height: 1.18; overflow-wrap: normal; word-break: normal; hyphens: none; }
 
   #fp-home-v1 .fp-news { padding: 140px 0; background: #080a0c; }
   #fp-home-v1 .fp-news__list { border-top: 1px solid rgba(255,255,255,.13); }
@@ -2630,7 +2571,6 @@
     #fp-home-v1 .fp-trust__inner,
     #fp-home-v1 .fp-give__inner { grid-template-columns: 1fr 1fr; gap: 55px; }
     #fp-home-v1 .fp-council { grid-template-columns: 1fr 1fr; }
-    #fp-home-v1 .fp-council__head { grid-column: 1 / -1; margin-bottom: 20px; }
     #fp-home-v1 .fp-footer__top { gap: 40px; }
     #fp-home-v1 .fp-footer__requisites { grid-template-columns: 1fr 1fr; }
     #fp-home-v1 .fp-footer__requisites div:nth-child(2) { border-right: 0; }
@@ -2649,8 +2589,8 @@
     #fp-home-v1 .fp-projects__head { grid-template-columns: 1fr; gap: 28px; margin-bottom: 50px; }
     #fp-home-v1 .fp-directions .fp-section-head h2,
     #fp-home-v1 .fp-projects__head h2,
-    #fp-home-v1 .fp-trust h2,
     #fp-home-v1 .fp-give h2 { font-size: clamp(40px, 12vw, 56px); }
+    #fp-home-v1 .fp-trust h2 { font-size: clamp(36px, 9.8vw, 44px); }
     #fp-home-v1 .fp-directions__grid,
     #fp-home-v1 .fp-project-grid { grid-template-columns: 1fr; }
     #fp-home-v1 .fp-direction { min-height: auto; border-right: 0; border-bottom: 1px solid var(--fp-line); }
@@ -2670,8 +2610,9 @@
     #fp-home-v1 .fp-give__inner { grid-template-columns: 1fr; gap: 58px; }
     #fp-home-v1 .fp-documents a { grid-template-columns: 26px 1fr auto; gap: 10px; }
     #fp-home-v1 .fp-documents strong { font-size: 14px; }
-    #fp-home-v1 .fp-council { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 72px; padding-top: 42px; }
-    #fp-home-v1 .fp-council__head { grid-column: 1 / -1; margin-bottom: 24px; }
+    #fp-home-v1 .fp-council { grid-template-columns: 1fr 1fr; gap: 12px; width: calc(100% - 40px); margin-top: 72px; padding-top: 42px; }
+    #fp-home-v1 .fp-council__head { margin-bottom: 24px; }
+    #fp-home-v1 .fp-council__head h3 { font-size: 32px; }
     #fp-home-v1 .fp-person__photo::after { border-width: 7px; }
     #fp-home-v1 .fp-person__photo span { top: 10px; right: 10px; width: 28px; height: 28px; }
     #fp-home-v1 .fp-person > p { margin-top: 16px; font-size: 8px; }
