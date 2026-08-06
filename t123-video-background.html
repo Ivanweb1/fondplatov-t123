@@ -377,20 +377,26 @@
         <p class="fp-kicker"><span></span> Люди фонда</p>
         <h3 id="fp-council-title">Попечительский совет<br>фонда</h3>
       </div>
-      <article class="fp-person">
-        <div class="fp-person__photo">
-          <img src="https://ivanweb1.github.io/fondplatov-t123/assets/igor-matasov.png" loading="lazy" alt="Игорь Александрович Матасов">
-        </div>
-        <p>Председатель Совета</p>
-        <h4>Игорь Александрович Матасов</h4>
-      </article>
-      <article class="fp-person">
-        <div class="fp-person__photo">
-          <img src="https://ivanweb1.github.io/fondplatov-t123/assets/andrey-bugera.png" loading="lazy" alt="Андрей Борисович Бугера">
-        </div>
-        <p>Предприниматель</p>
-        <h4>Андрей Борисович Бугера</h4>
-      </article>
+      <div class="fp-council__list">
+        <article class="fp-person">
+          <div class="fp-person__photo">
+            <img src="https://ivanweb1.github.io/fondplatov-t123/assets/igor-matasov.png" loading="lazy" alt="Игорь Александрович Матасов">
+          </div>
+          <div class="fp-person__info">
+            <p>Председатель Совета</p>
+            <h4>Игорь Александрович Матасов</h4>
+          </div>
+        </article>
+        <article class="fp-person">
+          <div class="fp-person__photo">
+            <img src="https://ivanweb1.github.io/fondplatov-t123/assets/andrey-bugera.png" loading="lazy" alt="Андрей Борисович Бугера">
+          </div>
+          <div class="fp-person__info">
+            <p>Предприниматель</p>
+            <h4>Андрей Борисович Бугера</h4>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -2492,25 +2498,25 @@
 
   #fp-home-v1 .fp-council {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
+    align-items: end;
+    gap: 80px;
     width: 100%;
     margin-top: 105px;
-    padding: 44px 0;
+    padding-top: 54px;
     border-top: 1px solid rgba(255,255,255,.15);
-    border-bottom: 1px solid rgba(255,255,255,.15);
   }
 
-  #fp-home-v1 .fp-council__head { grid-column: 1 / -1; margin-bottom: 40px; padding-top: 4px; }
+  #fp-home-v1 .fp-council__head { padding-top: 4px; }
   #fp-home-v1 .fp-council__head h3 { margin: 0; scroll-margin-top: 24px; font-family: var(--fp-font-display); font-size: clamp(36px, 3.2vw, 50px); font-weight: 400; line-height: 1.06; letter-spacing: -.03em; }
-  #fp-home-v1 .fp-person { display: flex; align-items: center; gap: 22px; min-width: 0; padding: 0 30px 0 0; }
-  #fp-home-v1 .fp-person + .fp-person { padding-left: 30px; border-left: 1px solid rgba(255,255,255,.12); }
+  #fp-home-v1 .fp-council__list { display: flex; flex-direction: column; }
+  #fp-home-v1 .fp-person { display: flex; align-items: center; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+  #fp-home-v1 .fp-person:last-child { border-bottom: 0; }
   #fp-home-v1 .fp-person__photo { position: relative; width: 68px; height: 68px; aspect-ratio: 1; flex: none; overflow: hidden; border-radius: 50%; border: 1px solid rgba(255,255,255,.14); background: #e8e5df; }
   #fp-home-v1 .fp-person__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.68) contrast(1.04); transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .4s ease; }
   #fp-home-v1 .fp-person:hover .fp-person__photo img { transform: scale(1.035); filter: saturate(.9) contrast(1.02); }
-  #fp-home-v1 .fp-person > p { margin: 0 0 4px; color: var(--fp-gold-light); font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-  #fp-home-v1 .fp-person h4 { margin: 0; font-family: var(--fp-font-display); font-size: 18px; font-weight: 400; line-height: 1.22; overflow-wrap: normal; word-break: normal; hyphens: none; }
+  #fp-home-v1 .fp-person__info p { margin: 0 0 4px; color: var(--fp-gold-light); font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  #fp-home-v1 .fp-person__info h4 { margin: 0; font-family: var(--fp-font-display); font-size: 18px; font-weight: 400; line-height: 1.22; overflow-wrap: normal; word-break: normal; hyphens: none; }
 
   #fp-home-v1 .fp-news { padding: 140px 0; background: #080a0c; }
   #fp-home-v1 .fp-news__list { border-top: 1px solid rgba(255,255,255,.13); }
@@ -2627,17 +2633,11 @@
     #fp-home-v1 .fp-give__inner { grid-template-columns: 1fr; gap: 58px; }
     #fp-home-v1 .fp-documents a { grid-template-columns: 26px 1fr auto; gap: 10px; }
     #fp-home-v1 .fp-documents strong { font-size: 14px; }
-    #fp-home-v1 .fp-council { grid-template-columns: 1fr; gap: 0; width: calc(100% - 40px); margin-top: 48px; padding: 28px 0; }
-    #fp-home-v1 .fp-council__head { margin-bottom: 20px; }
+    #fp-home-v1 .fp-council { grid-template-columns: 1fr; gap: 24px; width: calc(100% - 40px); margin-top: 48px; padding-top: 28px; }
     #fp-home-v1 .fp-council__head h3 { font-size: 28px; }
-    #fp-home-v1 .fp-person,
-    #fp-home-v1 .fp-person + .fp-person { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-left: 0; border-bottom: 1px solid rgba(255,255,255,.1); }
-    #fp-home-v1 .fp-person:last-child { border-bottom: 0; }
     #fp-home-v1 .fp-person__photo { width: 60px; height: 60px; aspect-ratio: 1; flex: none; border-radius: 50%; }
-    #fp-home-v1 .fp-person__photo::after { display: none; }
-    #fp-home-v1 .fp-person__photo span { display: none; }
-    #fp-home-v1 .fp-person > p { margin: 0 0 3px; font-size: 8px; }
-    #fp-home-v1 .fp-person h4 { font-size: 15px; line-height: 1.25; }
+    #fp-home-v1 .fp-person__info p { margin: 0 0 3px; font-size: 8px; }
+    #fp-home-v1 .fp-person__info h4 { font-size: 15px; line-height: 1.25; }
     #fp-home-v1 .fp-news-card { grid-template-columns: 76px 1fr 38px; gap: 16px; min-height: 170px; }
     #fp-home-v1 .fp-news-card time { font-size: 8px; }
     #fp-home-v1 .fp-news-card time span { font-size: 32px; }
