@@ -640,8 +640,8 @@
   }
 
   #fp-home-v1 .fp-header {
-    position: absolute;
-    z-index: 20;
+    position: fixed;
+    z-index: 200;
     top: 0;
     left: 50%;
     display: grid;
@@ -651,7 +651,19 @@
     min-height: 108px;
     transform: translateX(-50%);
     border-bottom: 1px solid rgba(255,255,255,.15);
+    background: transparent;
+    transition: background-color .3s ease, border-color .3s ease, min-height .3s ease, backdrop-filter .3s ease;
   }
+
+  #fp-home-v1 .fp-header.is-scrolled {
+    min-height: 84px;
+    border-bottom-color: rgba(255,255,255,.12);
+    background: rgba(9,11,13,.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  #fp-home-v1 [id] { scroll-margin-top: 112px; }
 
   #fp-home-v1 .fp-brand {
     display: inline-flex;
@@ -2679,6 +2691,16 @@
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
+
+    /* Фон шапки при прокрутке */
+    var header = root.querySelector(".fp-header");
+    if (header) {
+      var updateHeader = function () {
+        header.classList.toggle("is-scrolled", window.scrollY > 40);
+      };
+      updateHeader();
+      window.addEventListener("scroll", updateHeader, { passive: true });
+    }
 
     /* Мобильное меню */
     var menuButton = root.querySelector(".fp-menu");
