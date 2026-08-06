@@ -300,7 +300,10 @@
               <i><b style="width:.3%"></b></i>
               <small>Собрано 0,3% от цели</small>
             </div>
-            <a class="fp-project-card__link" href="#fp-donate">Поддержать проект <span>→</span></a>
+            <div class="fp-project-card__actions">
+              <a class="fp-project-card__more" href="https://fondplatov.ru/" target="_blank" rel="noopener">Подробнее</a>
+              <a class="fp-project-card__link" href="#fp-donate">Поддержать проект <span>→</span></a>
+            </div>
           </div>
         </article>
 
@@ -318,7 +321,10 @@
               <i><b style="width:100%"></b></i>
               <small>Финансирование получено в полном объёме</small>
             </div>
-            <a class="fp-project-card__link" href="https://fondplatov.ru/" target="_blank" rel="noopener">Смотреть фильм <span>↗</span></a>
+            <div class="fp-project-card__actions">
+              <a class="fp-project-card__more" href="https://fondplatov.ru/" target="_blank" rel="noopener">Подробнее</a>
+              <a class="fp-project-card__link" href="https://fondplatov.ru/" target="_blank" rel="noopener">Смотреть фильм <span>↗</span></a>
+            </div>
           </div>
         </article>
 
@@ -757,7 +763,7 @@
 
   #fp-home-v1 .fp-header__actions {
     display: grid;
-    justify-items: end;
+    justify-items: start;
     justify-self: end;
     gap: 7px;
   }
@@ -2414,13 +2420,28 @@
   #fp-home-v1 .fp-card-progress small { color: rgba(240,237,230,.42); font-size: 10px; }
   #fp-home-v1 .fp-card-progress--done > i b { background: #6e927a; }
 
-  #fp-home-v1 .fp-project-card__link {
+  #fp-home-v1 .fp-project-card__actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
     margin-top: 27px;
     padding-top: 20px;
     border-top: 1px solid rgba(255,255,255,.1);
+  }
+  #fp-home-v1 .fp-project-card__more {
+    color: rgba(240,237,230,.5);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    transition: color .25s ease;
+  }
+  #fp-home-v1 .fp-project-card__more:hover { color: var(--fp-gold-light); }
+  #fp-home-v1 .fp-project-card__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color: rgba(240,237,230,.8);
     font-size: 11px;
     font-weight: 600;
@@ -2471,27 +2492,26 @@
 
   #fp-home-v1 .fp-council {
     display: grid;
-    grid-template-columns: repeat(2, minmax(160px, 220px));
-    gap: 22px;
+    grid-template-columns: 1fr;
+    gap: 0;
     align-items: start;
     justify-content: end;
-    width: min(100%, 462px);
+    width: min(100%, 380px);
     margin-top: 105px;
     margin-left: auto;
-    padding-top: 54px;
+    padding-top: 44px;
     border-top: 1px solid rgba(255,255,255,.15);
   }
 
-  #fp-home-v1 .fp-council__head { grid-column: 1 / -1; align-self: start; margin-bottom: 24px; padding-top: 4px; }
-  #fp-home-v1 .fp-council__head h3 { margin: 0; scroll-margin-top: 24px; font-family: var(--fp-font-display); font-size: clamp(36px, 3.2vw, 50px); font-weight: 400; line-height: 1.06; letter-spacing: -.03em; }
-  #fp-home-v1 .fp-person { min-width: 0; }
-  #fp-home-v1 .fp-person__photo { position: relative; aspect-ratio: 1 / .92; overflow: hidden; border: 1px solid rgba(255,255,255,.14); background: #e8e5df; }
-  #fp-home-v1 .fp-person__photo::after { content: ""; position: absolute; inset: 0; border: 12px solid rgba(9,11,13,.07); pointer-events: none; }
+  #fp-home-v1 .fp-council__head { margin-bottom: 22px; padding-top: 4px; }
+  #fp-home-v1 .fp-council__head h3 { margin: 0; scroll-margin-top: 24px; font-family: var(--fp-font-display); font-size: clamp(30px, 2.6vw, 40px); font-weight: 400; line-height: 1.08; letter-spacing: -.03em; }
+  #fp-home-v1 .fp-person { display: flex; align-items: center; gap: 18px; min-width: 0; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+  #fp-home-v1 .fp-person:last-child { border-bottom: 0; }
+  #fp-home-v1 .fp-person__photo { position: relative; width: 68px; height: 68px; aspect-ratio: 1; flex: none; overflow: hidden; border-radius: 50%; border: 1px solid rgba(255,255,255,.14); background: #e8e5df; }
   #fp-home-v1 .fp-person__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.68) contrast(1.04); transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .4s ease; }
   #fp-home-v1 .fp-person:hover .fp-person__photo img { transform: scale(1.035); filter: saturate(.9) contrast(1.02); }
-  #fp-home-v1 .fp-person__photo span { position: absolute; z-index: 2; top: 18px; right: 18px; display: grid; place-items: center; width: 34px; height: 34px; color: #111416; border: 1px solid rgba(17,20,22,.28); background: rgba(240,237,230,.78); font-size: 9px; }
-  #fp-home-v1 .fp-person > p { margin: 22px 0 8px; color: var(--fp-gold-light); font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-  #fp-home-v1 .fp-person h4 { margin: 0; font-family: var(--fp-font-display); font-size: 23px; font-weight: 400; line-height: 1.18; overflow-wrap: normal; word-break: normal; hyphens: none; }
+  #fp-home-v1 .fp-person > p { margin: 0 0 4px; color: var(--fp-gold-light); font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  #fp-home-v1 .fp-person h4 { margin: 0; font-family: var(--fp-font-display); font-size: 18px; font-weight: 400; line-height: 1.22; overflow-wrap: normal; word-break: normal; hyphens: none; }
 
   #fp-home-v1 .fp-news { padding: 140px 0; background: #080a0c; }
   #fp-home-v1 .fp-news__list { border-top: 1px solid rgba(255,255,255,.13); }
@@ -2568,7 +2588,6 @@
     #fp-home-v1 .fp-project-card:last-child { grid-column: 1 / -1; max-width: calc(50% - 11px); }
     #fp-home-v1 .fp-trust__inner,
     #fp-home-v1 .fp-give__inner { grid-template-columns: 1fr 1fr; gap: 55px; }
-    #fp-home-v1 .fp-council { grid-template-columns: 1fr 1fr; }
     #fp-home-v1 .fp-footer__top { gap: 40px; }
     #fp-home-v1 .fp-footer__requisites { grid-template-columns: 1fr 1fr; }
     #fp-home-v1 .fp-footer__requisites div:nth-child(2) { border-right: 0; }
