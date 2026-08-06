@@ -60,6 +60,7 @@
         <a href="#fp-about">О фонде</a>
         <a href="#fp-projects">Проекты</a>
         <a href="#fp-news">Новости</a>
+        <a href="#fp-documents">Документы</a>
         <a href="#fp-contacts">Контакты</a>
       </nav>
 
@@ -70,7 +71,7 @@
             <path d="M4 10h11M11 6l4 4-4 4"/>
           </svg>
         </a>
-        <a class="fp-header__svo" href="#fp-svo"><i></i> Помощь участникам СВО</a>
+        <a class="fp-header__svo" href="#fp-svo"><i></i> Помощь казакам СВО</a>
       </div>
 
       <button class="fp-menu" type="button" aria-label="Открыть меню" aria-expanded="false">
@@ -82,6 +83,7 @@
       <a href="#fp-about">О фонде</a>
       <a href="#fp-projects">Проекты</a>
       <a href="#fp-news">Новости</a>
+      <a href="#fp-documents">Документы</a>
       <a href="#fp-contacts">Контакты</a>
       <a class="fp-mobile-nav__svo" href="#fp-svo">Помощь казакам — участникам СВО</a>
       <a class="fp-mobile-nav__donate" href="#fp-donate">Помочь фонду</a>
@@ -209,7 +211,7 @@
       <div class="fp-section-head fp-observe">
         <div>
           <p class="fp-kicker"><span></span> Направления деятельности</p>
-          <h2 id="fp-directions-title">Сохраняем память.<br><em>Создаём будущее.</em></h2>
+          <h2 id="fp-directions-title">Сохраняем память<br><em>Создаём будущее</em></h2>
         </div>
         <p class="fp-section-head__lead">
           Фонд поддерживает не только кинопроизводство. В его задачи входят
@@ -261,7 +263,7 @@
       <div class="fp-svo__mark" aria-hidden="true">СВО</div>
       <div class="fp-svo__copy">
         <p class="fp-kicker"><span></span> Отдельное направление помощи</p>
-        <h2 id="fp-svo-title">Помощь казакам —<br><em>участникам СВО</em></h2>
+        <h2 id="fp-svo-title">Помощь казакам<br><em>участникам СВО</em></h2>
         <p>Поддержите целевой сбор фонда. Средства направляются на оказание помощи казакам, принимающим участие в специальной военной операции.</p>
       </div>
       <a class="fp-button fp-button--gold fp-svo__button" href="#fp-donate">
@@ -393,7 +395,7 @@
       <div class="fp-projects__head fp-observe">
         <div>
           <p class="fp-kicker"><span></span> Новости и события</p>
-          <h2 id="fp-news-title">Фонд работает.<br><em>История продолжается.</em></h2>
+          <h2 id="fp-news-title">Фонд работает<br><em>История продолжается</em></h2>
         </div>
         <a class="fp-text-link" href="https://fondplatov.ru/" target="_blank" rel="noopener">Все события <span>↗</span></a>
       </div>
@@ -465,7 +467,7 @@
           <p>Сохраняем историческую память и культурное наследие России.</p>
         </div>
         <nav class="fp-footer__nav" aria-label="Навигация в подвале">
-          <a href="#fp-about">О фонде</a><a href="#fp-projects">Проекты</a><a href="#fp-news">Новости</a><a href="#fp-documents">Документы</a><a href="#fp-svo">Помощь участникам СВО</a>
+          <a href="#fp-about">О фонде</a><a href="#fp-projects">Проекты</a><a href="#fp-news">Новости</a><a href="#fp-documents">Документы</a><a href="#fp-svo">Помощь казакам СВО</a>
         </nav>
         <address class="fp-footer__contacts">
           <a href="tel:+79772505555">+7 (977) 250-55-55</a>
@@ -1214,7 +1216,7 @@
   #fp-home-v1 .fp-impact {
     position: relative;
     min-height: auto;
-    padding: clamp(90px, 9vw, 150px) 48px;
+    padding: clamp(90px, 9vw, 150px) 48px clamp(56px, 5vw, 84px);
     overflow: hidden;
     background:
       linear-gradient(180deg, #0b0e10 0%, #101315 52%, #0b0d0f 100%);
@@ -2160,7 +2162,7 @@
   }
 
   #fp-home-v1 .fp-directions {
-    padding: 132px 0 144px;
+    padding: 64px 0 144px;
     background: #0b0e10;
   }
 
@@ -2216,11 +2218,9 @@
     padding: 34px 30px 38px;
     border-right: 1px solid var(--fp-line);
     background: rgba(9,11,13,.34);
-    transition: background-color .35s ease, transform .35s ease;
   }
 
   #fp-home-v1 .fp-direction:last-child { border-right: 0; }
-  #fp-home-v1 .fp-direction:hover { background: rgba(196,162,93,.09); transform: translateY(-6px); }
 
   #fp-home-v1 .fp-direction__number {
     color: rgba(240,237,230,.42);
@@ -2444,7 +2444,7 @@
     background:
       linear-gradient(90deg, rgba(16,20,22,.1), #101416 94%),
       linear-gradient(180deg, rgba(16,20,22,.32), rgba(16,20,22,.78)),
-      url("https://static.tildacdn.com/tild3261-3564-4663-b762-633764376664/Group_20.png") 30% center / contain no-repeat;
+      url("https://static.tildacdn.com/tild3931-6130-4533-a139-313430396136/photo.jpg") 0% center / cover no-repeat;
     filter: grayscale(.68) sepia(.16) contrast(1.03);
     opacity: .34;
   }
@@ -2473,11 +2473,11 @@
 
   #fp-home-v1 .fp-council {
     display: grid;
-    grid-template-columns: repeat(2, minmax(260px, 350px));
+    grid-template-columns: repeat(2, minmax(160px, 220px));
     gap: 22px;
-    align-items: end;
+    align-items: start;
     justify-content: end;
-    width: min(100%, 722px);
+    width: min(100%, 462px);
     margin-top: 105px;
     margin-left: auto;
     padding-top: 54px;
