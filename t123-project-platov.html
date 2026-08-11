@@ -14,15 +14,29 @@
     <a class="pp-logo" href="https://ivanweb1.github.io/fondplatov-t123/video/" aria-label="На главную страницу фонда">
       <img src="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" alt="Благотворительный фонд имени М. И. Платова">
     </a>
-    <nav class="pp-nav" aria-label="Навигация по странице">
-      <a href="#pp-story">О проекте</a>
-      <a href="#pp-stage">Что сделано</a>
-      <a href="#pp-faq">Вопросы</a>
+    <nav class="pp-nav" aria-label="Основная навигация">
+      <a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-about">О фонде</a>
+      <a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">Проекты</a>
+      <a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-news">Новости</a>
+      <a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-documents">Документы</a>
+      <a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-contacts">Контакты</a>
     </nav>
-    <a class="pp-header__back" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">
-      <span>Все проекты</span><i>↗</i>
-    </a>
+    <div class="pp-header__actions">
+      <a class="pp-header__donate" href="#pp-donate"><span>Помочь фонду</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4"/></svg></a>
+      <a class="pp-header__svo" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-svo"><i></i> Помощь казакам СВО</a>
+    </div>
+    <button class="pp-menu" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
   </header>
+
+  <div class="pp-mobile-nav" aria-hidden="true">
+    <a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-about">О фонде</a>
+    <a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">Проекты</a>
+    <a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-news">Новости</a>
+    <a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-documents">Документы</a>
+    <a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-contacts">Контакты</a>
+    <a class="pp-mobile-nav__svo" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-svo">Помощь казакам — участникам СВО</a>
+    <a class="pp-mobile-nav__donate" href="#pp-donate">Помочь фонду</a>
+  </div>
 
   <main>
     <section class="pp-hero" aria-labelledby="pp-title">
@@ -120,10 +134,6 @@
     </section>
 
     <section class="pp-story" id="pp-story" aria-labelledby="pp-story-title">
-      <div class="pp-story__portrait" aria-hidden="true">
-        <div class="pp-story__rings"></div>
-        <img src="https://static.tildacdn.com/tild3261-3564-4663-b762-633764376664/Group_20.png" loading="lazy" alt="">
-      </div>
       <div class="pp-story__copy pp-observe">
         <p class="pp-kicker"><span></span> Почему этот фильм важен</p>
         <h2 id="pp-story-title">История, которую<br><em>должны увидеть</em></h2>
@@ -137,6 +147,10 @@
           <div><span>01</span><h3>Полнометражный фильм</h3><p>Самостоятельная историческая картина продолжительностью 100 минут.</p></div>
           <div><span>02</span><h3>Телевизионный сериал</h3><p>Одноимённый сериал с продолжительностью одной серии 45 минут.</p></div>
         </div>
+      </div>
+      <div class="pp-story__portrait" aria-hidden="true">
+        <div class="pp-story__rings"></div>
+        <img src="https://static.tildacdn.com/tild3261-3564-4663-b762-633764376664/Group_20.png" loading="lazy" alt="">
       </div>
     </section>
 
@@ -162,12 +176,14 @@
     </section>
 
     <section class="pp-meaning" aria-labelledby="pp-meaning-title">
-      <div class="pp-meaning__art" aria-hidden="true"></div>
-      <div class="pp-shell pp-meaning__inner pp-observe">
-        <p class="pp-kicker"><span></span> Ваш вклад имеет значение</p>
-        <h2 id="pp-meaning-title">Помогите истории<br><em>стать фильмом</em></h2>
-        <p>Даже небольшой вклад приближает проект к следующему производственному этапу и помогает сохранить историческую память средствами кино.</p>
-        <a class="pp-button" href="#pp-donate">Поддержать проект <span>↑</span></a>
+      <div class="pp-shell pp-meaning__layout pp-observe">
+        <div class="pp-meaning__copy">
+          <p class="pp-kicker"><span></span> Ваш вклад имеет значение</p>
+          <h2 id="pp-meaning-title">Помогите истории<br><em>стать фильмом</em></h2>
+          <p>Даже небольшой вклад приближает проект к следующему производственному этапу и помогает сохранить историческую память средствами кино.</p>
+          <a class="pp-button" href="#pp-donate">Поддержать проект <span>↑</span></a>
+        </div>
+        <div class="pp-meaning__visual" aria-hidden="true"><span>1812</span></div>
       </div>
     </section>
 
@@ -187,13 +203,18 @@
     </section>
   </main>
 
-  <footer class="pp-footer">
-    <div class="pp-shell pp-footer__top">
-      <div><img src="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" alt="Благотворительный фонд имени М. И. Платова"><p>Сохраняем историческую память и культурное наследие России.</p></div>
-      <nav><a href="https://ivanweb1.github.io/fondplatov-t123/video/">Главная</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">Проекты</a><a href="https://fondplatov.ru/otc" target="_blank" rel="noopener">Отчётность</a></nav>
-      <address><a href="tel:+79772505555">+7 (977) 250-55-55</a><a href="mailto:info@fondplatov.ru">info@fondplatov.ru</a><p>105005, Москва, ул. Бауманская, д. 7, стр. 1, офис 328</p></address>
+  <footer class="pp-footer" id="pp-contacts">
+    <div class="pp-shell">
+      <div class="pp-footer__top">
+        <div class="pp-footer__brand"><img src="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" alt="Благотворительный фонд имени М. И. Платова"><p>Сохраняем историческую память и культурное наследие России.</p></div>
+        <nav class="pp-footer__nav" aria-label="Навигация в подвале"><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-about">О фонде</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">Проекты</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-news">Новости</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-documents">Документы</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-svo">Помощь казакам СВО</a></nav>
+        <address class="pp-footer__contacts"><a href="tel:+79772505555">+7 (977) 250-55-55</a><a href="mailto:info@fondplatov.ru">info@fondplatov.ru</a><p>105005, Москва, ул. Бауманская, д. 7, стр. 1, офис 328</p></address>
+      </div>
+      <div class="pp-footer__requisites">
+        <div><span>ОГРН</span><strong>1227700559052</strong></div><div><span>ИНН / КПП</span><strong>9701219100 / 770101001</strong></div><div><span>Расчётный счёт</span><strong>40701810638000110111</strong></div><div><span>Банк / БИК</span><strong>ПАО Сбербанк / 044525225</strong></div>
+      </div>
+      <div class="pp-footer__bottom"><p>© 2022–2026 Благотворительный фонд имени донского атамана М. И. Платова</p><div><a href="https://fondplatov.ru/politika" target="_blank" rel="noopener">Политика конфиденциальности</a><a href="https://fondplatov.ru/oferta" target="_blank" rel="noopener">Публичная оферта</a></div></div>
     </div>
-    <div class="pp-shell pp-footer__bottom"><span>© Благотворительный фонд имени М. И. Платова</span><a href="https://fondplatov.ru/politika" target="_blank" rel="noopener">Политика обработки данных</a></div>
   </footer>
 </div>
 
@@ -221,15 +242,20 @@
   #fp-project-platov .pp-skip { position: fixed; z-index: 999; top: 10px; left: 10px; padding: 10px 16px; color: #090b0d; background: var(--gold-light); transform: translateY(-160%); transition: transform .2s ease; }
   #fp-project-platov .pp-skip:focus { transform: none; }
 
-  #fp-project-platov .pp-header { position: absolute; z-index: 20; top: 0; left: 50%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; width: min(calc(100% - 96px), 1440px); min-height: 104px; border-bottom: 1px solid rgba(255,255,255,.14); transform: translateX(-50%); }
+  #fp-project-platov .pp-header { position: absolute; z-index: 20; top: 0; left: 50%; display: grid; grid-template-columns: minmax(230px,1fr) auto minmax(230px,1fr); align-items: center; width: min(calc(100% - 96px), 1440px); min-height: 108px; border-bottom: 1px solid rgba(255,255,255,.15); transform: translateX(-50%); }
   #fp-project-platov .pp-logo { justify-self: start; }
   #fp-project-platov .pp-logo img { display: block; width: 190px; height: 76px; object-fit: contain; }
-  #fp-project-platov .pp-nav { display: flex; gap: 42px; }
-  #fp-project-platov .pp-nav a { position: relative; padding: 12px 0; color: rgba(255,255,255,.72); font-family: var(--display); font-size: 14px; }
+  #fp-project-platov .pp-nav { display: flex; align-items: center; justify-content: center; gap: clamp(22px,2.2vw,38px); }
+  #fp-project-platov .pp-nav a { position: relative; padding: 12px 0; color: rgba(255,255,255,.82); font-family: var(--display); font-size: 14px; }
   #fp-project-platov .pp-nav a::after { content: ""; position: absolute; right: 0; bottom: 5px; left: 0; height: 1px; background: var(--gold-light); transform: scaleX(0); transition: transform .3s ease; }
   #fp-project-platov .pp-nav a:hover::after { transform: scaleX(1); }
-  #fp-project-platov .pp-header__back { display: inline-flex; align-items: center; justify-self: end; gap: 18px; min-height: 44px; padding: 0 17px; color: var(--gold-light); border: 1px solid rgba(226,201,129,.35); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-  #fp-project-platov .pp-header__back i { font-size: 15px; font-style: normal; }
+  #fp-project-platov .pp-header__actions { display: grid; justify-items: start; justify-self: end; gap: 7px; }
+  #fp-project-platov .pp-header__donate { display: inline-flex; align-items: center; gap: 16px; min-height: 46px; padding: 0 4px 0 22px; color: var(--gold-light); border: 1px solid rgba(226,201,129,.42); font-size: 12px; font-weight: 700; letter-spacing: .075em; text-transform: uppercase; transition: color .25s ease, background-color .25s ease; }
+  #fp-project-platov .pp-header__donate svg { width: 38px; height: 38px; padding: 11px; border-left: 1px solid rgba(226,201,129,.28); fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+  #fp-project-platov .pp-header__donate:hover { color: #0b0c0d; background: var(--gold-light); }
+  #fp-project-platov .pp-header__svo { display: inline-flex; align-items: center; gap: 7px; color: rgba(255,255,255,.68); font-size: 8px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  #fp-project-platov .pp-header__svo i { width: 6px; height: 6px; border-radius: 50%; background: #b84239; box-shadow: 0 0 0 4px rgba(184,66,57,.12); }
+  #fp-project-platov .pp-menu, #fp-project-platov .pp-mobile-nav { display: none; }
 
   #fp-project-platov .pp-hero { position: relative; min-height: max(880px, 100svh); padding: 160px 0 100px; isolation: isolate; }
   #fp-project-platov .pp-hero__art { position: absolute; z-index: 0; inset: 0; background: url("https://static.tildacdn.com/tild3232-3535-4632-a531-383937616136/Friedland_mazurovsky.jpg") 52% 48% / cover no-repeat; filter: grayscale(.48) sepia(.18) contrast(1.08) brightness(.55); transform: scale(1.015); }
@@ -306,19 +332,20 @@
   #fp-project-platov .pp-support-feed p strong { color: var(--gold-light); }
   #fp-project-platov .pp-support-feed small { color: rgba(255,255,255,.32); font-size: 8px; }
 
-  #fp-project-platov .pp-story { display: grid; grid-template-columns: 48% 52%; min-height: 880px; background: #0d1113; }
-  #fp-project-platov .pp-story__portrait { position: relative; min-height: 760px; overflow: hidden; background: radial-gradient(circle at 50% 45%, rgba(196,162,93,.17), transparent 30%), linear-gradient(145deg, #191d1e, #090b0d); }
-  #fp-project-platov .pp-story__portrait::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 65%, #0d1113), linear-gradient(180deg, transparent 70%, #0d1113); }
-  #fp-project-platov .pp-story__portrait img { position: absolute; z-index: 2; left: 50%; bottom: -2%; width: min(72%, 590px); transform: translateX(-50%); filter: grayscale(.78) sepia(.13) contrast(1.04); }
-  #fp-project-platov .pp-story__rings { position: absolute; top: 50%; left: 50%; width: 66%; aspect-ratio: 1; border: 1px solid rgba(226,201,129,.13); border-radius: 50%; transform: translate(-50%,-50%); box-shadow: 0 0 0 90px rgba(226,201,129,.03), 0 0 0 180px rgba(226,201,129,.02); }
-  #fp-project-platov .pp-story__copy { align-self: center; max-width: 760px; padding: 110px clamp(48px, 7vw, 120px); }
+  #fp-project-platov .pp-story { display: grid; grid-template-columns: 56% 44%; min-height: 700px; padding: 58px max(48px,calc((100% - 1380px)/2)); gap: clamp(35px,5vw,80px); background: #0d1113; border-top: 1px solid rgba(255,255,255,.08); }
+  #fp-project-platov .pp-story__portrait { position: relative; min-height: 580px; overflow: hidden; border: 1px solid rgba(226,201,129,.14); background: radial-gradient(circle at 50% 45%, rgba(196,162,93,.17), transparent 30%), linear-gradient(145deg, #191d1e, #090b0d); }
+  #fp-project-platov .pp-story__portrait::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 76%, rgba(13,17,19,.64)); }
+  #fp-project-platov .pp-story__portrait img { position: absolute; z-index: 2; left: 50%; bottom: -4%; width: min(84%, 510px); transform: translateX(-50%); filter: grayscale(.78) sepia(.13) contrast(1.04); }
+  #fp-project-platov .pp-story__rings { position: absolute; top: 50%; left: 50%; width: 72%; aspect-ratio: 1; border: 1px solid rgba(226,201,129,.13); border-radius: 50%; transform: translate(-50%,-50%); box-shadow: 0 0 0 70px rgba(226,201,129,.03), 0 0 0 140px rgba(226,201,129,.02); }
+  #fp-project-platov .pp-story__copy { align-self: center; max-width: 760px; padding: 28px 0; }
   #fp-project-platov .pp-kicker { display: flex; align-items: center; gap: 14px; margin: 0 0 24px; }
   #fp-project-platov .pp-kicker span { width: 42px; height: 1px; background: var(--gold-light); }
   #fp-project-platov h2 { margin: 0; font-family: var(--display); font-size: clamp(46px, 5vw, 78px); font-weight: 400; line-height: 1.08; letter-spacing: -.035em; }
   #fp-project-platov h2 em { color: var(--gold-light); font-style: normal; }
-  #fp-project-platov .pp-story__lead { margin: 30px 0 0; color: rgba(240,237,230,.63); line-height: 1.85; }
-  #fp-project-platov blockquote { margin: 35px 0 0; padding: 24px 0 24px 24px; color: rgba(240,237,230,.78); border-left: 1px solid var(--gold-light); font-family: var(--display); font-size: 18px; line-height: 1.65; }
-  #fp-project-platov .pp-story__formats { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 42px; padding-top: 35px; border-top: 1px solid rgba(255,255,255,.13); }
+  #fp-project-platov .pp-story h2 { font-size: clamp(43px,4.2vw,64px); }
+  #fp-project-platov .pp-story__lead { margin: 24px 0 0; color: rgba(240,237,230,.63); font-size: 14px; line-height: 1.75; }
+  #fp-project-platov blockquote { margin: 25px 0 0; padding: 17px 0 17px 20px; color: rgba(240,237,230,.78); border-left: 1px solid var(--gold-light); font-family: var(--display); font-size: 15px; line-height: 1.55; }
+  #fp-project-platov .pp-story__formats { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 27px; padding-top: 23px; border-top: 1px solid rgba(255,255,255,.13); }
   #fp-project-platov .pp-story__formats span { color: rgba(255,255,255,.28); font-size: 8px; }
   #fp-project-platov .pp-story__formats h3 { margin: 10px 0; font-family: var(--display); font-size: 18px; font-weight: 400; }
   #fp-project-platov .pp-story__formats p { margin: 0; color: rgba(255,255,255,.42); font-size: 11px; line-height: 1.65; }
@@ -341,11 +368,14 @@
   #fp-project-platov .pp-timeline h3 { margin: 13px 0; font-family: var(--display); font-size: 23px; font-weight: 400; }
   #fp-project-platov .pp-timeline p { margin: 0; color: rgba(255,255,255,.45); font-size: 12px; line-height: 1.75; }
 
-  #fp-project-platov .pp-meaning { position: relative; min-height: 650px; display: flex; align-items: center; background: #111416; }
-  #fp-project-platov .pp-meaning__art { position: absolute; inset: 0; background: linear-gradient(90deg, #111416 0%, rgba(17,20,22,.84) 45%, rgba(17,20,22,.38)), url("https://static.tildacdn.com/tild3232-3535-4632-a531-383937616136/Friedland_mazurovsky.jpg") 68% 60% / cover no-repeat; filter: grayscale(.75) sepia(.15) brightness(.62); }
-  #fp-project-platov .pp-meaning__inner { padding: 100px 0; }
-  #fp-project-platov .pp-meaning__inner > p:not(.pp-kicker) { max-width: 650px; margin: 30px 0 0; color: rgba(240,237,230,.64); line-height: 1.8; }
-  #fp-project-platov .pp-meaning .pp-button { width: 260px; margin-top: 38px; }
+  #fp-project-platov .pp-meaning { position: relative; padding: 92px 0; background: #111416; border-top: 1px solid rgba(255,255,255,.08); border-bottom: 1px solid rgba(255,255,255,.08); }
+  #fp-project-platov .pp-meaning__layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(430px,.82fr); align-items: stretch; gap: clamp(60px,8vw,120px); }
+  #fp-project-platov .pp-meaning__copy { align-self: center; padding: 26px 0; }
+  #fp-project-platov .pp-meaning__copy > p:not(.pp-kicker) { max-width: 650px; margin: 26px 0 0; color: rgba(240,237,230,.64); line-height: 1.8; }
+  #fp-project-platov .pp-meaning .pp-button { width: 260px; margin-top: 34px; }
+  #fp-project-platov .pp-meaning__visual { position: relative; min-height: 470px; overflow: hidden; border: 1px solid rgba(226,201,129,.18); background: linear-gradient(180deg,rgba(5,7,8,.08),rgba(5,7,8,.52)), url("https://static.tildacdn.com/tild3232-3535-4632-a531-383937616136/Friedland_mazurovsky.jpg") 64% 58% / cover no-repeat; filter: grayscale(.72) sepia(.16) contrast(1.05); }
+  #fp-project-platov .pp-meaning__visual::after { content: ""; position: absolute; inset: 18px; border: 1px solid rgba(226,201,129,.22); }
+  #fp-project-platov .pp-meaning__visual span { position: absolute; z-index: 2; right: 32px; bottom: 25px; color: transparent; font-family: var(--display); font-size: 76px; line-height: 1; -webkit-text-stroke: 1px rgba(226,201,129,.56); }
 
   #fp-project-platov .pp-faq { padding: 140px 0; background: #0a0c0e; }
   #fp-project-platov .pp-faq__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 110px; }
@@ -360,13 +390,23 @@
   #fp-project-platov details[open] summary i::after { transform: translate(-50%,-50%) rotate(0); }
   #fp-project-platov details p { max-width: 720px; margin: -5px 45px 30px 0; color: rgba(255,255,255,.5); font-size: 13px; line-height: 1.8; }
 
-  #fp-project-platov .pp-footer { padding: 78px 0 28px; border-top: 1px solid rgba(226,201,129,.18); background: #050607; }
-  #fp-project-platov .pp-footer__top { display: grid; grid-template-columns: 1.2fr .6fr 1fr; gap: 80px; padding-bottom: 55px; }
-  #fp-project-platov .pp-footer__top img { width: 190px; }
-  #fp-project-platov .pp-footer__top p { max-width: 340px; color: rgba(255,255,255,.38); font-size: 11px; line-height: 1.7; }
-  #fp-project-platov .pp-footer nav, #fp-project-platov .pp-footer address { display: grid; align-content: start; gap: 12px; font-style: normal; }
-  #fp-project-platov .pp-footer nav a, #fp-project-platov .pp-footer address a { font-family: var(--display); font-size: 15px; }
-  #fp-project-platov .pp-footer__bottom { display: flex; justify-content: space-between; gap: 30px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.28); font-size: 8px; }
+  #fp-project-platov .pp-footer { padding: 82px 0 30px; border-top: 1px solid rgba(226,201,129,.18); background: #050607; }
+  #fp-project-platov .pp-footer__top { display: grid; grid-template-columns: 1.15fr .7fr 1fr; gap: 80px; padding-bottom: 58px; }
+  #fp-project-platov .pp-footer__brand img { width: 190px; height: auto; }
+  #fp-project-platov .pp-footer__brand p { max-width: 330px; margin: 23px 0 0; color: rgba(240,237,230,.42); font-size: 12px; line-height: 1.7; }
+  #fp-project-platov .pp-footer__nav { display: grid; align-content: start; gap: 13px; }
+  #fp-project-platov .pp-footer__nav a { color: rgba(240,237,230,.66); font-family: var(--display); font-size: 15px; }
+  #fp-project-platov .pp-footer__contacts { display: grid; align-content: start; gap: 8px; font-style: normal; }
+  #fp-project-platov .pp-footer__contacts a { font-family: var(--display); font-size: 17px; }
+  #fp-project-platov .pp-footer__contacts p { margin: 10px 0 0; color: rgba(240,237,230,.42); font-size: 11px; line-height: 1.65; }
+  #fp-project-platov .pp-footer__requisites { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid rgba(255,255,255,.11); border-bottom: 1px solid rgba(255,255,255,.11); }
+  #fp-project-platov .pp-footer__requisites div { min-height: 100px; padding: 24px; border-right: 1px solid rgba(255,255,255,.11); }
+  #fp-project-platov .pp-footer__requisites div:last-child { border-right: 0; }
+  #fp-project-platov .pp-footer__requisites span { display: block; color: rgba(240,237,230,.34); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
+  #fp-project-platov .pp-footer__requisites strong { display: block; margin-top: 8px; font-size: 11px; font-weight: 500; }
+  #fp-project-platov .pp-footer__bottom { display: flex; justify-content: space-between; gap: 30px; padding-top: 28px; color: rgba(240,237,230,.28); font-size: 9px; }
+  #fp-project-platov .pp-footer__bottom p { margin: 0; }
+  #fp-project-platov .pp-footer__bottom div { display: flex; gap: 24px; }
 
   #fp-project-platov .pp-observe { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
   #fp-project-platov .pp-observe.is-visible { opacity: 1; transform: none; }
@@ -375,13 +415,28 @@
 
   @media (max-width: 1180px) {
     #fp-project-platov .pp-header { grid-template-columns: 1fr auto; width: calc(100% - 64px); }
-    #fp-project-platov .pp-nav { display: none; }
+    #fp-project-platov .pp-nav, #fp-project-platov .pp-header__actions { display: none; }
+    #fp-project-platov .pp-menu { position: relative; display: block; width: 46px; height: 46px; padding: 0; border: 1px solid rgba(226,201,129,.36); background: transparent; }
+    #fp-project-platov .pp-menu span { position: absolute; top: 50%; left: 50%; display: block; width: 20px; height: 1px; background: var(--gold-light); transition: transform .25s ease; }
+    #fp-project-platov .pp-menu span:first-child { transform: translate(-50%,-4px); }
+    #fp-project-platov .pp-menu span:last-child { transform: translate(-50%,4px); }
+    #fp-project-platov .pp-menu[aria-expanded="true"] span:first-child { transform: translate(-50%,0) rotate(45deg); }
+    #fp-project-platov .pp-menu[aria-expanded="true"] span:last-child { transform: translate(-50%,0) rotate(-45deg); }
+    #fp-project-platov .pp-mobile-nav { position: absolute; z-index: 19; top: 108px; right: 32px; display: grid; width: min(360px,calc(100% - 64px)); padding: 28px; gap: 16px; border: 1px solid rgba(226,201,129,.2); background: rgba(7,9,10,.97); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .25s ease, transform .25s ease, visibility .25s; }
+    #fp-project-platov .pp-mobile-nav.is-open { opacity: 1; visibility: visible; transform: none; }
+    #fp-project-platov .pp-mobile-nav a { color: rgba(240,237,230,.76); font-family: var(--display); font-size: 18px; }
+    #fp-project-platov .pp-mobile-nav__svo { padding-top: 13px; border-top: 1px solid rgba(255,255,255,.12); }
+    #fp-project-platov .pp-mobile-nav__donate { margin-top: 5px; padding: 15px 18px; color: #090b0c !important; background: var(--gold-light); font-family: var(--sans) !important; font-size: 10px !important; font-weight: 700; letter-spacing: .1em; text-align: center; text-transform: uppercase; }
     #fp-project-platov .pp-hero__grid { grid-template-columns: minmax(0, 1fr) 420px; gap: 45px; }
     #fp-project-platov .pp-hero__facts { grid-template-columns: 1fr 1fr; }
     #fp-project-platov .pp-hero__facts div:nth-child(2) { border-right: 0; }
     #fp-project-platov .pp-hero__facts div:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.14); }
-    #fp-project-platov .pp-story { grid-template-columns: 43% 57%; }
-    #fp-project-platov .pp-story__copy { padding-inline: 55px; }
+    #fp-project-platov .pp-story { grid-template-columns: 54% 46%; padding-inline: 32px; gap: 38px; }
+    #fp-project-platov .pp-meaning__layout { grid-template-columns: 1fr 390px; gap: 55px; }
+    #fp-project-platov .pp-footer__top { gap: 45px; }
+    #fp-project-platov .pp-footer__requisites { grid-template-columns: 1fr 1fr; }
+    #fp-project-platov .pp-footer__requisites div:nth-child(2) { border-right: 0; }
+    #fp-project-platov .pp-footer__requisites div:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.11); }
     #fp-project-platov .pp-timeline { grid-template-columns: 1fr 1fr; }
     #fp-project-platov .pp-timeline article:nth-child(2) { border-right: 0; }
     #fp-project-platov .pp-timeline article:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.13); }
@@ -395,10 +450,12 @@
     #fp-project-platov .pp-donate { width: min(100%, 560px); }
     #fp-project-platov .pp-support-feed { position: relative; grid-template-columns: 1fr auto; padding: 18px 24px; }
     #fp-project-platov .pp-support-feed small { display: none; }
-    #fp-project-platov .pp-story { grid-template-columns: 1fr; }
-    #fp-project-platov .pp-story__portrait { min-height: 620px; }
-    #fp-project-platov .pp-story__portrait::after { background: linear-gradient(180deg, transparent 65%, #0d1113); }
-    #fp-project-platov .pp-story__copy { max-width: none; padding: 90px 48px; }
+    #fp-project-platov .pp-story { grid-template-columns: 1fr; min-height: 0; padding: 72px 24px; gap: 38px; }
+    #fp-project-platov .pp-story__copy { max-width: none; padding: 0; }
+    #fp-project-platov .pp-story__portrait { min-height: 470px; }
+    #fp-project-platov .pp-meaning { padding: 74px 0; }
+    #fp-project-platov .pp-meaning__layout { grid-template-columns: 1fr; gap: 38px; }
+    #fp-project-platov .pp-meaning__visual { min-height: 380px; }
     #fp-project-platov .pp-section-head, #fp-project-platov .pp-faq__grid { grid-template-columns: 1fr; gap: 40px; }
     #fp-project-platov .pp-footer__top { grid-template-columns: 1fr 1fr; }
     #fp-project-platov .pp-footer__top > div { grid-column: 1 / -1; }
@@ -408,8 +465,7 @@
     #fp-project-platov .pp-shell { width: calc(100% - 40px); }
     #fp-project-platov .pp-header { width: calc(100% - 40px); min-height: 88px; }
     #fp-project-platov .pp-logo img { width: 150px; height: 64px; }
-    #fp-project-platov .pp-header__back { min-height: 38px; padding: 0 12px; }
-    #fp-project-platov .pp-header__back span { display: none; }
+    #fp-project-platov .pp-mobile-nav { top: 88px; right: 20px; width: calc(100% - 40px); }
     #fp-project-platov .pp-hero { min-height: auto; padding: 115px 0 70px; }
     #fp-project-platov .pp-hero__art { background-position: 58% center; }
     #fp-project-platov .pp-hero__shade { background: linear-gradient(180deg, rgba(5,7,8,.72), rgba(5,7,8,.94) 56%, #080a0c 100%); }
@@ -426,9 +482,8 @@
     #fp-project-platov .pp-support-feed { margin-top: 0; }
     #fp-project-platov .pp-support-feed > span { display: none; }
     #fp-project-platov .pp-support-feed { grid-template-columns: 1fr; text-align: center; }
-    #fp-project-platov .pp-story__portrait { min-height: 460px; }
-    #fp-project-platov .pp-story__portrait img { width: 88%; }
-    #fp-project-platov .pp-story__copy { padding: 75px 20px; }
+    #fp-project-platov .pp-story { padding: 60px 20px; }
+    #fp-project-platov .pp-story__portrait { display: none; }
     #fp-project-platov h2 { font-size: clamp(39px, 11vw, 52px); }
     #fp-project-platov .pp-story__formats { grid-template-columns: 1fr; gap: 25px; }
     #fp-project-platov .pp-stage, #fp-project-platov .pp-faq { padding: 90px 0; }
@@ -436,12 +491,17 @@
     #fp-project-platov .pp-timeline article, #fp-project-platov .pp-timeline article + article { min-height: auto; padding: 25px 0 35px 34px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.13); border-left: 1px solid rgba(255,255,255,.15); }
     #fp-project-platov .pp-timeline article > i, #fp-project-platov .pp-timeline article + article > i { top: 30px; left: -4px; }
     #fp-project-platov .pp-timeline article div { margin-top: 25px; }
-    #fp-project-platov .pp-meaning { min-height: 620px; }
+    #fp-project-platov .pp-meaning { min-height: 0; padding: 60px 0; }
+    #fp-project-platov .pp-meaning__visual { min-height: 280px; }
+    #fp-project-platov .pp-meaning__visual span { right: 20px; bottom: 18px; font-size: 52px; }
     #fp-project-platov .pp-meaning .pp-button { width: 100%; }
     #fp-project-platov summary { min-height: 78px; font-size: 15px; }
     #fp-project-platov .pp-footer__top { grid-template-columns: 1fr; gap: 35px; }
     #fp-project-platov .pp-footer__top > div { grid-column: auto; }
+    #fp-project-platov .pp-footer__requisites { grid-template-columns: 1fr; }
+    #fp-project-platov .pp-footer__requisites div { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.11); }
     #fp-project-platov .pp-footer__bottom { display: grid; }
+    #fp-project-platov .pp-footer__bottom div { display: grid; gap: 10px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -461,6 +521,23 @@
   const stepCount = root.querySelector('.pp-step-count b');
   const summaryAmount = root.querySelector('.pp-summary__amount');
   const summaryFrequency = root.querySelector('.pp-summary__frequency');
+  const menu = root.querySelector('.pp-menu');
+  const mobileNav = root.querySelector('.pp-mobile-nav');
+
+  if (menu && mobileNav) {
+    const closeMenu = () => {
+      mobileNav.classList.remove('is-open');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      menu.setAttribute('aria-expanded', 'false');
+    };
+    menu.addEventListener('click', () => {
+      const open = !mobileNav.classList.contains('is-open');
+      mobileNav.classList.toggle('is-open', open);
+      mobileNav.setAttribute('aria-hidden', String(!open));
+      menu.setAttribute('aria-expanded', String(open));
+    });
+    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  }
 
   const showStep = (number) => {
     steps.forEach(step => step.classList.toggle('is-active', step.dataset.step === String(number)));
