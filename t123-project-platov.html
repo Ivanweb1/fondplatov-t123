@@ -1,0 +1,525 @@
+<!--
+  Страница проекта для HTML-блока T123 в Tilda.
+  Перед запуском замените ссылку https://fondplatov.ru/#vklad
+  на адрес подключённой платёжной формы проекта.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+
+<div id="fp-project-platov">
+  <a class="pp-skip" href="#pp-donate">Перейти к пожертвованию</a>
+
+  <header class="pp-header">
+    <a class="pp-logo" href="https://ivanweb1.github.io/fondplatov-t123/video/" aria-label="На главную страницу фонда">
+      <img src="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" alt="Благотворительный фонд имени М. И. Платова">
+    </a>
+    <nav class="pp-nav" aria-label="Навигация по странице">
+      <a href="#pp-story">О проекте</a>
+      <a href="#pp-stage">Что сделано</a>
+      <a href="#pp-faq">Вопросы</a>
+    </nav>
+    <a class="pp-header__back" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">
+      <span>Все проекты</span><i>↗</i>
+    </a>
+  </header>
+
+  <main>
+    <section class="pp-hero" aria-labelledby="pp-title">
+      <div class="pp-hero__art" aria-hidden="true"></div>
+      <div class="pp-hero__shade" aria-hidden="true"></div>
+      <div class="pp-grain" aria-hidden="true"></div>
+
+      <div class="pp-shell pp-hero__grid">
+        <div class="pp-hero__copy">
+          <a class="pp-breadcrumb" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">Проекты фонда <span>/</span> Игровое кино</a>
+          <div class="pp-status"><i></i> Идёт сбор</div>
+          <p class="pp-eyebrow">Исторический художественный фильм и телевизионный сериал</p>
+          <h1 id="pp-title">«Вихорь-атаман<br><em>Матвей Платов»</em></h1>
+          <p class="pp-hero__lead">
+            История легендарного атамана Войска Донского, чья отвага и военный талант
+            стали частью национальной памяти. Помогите перенести эту историю на большой экран.
+          </p>
+
+          <div class="pp-hero__facts" aria-label="Параметры проекта">
+            <div><span>Фильм</span><strong>100 минут</strong></div>
+            <div><span>Серия</span><strong>45 минут</strong></div>
+            <div><span>Бюджет</span><strong>от 400 млн ₽</strong></div>
+            <div><span>Готовность</span><strong>по мере сбора</strong></div>
+          </div>
+        </div>
+
+        <aside class="pp-donate pp-reveal" id="pp-donate" aria-labelledby="pp-donate-title">
+          <div class="pp-donate__head">
+            <div>
+              <p>Поддержать проект</p>
+              <h2 id="pp-donate-title">Станьте частью истории</h2>
+            </div>
+            <span class="pp-step-count"><b>1</b> / 3</span>
+          </div>
+
+          <div class="pp-collection">
+            <div class="pp-collection__numbers">
+              <div><span>Собрано</span><strong>1,2 млн ₽</strong></div>
+              <div><span>Цель проекта</span><strong>400 млн ₽</strong></div>
+            </div>
+            <div class="pp-progress" role="progressbar" aria-label="Собрано 0,3 процента" aria-valuenow="0.3" aria-valuemin="0" aria-valuemax="100">
+              <i></i>
+            </div>
+            <p>0,3% от необходимой суммы</p>
+          </div>
+
+          <div class="pp-form-step is-active" data-step="1">
+            <div class="pp-frequency" role="group" aria-label="Периодичность пожертвования">
+              <button class="is-active" type="button" data-frequency="once">Один раз</button>
+              <button type="button" data-frequency="monthly">Ежемесячно</button>
+            </div>
+            <p class="pp-field-label">Выберите сумму</p>
+            <div class="pp-amounts">
+              <button type="button" data-amount="500">500 ₽</button>
+              <button class="is-active" type="button" data-amount="1000">1 000 ₽<small>частый выбор</small></button>
+              <button type="button" data-amount="3000">3 000 ₽</button>
+              <button type="button" data-amount="5000">5 000 ₽</button>
+            </div>
+            <label class="pp-custom">Своя сумма
+              <span><input type="number" min="100" step="100" placeholder="Введите сумму"><b>₽</b></span>
+            </label>
+            <button class="pp-next pp-button" type="button" data-next="2">Продолжить <span>→</span></button>
+          </div>
+
+          <div class="pp-form-step" data-step="2">
+            <button class="pp-back" type="button" data-back="1">← Изменить сумму</button>
+            <p class="pp-field-label">Контактные данные</p>
+            <label class="pp-input">Имя<input type="text" autocomplete="name" placeholder="Как к вам обращаться"></label>
+            <label class="pp-input">Email<input type="email" autocomplete="email" placeholder="Для письма с благодарностью"></label>
+            <label class="pp-consent"><input type="checkbox" checked><span></span>Я принимаю условия публичной оферты</label>
+            <button class="pp-next pp-button" type="button" data-next="3">Перейти к оплате <span>→</span></button>
+          </div>
+
+          <div class="pp-form-step" data-step="3">
+            <button class="pp-back" type="button" data-back="2">← Назад</button>
+            <div class="pp-summary">
+              <span>Ваше пожертвование</span>
+              <strong><b class="pp-summary__amount">1 000</b> ₽</strong>
+              <small class="pp-summary__frequency">разовое пожертвование</small>
+            </div>
+            <div class="pp-payments" aria-label="Доступные способы оплаты">
+              <span>Банковская карта</span><span>СБП</span><span>SberPay</span>
+            </div>
+            <a class="pp-button pp-payment-link" href="https://fondplatov.ru/#vklad" target="_blank" rel="noopener">Оплатить <span>↗</span></a>
+            <p class="pp-secure">Защищённое соединение. Платёжная форма откроется в новом окне.</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="pp-support-feed" aria-live="polite">
+        <span><i></i> Проект поддерживают</span>
+        <p><b class="pp-feed-name">Виктор</b> <span class="pp-feed-verb">поддержал проект на</span> <strong class="pp-feed-amount">1 000 ₽</strong></p>
+        <small class="pp-feed-time">8 минут назад</small>
+      </div>
+    </section>
+
+    <section class="pp-story" id="pp-story" aria-labelledby="pp-story-title">
+      <div class="pp-story__portrait" aria-hidden="true">
+        <div class="pp-story__rings"></div>
+        <img src="https://static.tildacdn.com/tild3261-3564-4663-b762-633764376664/Group_20.png" loading="lazy" alt="">
+      </div>
+      <div class="pp-story__copy pp-observe">
+        <p class="pp-kicker"><span></span> Почему этот фильм важен</p>
+        <h2 id="pp-story-title">История, которую<br><em>должны увидеть</em></h2>
+        <p class="pp-story__lead">
+          Матвей Иванович Платов — легендарный атаман Войска Донского, генерал от кавалерии
+          и герой Отечественной войны 1812 года. Его имя связано с воинской доблестью,
+          служением Отечеству и историей российского казачества.
+        </p>
+        <blockquote>«Вихорь-атаман» — возможность рассказать о Платове языком современного большого кино и сохранить память для следующих поколений.</blockquote>
+        <div class="pp-story__formats">
+          <div><span>01</span><h3>Полнометражный фильм</h3><p>Самостоятельная историческая картина продолжительностью 100 минут.</p></div>
+          <div><span>02</span><h3>Телевизионный сериал</h3><p>Одноимённый сериал с продолжительностью одной серии 45 минут.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pp-stage" id="pp-stage" aria-labelledby="pp-stage-title">
+      <div class="pp-stage__bg" aria-hidden="true"></div>
+      <div class="pp-grain" aria-hidden="true"></div>
+      <div class="pp-shell">
+        <div class="pp-section-head pp-observe">
+          <div>
+            <p class="pp-kicker"><span></span> Стадия кинопроизводства</p>
+            <h2 id="pp-stage-title">От сценария<br><em>к большому экрану</em></h2>
+          </div>
+          <p>Срок готовности проекта к показу зависит от темпа сбора средств и привлечения финансирования.</p>
+        </div>
+
+        <div class="pp-timeline pp-observe">
+          <article class="is-done"><span>01</span><i></i><div><small>Выполнено</small><h3>Сценарий написан</h3><p>Подготовлен сценарий полнометражного художественного фильма.</p></div></article>
+          <article class="is-current"><span>02</span><i></i><div><small>Сейчас</small><h3>Поиск партнёров</h3><p>Ведутся переговоры с продюсерами российских кинокомпаний.</p></div></article>
+          <article><span>03</span><i></i><div><small>Следующий этап</small><h3>Конкурсное финансирование</h3><p>Планируется участие в конкурсах Министерства культуры Российской Федерации.</p></div></article>
+          <article><span>04</span><i></i><div><small>В процессе</small><h3>Сбор средств</h3><p>Открыт сбор пожертвований и ведётся поиск инвестиционных средств.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pp-meaning" aria-labelledby="pp-meaning-title">
+      <div class="pp-meaning__art" aria-hidden="true"></div>
+      <div class="pp-shell pp-meaning__inner pp-observe">
+        <p class="pp-kicker"><span></span> Ваш вклад имеет значение</p>
+        <h2 id="pp-meaning-title">Помогите истории<br><em>стать фильмом</em></h2>
+        <p>Даже небольшой вклад приближает проект к следующему производственному этапу и помогает сохранить историческую память средствами кино.</p>
+        <a class="pp-button" href="#pp-donate">Поддержать проект <span>↑</span></a>
+      </div>
+    </section>
+
+    <section class="pp-faq" id="pp-faq" aria-labelledby="pp-faq-title">
+      <div class="pp-shell pp-faq__grid">
+        <div class="pp-faq__head">
+          <p class="pp-kicker"><span></span> Вопросы и ответы</p>
+          <h2 id="pp-faq-title">Важно знать<br><em>перед поддержкой</em></h2>
+        </div>
+        <div class="pp-accordion">
+          <details open><summary>На что направляются пожертвования?<i></i></summary><p>Пожертвования направляются на реализацию проекта. Детальная разбивка производственного бюджета будет опубликована после её утверждения фондом.</p></details>
+          <details><summary>Можно ли помогать ежемесячно?<i></i></summary><p>Да. На первом шаге формы выберите вариант «Ежемесячно». Условия регулярного списания отображаются платёжным сервисом перед подтверждением.</p></details>
+          <details><summary>Как узнать о ходе производства?<i></i></summary><p>Новости о переговорах, финансировании и производственных этапах будут публиковаться на сайте фонда.</p></details>
+          <details><summary>Где посмотреть документы фонда?<i></i></summary><p>Учредительные документы, отчётность, публичная оферта и реквизиты размещены на главной странице и действующем сайте фонда.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pp-footer">
+    <div class="pp-shell pp-footer__top">
+      <div><img src="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" alt="Благотворительный фонд имени М. И. Платова"><p>Сохраняем историческую память и культурное наследие России.</p></div>
+      <nav><a href="https://ivanweb1.github.io/fondplatov-t123/video/">Главная</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">Проекты</a><a href="https://fondplatov.ru/otc" target="_blank" rel="noopener">Отчётность</a></nav>
+      <address><a href="tel:+79772505555">+7 (977) 250-55-55</a><a href="mailto:info@fondplatov.ru">info@fondplatov.ru</a><p>105005, Москва, ул. Бауманская, д. 7, стр. 1, офис 328</p></address>
+    </div>
+    <div class="pp-shell pp-footer__bottom"><span>© Благотворительный фонд имени М. И. Платова</span><a href="https://fondplatov.ru/politika" target="_blank" rel="noopener">Политика обработки данных</a></div>
+  </footer>
+</div>
+
+<style>
+  html, body { margin: 0; background: #080a0c; }
+  #fp-project-platov {
+    --bg: #080a0c;
+    --soft: #101416;
+    --ink: #f0ede6;
+    --muted: #aaa79e;
+    --gold: #c4a25d;
+    --gold-light: #e2c981;
+    --line: rgba(226,201,129,.22);
+    --display: "Prata", "Times New Roman", serif;
+    --sans: "Manrope", sans-serif;
+    width: 100%; overflow: clip; color: var(--ink); background: var(--bg);
+    font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  #fp-project-platov, #fp-project-platov * { box-sizing: border-box; }
+  #fp-project-platov a { color: inherit; text-decoration: none; }
+  #fp-project-platov button, #fp-project-platov input { color: inherit; font: inherit; }
+  #fp-project-platov button { cursor: pointer; }
+  #fp-project-platov .pp-shell { position: relative; z-index: 3; width: min(calc(100% - 96px), 1380px); margin: 0 auto; }
+  #fp-project-platov .pp-grain { position: absolute; z-index: 2; inset: 0; pointer-events: none; opacity: .11; mix-blend-mode: soft-light; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); }
+  #fp-project-platov .pp-skip { position: fixed; z-index: 999; top: 10px; left: 10px; padding: 10px 16px; color: #090b0d; background: var(--gold-light); transform: translateY(-160%); transition: transform .2s ease; }
+  #fp-project-platov .pp-skip:focus { transform: none; }
+
+  #fp-project-platov .pp-header { position: absolute; z-index: 20; top: 0; left: 50%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; width: min(calc(100% - 96px), 1440px); min-height: 104px; border-bottom: 1px solid rgba(255,255,255,.14); transform: translateX(-50%); }
+  #fp-project-platov .pp-logo { justify-self: start; }
+  #fp-project-platov .pp-logo img { display: block; width: 190px; height: 76px; object-fit: contain; }
+  #fp-project-platov .pp-nav { display: flex; gap: 42px; }
+  #fp-project-platov .pp-nav a { position: relative; padding: 12px 0; color: rgba(255,255,255,.72); font-family: var(--display); font-size: 14px; }
+  #fp-project-platov .pp-nav a::after { content: ""; position: absolute; right: 0; bottom: 5px; left: 0; height: 1px; background: var(--gold-light); transform: scaleX(0); transition: transform .3s ease; }
+  #fp-project-platov .pp-nav a:hover::after { transform: scaleX(1); }
+  #fp-project-platov .pp-header__back { display: inline-flex; align-items: center; justify-self: end; gap: 18px; min-height: 44px; padding: 0 17px; color: var(--gold-light); border: 1px solid rgba(226,201,129,.35); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  #fp-project-platov .pp-header__back i { font-size: 15px; font-style: normal; }
+
+  #fp-project-platov .pp-hero { position: relative; min-height: max(880px, 100svh); padding: 160px 0 100px; isolation: isolate; }
+  #fp-project-platov .pp-hero__art { position: absolute; z-index: 0; inset: 0; background: url("https://static.tildacdn.com/tild3232-3535-4632-a531-383937616136/Friedland_mazurovsky.jpg") 52% 48% / cover no-repeat; filter: grayscale(.48) sepia(.18) contrast(1.08) brightness(.55); transform: scale(1.015); }
+  #fp-project-platov .pp-hero__shade { position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, rgba(5,7,8,.96) 0%, rgba(5,7,8,.84) 44%, rgba(5,7,8,.48) 73%, rgba(5,7,8,.82) 100%), linear-gradient(180deg, rgba(5,7,8,.58), transparent 35%, #080a0c 100%); }
+  #fp-project-platov .pp-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(420px, 500px); align-items: center; gap: clamp(60px, 8vw, 125px); }
+  #fp-project-platov .pp-hero__copy { max-width: 780px; padding-top: 20px; }
+  #fp-project-platov .pp-breadcrumb { display: inline-flex; gap: 10px; margin-bottom: 38px; color: rgba(255,255,255,.48); font-size: 9px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+  #fp-project-platov .pp-breadcrumb span { color: var(--gold-light); }
+  #fp-project-platov .pp-status { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; color: rgba(255,255,255,.72); font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+  #fp-project-platov .pp-status i { width: 7px; height: 7px; border-radius: 50%; background: #df4b43; box-shadow: 0 0 0 6px rgba(223,75,67,.12), 0 0 16px rgba(223,75,67,.7); animation: ppPulse 1.8s ease-in-out infinite; }
+  #fp-project-platov .pp-eyebrow, #fp-project-platov .pp-kicker { color: var(--gold-light); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+  #fp-project-platov .pp-eyebrow { max-width: 650px; margin: 0 0 20px; }
+  #fp-project-platov h1 { margin: 0; font-family: var(--display); font-size: clamp(56px, 5.8vw, 92px); font-weight: 400; line-height: 1.06; letter-spacing: -.045em; }
+  #fp-project-platov h1 em { color: var(--gold-light); font-style: normal; }
+  #fp-project-platov .pp-hero__lead { max-width: 670px; margin: 30px 0 0; color: rgba(240,237,230,.68); font-size: 15px; line-height: 1.8; }
+  #fp-project-platov .pp-hero__facts { display: grid; grid-template-columns: repeat(4, 1fr); max-width: 760px; margin-top: 48px; border-top: 1px solid rgba(255,255,255,.18); border-bottom: 1px solid rgba(255,255,255,.18); }
+  #fp-project-platov .pp-hero__facts div { min-height: 92px; padding: 20px 18px; border-right: 1px solid rgba(255,255,255,.14); }
+  #fp-project-platov .pp-hero__facts div:first-child { padding-left: 0; }
+  #fp-project-platov .pp-hero__facts div:last-child { border-right: 0; }
+  #fp-project-platov .pp-hero__facts span { display: block; color: rgba(255,255,255,.4); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
+  #fp-project-platov .pp-hero__facts strong { display: block; margin-top: 8px; font-family: var(--display); font-size: 15px; font-weight: 400; }
+
+  #fp-project-platov .pp-donate { padding: 32px; border: 1px solid rgba(226,201,129,.3); background: rgba(9,11,13,.9); box-shadow: 0 50px 120px rgba(0,0,0,.42); backdrop-filter: blur(22px); }
+  #fp-project-platov .pp-donate__head { display: flex; justify-content: space-between; gap: 20px; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.12); }
+  #fp-project-platov .pp-donate__head p { margin: 0 0 7px; color: var(--gold-light); font-size: 8px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  #fp-project-platov .pp-donate__head h2 { margin: 0; font-family: var(--display); font-size: 25px; font-weight: 400; }
+  #fp-project-platov .pp-step-count { color: rgba(255,255,255,.34); font-size: 10px; letter-spacing: .12em; white-space: nowrap; }
+  #fp-project-platov .pp-step-count b { color: var(--gold-light); font-weight: 600; }
+  #fp-project-platov .pp-collection { padding: 24px 0 22px; border-bottom: 1px solid rgba(255,255,255,.12); }
+  #fp-project-platov .pp-collection__numbers { display: flex; justify-content: space-between; gap: 20px; }
+  #fp-project-platov .pp-collection__numbers div:last-child { text-align: right; }
+  #fp-project-platov .pp-collection__numbers span { display: block; color: rgba(255,255,255,.38); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+  #fp-project-platov .pp-collection__numbers strong { display: block; margin-top: 5px; color: var(--gold-light); font-family: var(--display); font-size: 20px; font-weight: 400; }
+  #fp-project-platov .pp-progress { height: 3px; margin-top: 17px; background: rgba(255,255,255,.13); }
+  #fp-project-platov .pp-progress i { display: block; width: max(6px, .3%); height: 100%; background: var(--gold-light); box-shadow: 0 0 12px rgba(226,201,129,.7); }
+  #fp-project-platov .pp-collection > p { margin: 8px 0 0; color: rgba(255,255,255,.35); font-size: 8px; }
+  #fp-project-platov .pp-form-step { display: none; padding-top: 22px; }
+  #fp-project-platov .pp-form-step.is-active { display: block; animation: ppStep .35s ease both; }
+  #fp-project-platov .pp-frequency { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 22px; border: 1px solid rgba(255,255,255,.13); }
+  #fp-project-platov .pp-frequency button { min-height: 42px; border: 0; background: transparent; color: rgba(255,255,255,.5); font-size: 9px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+  #fp-project-platov .pp-frequency button.is-active { color: #101214; background: var(--gold-light); }
+  #fp-project-platov .pp-field-label { margin: 0 0 10px; color: rgba(255,255,255,.45); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
+  #fp-project-platov .pp-amounts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  #fp-project-platov .pp-amounts button { position: relative; min-height: 58px; padding: 0 5px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.02); font-size: 12px; font-weight: 600; }
+  #fp-project-platov .pp-amounts button.is-active { color: #101214; border-color: var(--gold-light); background: var(--gold-light); }
+  #fp-project-platov .pp-amounts small { display: block; font-size: 5px; letter-spacing: .04em; text-transform: uppercase; }
+  #fp-project-platov .pp-custom, #fp-project-platov .pp-input { display: block; margin-top: 17px; color: rgba(255,255,255,.42); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+  #fp-project-platov .pp-custom span { position: relative; display: block; margin-top: 7px; }
+  #fp-project-platov .pp-custom input, #fp-project-platov .pp-input input { width: 100%; height: 50px; padding: 0 40px 0 13px; color: #fff; border: 1px solid rgba(255,255,255,.14); outline: 0; background: rgba(255,255,255,.025); font-size: 13px; }
+  #fp-project-platov .pp-custom input:focus, #fp-project-platov .pp-input input:focus { border-color: var(--gold-light); }
+  #fp-project-platov .pp-custom b { position: absolute; top: 50%; right: 14px; color: rgba(255,255,255,.5); font-size: 13px; transform: translateY(-50%); }
+  #fp-project-platov .pp-button { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 56px; margin-top: 20px; padding: 0 20px; color: #101214; border: 1px solid var(--gold-light); background: linear-gradient(90deg, var(--gold-light), var(--gold)); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: filter .2s ease, transform .2s ease; }
+  #fp-project-platov .pp-button:hover { filter: brightness(1.08); transform: translateY(-2px); }
+  #fp-project-platov .pp-button span { font-size: 16px; }
+  #fp-project-platov .pp-back { padding: 0; margin: 0 0 18px; color: rgba(255,255,255,.48); border: 0; background: transparent; font-size: 9px; }
+  #fp-project-platov .pp-input input { display: block; margin-top: 7px; padding-right: 13px; text-transform: none; }
+  #fp-project-platov .pp-consent { display: flex; align-items: center; gap: 9px; margin-top: 17px; color: rgba(255,255,255,.48); font-size: 9px; cursor: pointer; }
+  #fp-project-platov .pp-consent input { position: absolute; opacity: 0; }
+  #fp-project-platov .pp-consent span { position: relative; flex: 0 0 16px; height: 16px; border: 1px solid rgba(255,255,255,.25); }
+  #fp-project-platov .pp-consent input:checked + span::after { content: ""; position: absolute; inset: 3px; background: var(--gold-light); }
+  #fp-project-platov .pp-summary { padding: 24px; text-align: center; border: 1px solid rgba(226,201,129,.2); background: rgba(226,201,129,.04); }
+  #fp-project-platov .pp-summary > span { display: block; color: rgba(255,255,255,.4); font-size: 8px; text-transform: uppercase; }
+  #fp-project-platov .pp-summary strong { display: block; margin: 8px 0 3px; color: var(--gold-light); font-family: var(--display); font-size: 34px; font-weight: 400; }
+  #fp-project-platov .pp-summary strong b { font-weight: 400; }
+  #fp-project-platov .pp-summary small { color: rgba(255,255,255,.4); font-size: 9px; }
+  #fp-project-platov .pp-payments { display: flex; gap: 7px; margin-top: 15px; }
+  #fp-project-platov .pp-payments span { flex: 1; padding: 9px 4px; border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.55); text-align: center; font-size: 7px; }
+  #fp-project-platov .pp-payment-link { margin-top: 15px; }
+  #fp-project-platov .pp-secure { margin: 11px 0 0; color: rgba(255,255,255,.28); font-size: 7px; text-align: center; }
+  #fp-project-platov .pp-support-feed { position: absolute; z-index: 5; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 35px; min-height: 62px; padding: 0 max(48px, calc((100% - 1380px) / 2)); border-top: 1px solid rgba(255,255,255,.13); background: rgba(5,7,8,.76); backdrop-filter: blur(16px); }
+  #fp-project-platov .pp-support-feed > span { color: rgba(255,255,255,.42); font-size: 8px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  #fp-project-platov .pp-support-feed > span i { display: inline-block; width: 5px; height: 5px; margin-right: 8px; border-radius: 50%; background: #64a478; }
+  #fp-project-platov .pp-support-feed p { margin: 0; font-size: 10px; }
+  #fp-project-platov .pp-support-feed p strong { color: var(--gold-light); }
+  #fp-project-platov .pp-support-feed small { color: rgba(255,255,255,.32); font-size: 8px; }
+
+  #fp-project-platov .pp-story { display: grid; grid-template-columns: 48% 52%; min-height: 880px; background: #0d1113; }
+  #fp-project-platov .pp-story__portrait { position: relative; min-height: 760px; overflow: hidden; background: radial-gradient(circle at 50% 45%, rgba(196,162,93,.17), transparent 30%), linear-gradient(145deg, #191d1e, #090b0d); }
+  #fp-project-platov .pp-story__portrait::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 65%, #0d1113), linear-gradient(180deg, transparent 70%, #0d1113); }
+  #fp-project-platov .pp-story__portrait img { position: absolute; z-index: 2; left: 50%; bottom: -2%; width: min(72%, 590px); transform: translateX(-50%); filter: grayscale(.78) sepia(.13) contrast(1.04); }
+  #fp-project-platov .pp-story__rings { position: absolute; top: 50%; left: 50%; width: 66%; aspect-ratio: 1; border: 1px solid rgba(226,201,129,.13); border-radius: 50%; transform: translate(-50%,-50%); box-shadow: 0 0 0 90px rgba(226,201,129,.03), 0 0 0 180px rgba(226,201,129,.02); }
+  #fp-project-platov .pp-story__copy { align-self: center; max-width: 760px; padding: 110px clamp(48px, 7vw, 120px); }
+  #fp-project-platov .pp-kicker { display: flex; align-items: center; gap: 14px; margin: 0 0 24px; }
+  #fp-project-platov .pp-kicker span { width: 42px; height: 1px; background: var(--gold-light); }
+  #fp-project-platov h2 { margin: 0; font-family: var(--display); font-size: clamp(46px, 5vw, 78px); font-weight: 400; line-height: 1.08; letter-spacing: -.035em; }
+  #fp-project-platov h2 em { color: var(--gold-light); font-style: normal; }
+  #fp-project-platov .pp-story__lead { margin: 30px 0 0; color: rgba(240,237,230,.63); line-height: 1.85; }
+  #fp-project-platov blockquote { margin: 35px 0 0; padding: 24px 0 24px 24px; color: rgba(240,237,230,.78); border-left: 1px solid var(--gold-light); font-family: var(--display); font-size: 18px; line-height: 1.65; }
+  #fp-project-platov .pp-story__formats { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 42px; padding-top: 35px; border-top: 1px solid rgba(255,255,255,.13); }
+  #fp-project-platov .pp-story__formats span { color: rgba(255,255,255,.28); font-size: 8px; }
+  #fp-project-platov .pp-story__formats h3 { margin: 10px 0; font-family: var(--display); font-size: 18px; font-weight: 400; }
+  #fp-project-platov .pp-story__formats p { margin: 0; color: rgba(255,255,255,.42); font-size: 11px; line-height: 1.65; }
+
+  #fp-project-platov .pp-stage { position: relative; padding: 140px 0 155px; background: #080a0c; }
+  #fp-project-platov .pp-stage__bg { position: absolute; inset: 0; opacity: .18; background: linear-gradient(90deg, #080a0c 0%, rgba(8,10,12,.8), #080a0c), url("https://static.tildacdn.com/tild3636-3337-4430-a263-636632666365/Rectangle_8.png") center / cover no-repeat; filter: grayscale(1) sepia(.2); }
+  #fp-project-platov .pp-section-head { display: grid; grid-template-columns: 1fr minmax(300px, 500px); align-items: end; gap: 90px; }
+  #fp-project-platov .pp-section-head > p { margin: 0 0 8px; color: rgba(255,255,255,.5); line-height: 1.8; }
+  #fp-project-platov .pp-timeline { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 90px; border-top: 1px solid rgba(255,255,255,.16); }
+  #fp-project-platov .pp-timeline article { position: relative; min-height: 320px; padding: 30px 30px 30px 0; border-right: 1px solid rgba(255,255,255,.13); }
+  #fp-project-platov .pp-timeline article + article { padding-left: 30px; }
+  #fp-project-platov .pp-timeline article:last-child { border-right: 0; }
+  #fp-project-platov .pp-timeline article > span { color: rgba(255,255,255,.3); font-size: 9px; }
+  #fp-project-platov .pp-timeline article > i { position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.25); }
+  #fp-project-platov .pp-timeline article + article > i { left: 30px; }
+  #fp-project-platov .pp-timeline .is-done > i { background: #6e927a; box-shadow: 0 0 12px rgba(110,146,122,.6); }
+  #fp-project-platov .pp-timeline .is-current > i { background: #df4b43; box-shadow: 0 0 12px rgba(223,75,67,.65); }
+  #fp-project-platov .pp-timeline article div { margin-top: 72px; }
+  #fp-project-platov .pp-timeline small { color: var(--gold-light); font-size: 8px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  #fp-project-platov .pp-timeline h3 { margin: 13px 0; font-family: var(--display); font-size: 23px; font-weight: 400; }
+  #fp-project-platov .pp-timeline p { margin: 0; color: rgba(255,255,255,.45); font-size: 12px; line-height: 1.75; }
+
+  #fp-project-platov .pp-meaning { position: relative; min-height: 650px; display: flex; align-items: center; background: #111416; }
+  #fp-project-platov .pp-meaning__art { position: absolute; inset: 0; background: linear-gradient(90deg, #111416 0%, rgba(17,20,22,.84) 45%, rgba(17,20,22,.38)), url("https://static.tildacdn.com/tild3232-3535-4632-a531-383937616136/Friedland_mazurovsky.jpg") 68% 60% / cover no-repeat; filter: grayscale(.75) sepia(.15) brightness(.62); }
+  #fp-project-platov .pp-meaning__inner { padding: 100px 0; }
+  #fp-project-platov .pp-meaning__inner > p:not(.pp-kicker) { max-width: 650px; margin: 30px 0 0; color: rgba(240,237,230,.64); line-height: 1.8; }
+  #fp-project-platov .pp-meaning .pp-button { width: 260px; margin-top: 38px; }
+
+  #fp-project-platov .pp-faq { padding: 140px 0; background: #0a0c0e; }
+  #fp-project-platov .pp-faq__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 110px; }
+  #fp-project-platov .pp-faq h2 { font-size: clamp(42px, 4.5vw, 68px); }
+  #fp-project-platov .pp-accordion { border-top: 1px solid rgba(255,255,255,.15); }
+  #fp-project-platov details { border-bottom: 1px solid rgba(255,255,255,.15); }
+  #fp-project-platov summary { display: flex; align-items: center; justify-content: space-between; min-height: 88px; gap: 30px; list-style: none; cursor: pointer; font-family: var(--display); font-size: 18px; }
+  #fp-project-platov summary::-webkit-details-marker { display: none; }
+  #fp-project-platov summary i { position: relative; flex: 0 0 22px; height: 22px; }
+  #fp-project-platov summary i::before, #fp-project-platov summary i::after { content: ""; position: absolute; top: 50%; left: 50%; width: 14px; height: 1px; background: var(--gold-light); transform: translate(-50%,-50%); }
+  #fp-project-platov summary i::after { transform: translate(-50%,-50%) rotate(90deg); transition: transform .2s ease; }
+  #fp-project-platov details[open] summary i::after { transform: translate(-50%,-50%) rotate(0); }
+  #fp-project-platov details p { max-width: 720px; margin: -5px 45px 30px 0; color: rgba(255,255,255,.5); font-size: 13px; line-height: 1.8; }
+
+  #fp-project-platov .pp-footer { padding: 78px 0 28px; border-top: 1px solid rgba(226,201,129,.18); background: #050607; }
+  #fp-project-platov .pp-footer__top { display: grid; grid-template-columns: 1.2fr .6fr 1fr; gap: 80px; padding-bottom: 55px; }
+  #fp-project-platov .pp-footer__top img { width: 190px; }
+  #fp-project-platov .pp-footer__top p { max-width: 340px; color: rgba(255,255,255,.38); font-size: 11px; line-height: 1.7; }
+  #fp-project-platov .pp-footer nav, #fp-project-platov .pp-footer address { display: grid; align-content: start; gap: 12px; font-style: normal; }
+  #fp-project-platov .pp-footer nav a, #fp-project-platov .pp-footer address a { font-family: var(--display); font-size: 15px; }
+  #fp-project-platov .pp-footer__bottom { display: flex; justify-content: space-between; gap: 30px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.28); font-size: 8px; }
+
+  #fp-project-platov .pp-observe { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  #fp-project-platov .pp-observe.is-visible { opacity: 1; transform: none; }
+  @keyframes ppPulse { 0%,100% { opacity: .65; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.1); } }
+  @keyframes ppStep { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  @media (max-width: 1180px) {
+    #fp-project-platov .pp-header { grid-template-columns: 1fr auto; width: calc(100% - 64px); }
+    #fp-project-platov .pp-nav { display: none; }
+    #fp-project-platov .pp-hero__grid { grid-template-columns: minmax(0, 1fr) 420px; gap: 45px; }
+    #fp-project-platov .pp-hero__facts { grid-template-columns: 1fr 1fr; }
+    #fp-project-platov .pp-hero__facts div:nth-child(2) { border-right: 0; }
+    #fp-project-platov .pp-hero__facts div:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.14); }
+    #fp-project-platov .pp-story { grid-template-columns: 43% 57%; }
+    #fp-project-platov .pp-story__copy { padding-inline: 55px; }
+    #fp-project-platov .pp-timeline { grid-template-columns: 1fr 1fr; }
+    #fp-project-platov .pp-timeline article:nth-child(2) { border-right: 0; }
+    #fp-project-platov .pp-timeline article:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.13); }
+  }
+
+  @media (max-width: 900px) {
+    #fp-project-platov .pp-shell { width: calc(100% - 48px); }
+    #fp-project-platov .pp-hero { padding-top: 135px; }
+    #fp-project-platov .pp-hero__grid { grid-template-columns: 1fr; }
+    #fp-project-platov .pp-hero__copy { max-width: 760px; }
+    #fp-project-platov .pp-donate { width: min(100%, 560px); }
+    #fp-project-platov .pp-support-feed { position: relative; grid-template-columns: 1fr auto; padding: 18px 24px; }
+    #fp-project-platov .pp-support-feed small { display: none; }
+    #fp-project-platov .pp-story { grid-template-columns: 1fr; }
+    #fp-project-platov .pp-story__portrait { min-height: 620px; }
+    #fp-project-platov .pp-story__portrait::after { background: linear-gradient(180deg, transparent 65%, #0d1113); }
+    #fp-project-platov .pp-story__copy { max-width: none; padding: 90px 48px; }
+    #fp-project-platov .pp-section-head, #fp-project-platov .pp-faq__grid { grid-template-columns: 1fr; gap: 40px; }
+    #fp-project-platov .pp-footer__top { grid-template-columns: 1fr 1fr; }
+    #fp-project-platov .pp-footer__top > div { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 600px) {
+    #fp-project-platov .pp-shell { width: calc(100% - 40px); }
+    #fp-project-platov .pp-header { width: calc(100% - 40px); min-height: 88px; }
+    #fp-project-platov .pp-logo img { width: 150px; height: 64px; }
+    #fp-project-platov .pp-header__back { min-height: 38px; padding: 0 12px; }
+    #fp-project-platov .pp-header__back span { display: none; }
+    #fp-project-platov .pp-hero { min-height: auto; padding: 115px 0 70px; }
+    #fp-project-platov .pp-hero__art { background-position: 58% center; }
+    #fp-project-platov .pp-hero__shade { background: linear-gradient(180deg, rgba(5,7,8,.72), rgba(5,7,8,.94) 56%, #080a0c 100%); }
+    #fp-project-platov .pp-breadcrumb { margin-bottom: 28px; }
+    #fp-project-platov h1 { font-size: clamp(42px, 12vw, 58px); }
+    #fp-project-platov .pp-hero__lead { font-size: 13px; }
+    #fp-project-platov .pp-hero__facts { margin-top: 35px; }
+    #fp-project-platov .pp-hero__facts div { min-height: 78px; padding: 16px 12px; }
+    #fp-project-platov .pp-hero__facts div:nth-child(odd) { padding-left: 0; }
+    #fp-project-platov .pp-hero__facts strong { font-size: 13px; }
+    #fp-project-platov .pp-donate { padding: 24px 20px; }
+    #fp-project-platov .pp-donate__head h2 { font-size: 21px; }
+    #fp-project-platov .pp-amounts { grid-template-columns: 1fr 1fr; }
+    #fp-project-platov .pp-support-feed { margin-top: 0; }
+    #fp-project-platov .pp-support-feed > span { display: none; }
+    #fp-project-platov .pp-support-feed { grid-template-columns: 1fr; text-align: center; }
+    #fp-project-platov .pp-story__portrait { min-height: 460px; }
+    #fp-project-platov .pp-story__portrait img { width: 88%; }
+    #fp-project-platov .pp-story__copy { padding: 75px 20px; }
+    #fp-project-platov h2 { font-size: clamp(39px, 11vw, 52px); }
+    #fp-project-platov .pp-story__formats { grid-template-columns: 1fr; gap: 25px; }
+    #fp-project-platov .pp-stage, #fp-project-platov .pp-faq { padding: 90px 0; }
+    #fp-project-platov .pp-timeline { grid-template-columns: 1fr; margin-top: 60px; border-top: 0; }
+    #fp-project-platov .pp-timeline article, #fp-project-platov .pp-timeline article + article { min-height: auto; padding: 25px 0 35px 34px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.13); border-left: 1px solid rgba(255,255,255,.15); }
+    #fp-project-platov .pp-timeline article > i, #fp-project-platov .pp-timeline article + article > i { top: 30px; left: -4px; }
+    #fp-project-platov .pp-timeline article div { margin-top: 25px; }
+    #fp-project-platov .pp-meaning { min-height: 620px; }
+    #fp-project-platov .pp-meaning .pp-button { width: 100%; }
+    #fp-project-platov summary { min-height: 78px; font-size: 15px; }
+    #fp-project-platov .pp-footer__top { grid-template-columns: 1fr; gap: 35px; }
+    #fp-project-platov .pp-footer__top > div { grid-column: auto; }
+    #fp-project-platov .pp-footer__bottom { display: grid; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #fp-project-platov *, #fp-project-platov *::before, #fp-project-platov *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
+</style>
+
+<script>
+(() => {
+  const root = document.getElementById('fp-project-platov');
+  if (!root || root.dataset.ready === '1') return;
+  root.dataset.ready = '1';
+
+  let amount = 1000;
+  let frequency = 'once';
+  const steps = [...root.querySelectorAll('.pp-form-step')];
+  const stepCount = root.querySelector('.pp-step-count b');
+  const summaryAmount = root.querySelector('.pp-summary__amount');
+  const summaryFrequency = root.querySelector('.pp-summary__frequency');
+
+  const showStep = (number) => {
+    steps.forEach(step => step.classList.toggle('is-active', step.dataset.step === String(number)));
+    if (stepCount) stepCount.textContent = String(number);
+    if (number === 3) {
+      summaryAmount.textContent = new Intl.NumberFormat('ru-RU').format(amount);
+      summaryFrequency.textContent = frequency === 'monthly' ? 'ежемесячное пожертвование' : 'разовое пожертвование';
+    }
+  };
+
+  root.querySelectorAll('[data-next]').forEach(button => button.addEventListener('click', () => showStep(button.dataset.next)));
+  root.querySelectorAll('[data-back]').forEach(button => button.addEventListener('click', () => showStep(button.dataset.back)));
+
+  root.querySelectorAll('[data-frequency]').forEach(button => button.addEventListener('click', () => {
+    frequency = button.dataset.frequency;
+    root.querySelectorAll('[data-frequency]').forEach(item => item.classList.toggle('is-active', item === button));
+  }));
+
+  const custom = root.querySelector('.pp-custom input');
+  root.querySelectorAll('[data-amount]').forEach(button => button.addEventListener('click', () => {
+    amount = Number(button.dataset.amount);
+    root.querySelectorAll('[data-amount]').forEach(item => item.classList.toggle('is-active', item === button));
+    if (custom) custom.value = '';
+  }));
+
+  if (custom) custom.addEventListener('input', () => {
+    if (Number(custom.value) > 0) {
+      amount = Number(custom.value);
+      root.querySelectorAll('[data-amount]').forEach(item => item.classList.remove('is-active'));
+    }
+  });
+
+  const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: .14 }) : null;
+  root.querySelectorAll('.pp-observe').forEach(item => observer ? observer.observe(item) : item.classList.add('is-visible'));
+
+  const donors = [
+    ['Виктор', 'поддержал проект на', '1 000 ₽', '8 минут назад'],
+    ['Ольга', 'поддержала проект на', '500 ₽', '12 минут назад'],
+    ['Александр', 'поддержал проект на', '3 000 ₽', 'только что'],
+    ['Марина', 'поддержала проект на', '1 000 ₽', '5 минут назад']
+  ];
+  let donorIndex = 0;
+  const feedName = root.querySelector('.pp-feed-name');
+  const feedVerb = root.querySelector('.pp-feed-verb');
+  const feedAmount = root.querySelector('.pp-feed-amount');
+  const feedTime = root.querySelector('.pp-feed-time');
+  window.setInterval(() => {
+    donorIndex = (donorIndex + 1) % donors.length;
+    if (feedName) feedName.textContent = donors[donorIndex][0];
+    if (feedVerb) feedVerb.textContent = donors[donorIndex][1];
+    if (feedAmount) feedAmount.textContent = donors[donorIndex][2];
+    if (feedTime) feedTime.textContent = donors[donorIndex][3];
+  }, 5000);
+})();
+</script>

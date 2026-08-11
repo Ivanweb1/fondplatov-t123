@@ -18,7 +18,13 @@
 
 - статичный вариант: `https://ivanweb1.github.io/fondplatov-t123/`;
 - вариант с видео: `https://ivanweb1.github.io/fondplatov-t123/video/`;
-- светлый вариант: `https://ivanweb1.github.io/fondplatov-t123/light/`.
+- светлый вариант: `https://ivanweb1.github.io/fondplatov-t123/light/`;
+- страница проекта «Вихорь-атаман Матвей Платов»: `https://ivanweb1.github.io/fondplatov-t123/project-platov/`.
+
+## Страницы проектов
+
+- `t123-project-platov.html` — код страницы проекта для блока T123;
+- `project-platov/index.html` — публичный предпросмотр страницы проекта.
 
 ## Установка в Tilda
 
