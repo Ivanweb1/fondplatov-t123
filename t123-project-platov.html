@@ -258,6 +258,7 @@
   #fp-project-platov .pp-menu, #fp-project-platov .pp-mobile-nav { display: none; }
 
   #fp-project-platov .pp-hero { position: relative; min-height: max(880px, 100svh); padding: 160px 0 100px; isolation: isolate; }
+  #fp-project-platov .pp-hero::after { content: ""; position: absolute; z-index: 4; right: 0; bottom: 0; left: 0; height: 10px; background: #0d1113; pointer-events: none; }
   #fp-project-platov .pp-hero__art { position: absolute; z-index: 0; inset: 0; background: url("https://static.tildacdn.com/tild3232-3535-4632-a531-383937616136/Friedland_mazurovsky.jpg") 52% 48% / cover no-repeat; filter: grayscale(.48) sepia(.18) contrast(1.08) brightness(.55); transform: scale(1.015); }
   #fp-project-platov .pp-hero__shade { position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, rgba(5,7,8,.96) 0%, rgba(5,7,8,.84) 44%, rgba(5,7,8,.48) 73%, rgba(5,7,8,.82) 100%), linear-gradient(180deg, rgba(5,7,8,.58), transparent 35%, #080a0c 100%); }
   #fp-project-platov .pp-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(420px, 500px); align-items: center; gap: clamp(60px, 8vw, 125px); }
