@@ -1,7 +1,7 @@
 <!--
   Страница проекта для HTML-блока T123 в Tilda.
-  Перед запуском замените ссылку https://fondplatov.ru/#vklad
-  на адрес подключённой платёжной формы проекта.
+  Кнопка с атрибутом data-tilda-cart-trigger подготовлена
+  для последующего подключения корзины Tilda.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,7 +69,6 @@
               <p>Поддержать проект</p>
               <h2 id="pp-donate-title">Станьте частью истории</h2>
             </div>
-            <span class="pp-step-count"><b>1</b> / 3</span>
           </div>
 
           <div class="pp-collection">
@@ -83,7 +82,7 @@
             <p>0,3% от необходимой суммы</p>
           </div>
 
-          <div class="pp-form-step is-active" data-step="1">
+          <div class="pp-donation-options">
             <div class="pp-frequency" role="group" aria-label="Периодичность пожертвования">
               <button class="is-active" type="button" data-frequency="once">Один раз</button>
               <button type="button" data-frequency="monthly">Ежемесячно</button>
@@ -98,30 +97,7 @@
             <label class="pp-custom">Своя сумма
               <span><input type="number" min="100" step="100" placeholder="Введите сумму"><b>₽</b></span>
             </label>
-            <button class="pp-next pp-button" type="button" data-next="2">Продолжить <span>→</span></button>
-          </div>
-
-          <div class="pp-form-step" data-step="2">
-            <button class="pp-back" type="button" data-back="1">← Изменить сумму</button>
-            <p class="pp-field-label">Контактные данные</p>
-            <label class="pp-input">Имя<input type="text" autocomplete="name" placeholder="Как к вам обращаться"></label>
-            <label class="pp-input">Email<input type="email" autocomplete="email" placeholder="Для письма с благодарностью"></label>
-            <label class="pp-consent"><input type="checkbox" checked><span></span>Я принимаю условия публичной оферты</label>
-            <button class="pp-next pp-button" type="button" data-next="3">Перейти к оплате <span>→</span></button>
-          </div>
-
-          <div class="pp-form-step" data-step="3">
-            <button class="pp-back" type="button" data-back="2">← Назад</button>
-            <div class="pp-summary">
-              <span>Ваше пожертвование</span>
-              <strong><b class="pp-summary__amount">1 000</b> ₽</strong>
-              <small class="pp-summary__frequency">разовое пожертвование</small>
-            </div>
-            <div class="pp-payments" aria-label="Доступные способы оплаты">
-              <span>Банковская карта</span><span>СБП</span><span>SberPay</span>
-            </div>
-            <a class="pp-button pp-payment-link" href="https://fondplatov.ru/#vklad" target="_blank" rel="noopener">Оплатить <span>↗</span></a>
-            <p class="pp-secure">Защищённое соединение. Платёжная форма откроется в новом окне.</p>
+            <button class="pp-button pp-cart-trigger" type="button" data-tilda-cart-trigger data-amount-selected="1000" data-frequency-selected="once">Поддержать проект <span>→</span></button>
           </div>
         </aside>
       </div>
@@ -283,8 +259,6 @@
   #fp-project-platov .pp-donate__head { display: flex; justify-content: space-between; gap: 20px; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.12); }
   #fp-project-platov .pp-donate__head p { margin: 0 0 7px; color: var(--gold-light); font-size: 8px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
   #fp-project-platov .pp-donate__head h2 { margin: 0; font-family: var(--display); font-size: 25px; font-weight: 400; }
-  #fp-project-platov .pp-step-count { color: rgba(255,255,255,.34); font-size: 10px; letter-spacing: .12em; white-space: nowrap; }
-  #fp-project-platov .pp-step-count b { color: var(--gold-light); font-weight: 600; }
   #fp-project-platov .pp-collection { padding: 24px 0 22px; border-bottom: 1px solid rgba(255,255,255,.12); }
   #fp-project-platov .pp-collection__numbers { display: flex; justify-content: space-between; gap: 20px; }
   #fp-project-platov .pp-collection__numbers div:last-child { text-align: right; }
@@ -293,8 +267,7 @@
   #fp-project-platov .pp-progress { height: 3px; margin-top: 17px; background: rgba(255,255,255,.13); }
   #fp-project-platov .pp-progress i { display: block; width: max(6px, .3%); height: 100%; background: var(--gold-light); box-shadow: 0 0 12px rgba(226,201,129,.7); }
   #fp-project-platov .pp-collection > p { margin: 8px 0 0; color: rgba(255,255,255,.35); font-size: 8px; }
-  #fp-project-platov .pp-form-step { display: none; padding-top: 22px; }
-  #fp-project-platov .pp-form-step.is-active { display: block; animation: ppStep .35s ease both; }
+  #fp-project-platov .pp-donation-options { padding-top: 22px; }
   #fp-project-platov .pp-frequency { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 22px; border: 1px solid rgba(255,255,255,.13); }
   #fp-project-platov .pp-frequency button { min-height: 42px; border: 0; background: transparent; color: rgba(255,255,255,.5); font-size: 9px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
   #fp-project-platov .pp-frequency button.is-active { color: #101214; background: var(--gold-light); }
@@ -311,22 +284,8 @@
   #fp-project-platov .pp-button { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 56px; margin-top: 20px; padding: 0 20px; color: #101214; border: 1px solid var(--gold-light); background: linear-gradient(90deg, var(--gold-light), var(--gold)); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: filter .2s ease, transform .2s ease; }
   #fp-project-platov .pp-button:hover { filter: brightness(1.08); transform: translateY(-2px); }
   #fp-project-platov .pp-button span { font-size: 16px; }
-  #fp-project-platov .pp-back { padding: 0; margin: 0 0 18px; color: rgba(255,255,255,.48); border: 0; background: transparent; font-size: 9px; }
-  #fp-project-platov .pp-input input { display: block; margin-top: 7px; padding-right: 13px; text-transform: none; }
-  #fp-project-platov .pp-consent { display: flex; align-items: center; gap: 9px; margin-top: 17px; color: rgba(255,255,255,.48); font-size: 9px; cursor: pointer; }
-  #fp-project-platov .pp-consent input { position: absolute; opacity: 0; }
-  #fp-project-platov .pp-consent span { position: relative; flex: 0 0 16px; height: 16px; border: 1px solid rgba(255,255,255,.25); }
-  #fp-project-platov .pp-consent input:checked + span::after { content: ""; position: absolute; inset: 3px; background: var(--gold-light); }
-  #fp-project-platov .pp-summary { padding: 24px; text-align: center; border: 1px solid rgba(226,201,129,.2); background: rgba(226,201,129,.04); }
-  #fp-project-platov .pp-summary > span { display: block; color: rgba(255,255,255,.4); font-size: 8px; text-transform: uppercase; }
-  #fp-project-platov .pp-summary strong { display: block; margin: 8px 0 3px; color: var(--gold-light); font-family: var(--display); font-size: 34px; font-weight: 400; }
-  #fp-project-platov .pp-summary strong b { font-weight: 400; }
-  #fp-project-platov .pp-summary small { color: rgba(255,255,255,.4); font-size: 9px; }
-  #fp-project-platov .pp-payments { display: flex; gap: 7px; margin-top: 15px; }
-  #fp-project-platov .pp-payments span { flex: 1; padding: 9px 4px; border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.55); text-align: center; font-size: 7px; }
-  #fp-project-platov .pp-payment-link { margin-top: 15px; }
-  #fp-project-platov .pp-secure { margin: 11px 0 0; color: rgba(255,255,255,.28); font-size: 7px; text-align: center; }
   #fp-project-platov .pp-support-feed { position: absolute; z-index: 5; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 35px; min-height: 62px; padding: 0 max(48px, calc((100% - 1380px) / 2)); border-top: 1px solid rgba(255,255,255,.13); background: rgba(5,7,8,.76); backdrop-filter: blur(16px); }
+  #fp-project-platov .pp-support-feed > span, #fp-project-platov .pp-support-feed > p, #fp-project-platov .pp-support-feed > small { display: flex; align-self: stretch; align-items: center; line-height: 1.2; }
   #fp-project-platov .pp-support-feed > span { color: rgba(255,255,255,.42); font-size: 8px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
   #fp-project-platov .pp-support-feed > span i { display: inline-block; width: 5px; height: 5px; margin-right: 8px; border-radius: 50%; background: #64a478; }
   #fp-project-platov .pp-support-feed p { margin: 0; font-size: 10px; }
@@ -519,10 +478,7 @@
 
   let amount = 1000;
   let frequency = 'once';
-  const steps = [...root.querySelectorAll('.pp-form-step')];
-  const stepCount = root.querySelector('.pp-step-count b');
-  const summaryAmount = root.querySelector('.pp-summary__amount');
-  const summaryFrequency = root.querySelector('.pp-summary__frequency');
+  const cartTrigger = root.querySelector('[data-tilda-cart-trigger]');
   const menu = root.querySelector('.pp-menu');
   const mobileNav = root.querySelector('.pp-mobile-nav');
 
@@ -541,26 +497,16 @@
     mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
   }
 
-  const showStep = (number) => {
-    steps.forEach(step => step.classList.toggle('is-active', step.dataset.step === String(number)));
-    if (stepCount) stepCount.textContent = String(number);
-    if (number === 3) {
-      summaryAmount.textContent = new Intl.NumberFormat('ru-RU').format(amount);
-      summaryFrequency.textContent = frequency === 'monthly' ? 'ежемесячное пожертвование' : 'разовое пожертвование';
-    }
-  };
-
-  root.querySelectorAll('[data-next]').forEach(button => button.addEventListener('click', () => showStep(button.dataset.next)));
-  root.querySelectorAll('[data-back]').forEach(button => button.addEventListener('click', () => showStep(button.dataset.back)));
-
   root.querySelectorAll('[data-frequency]').forEach(button => button.addEventListener('click', () => {
     frequency = button.dataset.frequency;
+    if (cartTrigger) cartTrigger.dataset.frequencySelected = frequency;
     root.querySelectorAll('[data-frequency]').forEach(item => item.classList.toggle('is-active', item === button));
   }));
 
   const custom = root.querySelector('.pp-custom input');
   root.querySelectorAll('[data-amount]').forEach(button => button.addEventListener('click', () => {
     amount = Number(button.dataset.amount);
+    if (cartTrigger) cartTrigger.dataset.amountSelected = String(amount);
     root.querySelectorAll('[data-amount]').forEach(item => item.classList.toggle('is-active', item === button));
     if (custom) custom.value = '';
   }));
@@ -568,6 +514,7 @@
   if (custom) custom.addEventListener('input', () => {
     if (Number(custom.value) > 0) {
       amount = Number(custom.value);
+      if (cartTrigger) cartTrigger.dataset.amountSelected = String(amount);
       root.querySelectorAll('[data-amount]').forEach(item => item.classList.remove('is-active'));
     }
   });
