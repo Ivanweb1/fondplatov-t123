@@ -388,6 +388,7 @@
   #fp-project-platov.is-facts .pp-donate { border-color: rgba(110,146,122,.42); }
   #fp-project-platov.is-facts .pp-watch-card { padding-top: 22px; }
   #fp-project-platov.is-facts .pp-watch-card__note { margin: 17px 0 0; padding: 17px; color: rgba(240,237,230,.56); border: 1px solid rgba(110,146,122,.3); background: rgba(110,146,122,.07); font-size: 10px; line-height: 1.65; }
+  #fp-project-platov.is-facts .pp-project-links { grid-template-columns: 1fr; max-width: 430px; }
   #fp-project-platov.is-facts .pp-story__rings { display: none; }
   #fp-project-platov.is-facts .pp-story__portrait img { inset: 0; width: 100%; max-width: none; height: 100%; object-fit: cover; object-position: center; transform: none; filter: grayscale(.55) sepia(.12) contrast(1.05) brightness(.72); }
   #fp-project-platov.is-facts .pp-stage__bg { background-image: linear-gradient(90deg, #080a0c 0%, rgba(8,10,12,.76), #080a0c), url("https://static.tildacdn.com/tild3636-3337-4430-a263-636632666365/Rectangle_8.png"); }
@@ -517,7 +518,7 @@
     q('#pp-title').innerHTML = '«7 фактов<br><em>о Платове»</em>';
     q('.pp-hero__lead').textContent = 'Историко-документальный фильм о Матвее Ивановиче Платове, созданный фондом при поддержке Президентского фонда культурных инициатив.';
     q('.pp-hero__facts').innerHTML = '<div><span>Формат</span><strong>Документальный фильм</strong></div><div><span>Хронометраж</span><strong>52 минуты</strong></div><div><span>Бюджет</span><strong>3 млн ₽</strong></div><div><span>Статус</span><strong>Проект завершён</strong></div>';
-    q('.pp-project-links').innerHTML = '<span class="is-disabled" aria-disabled="true">Презентация проекта <small>Скоро</small></span><span class="is-disabled" aria-disabled="true">Нас поддерживают <small>Скоро</small></span><span class="is-disabled" aria-disabled="true">Партнёры проекта <small>Скоро</small></span><a href="' + filmUrl + '" target="_blank" rel="noopener">Смотреть фильм <span>↗</span></a>';
+    q('.pp-project-links').innerHTML = '<a href="#pp-stages">Стадия кинопроизводства <span>↓</span></a><span class="is-disabled" aria-disabled="true">Участие проекта в мероприятиях <small>Скоро</small></span><a href="' + filmUrl + '" target="_blank" rel="noopener">Смотреть фильм <span>↗</span></a>';
 
     q('.pp-donate').innerHTML = '<div class="pp-donate__head"><div><p>Проект реализован</p><h2 id="pp-donate-title">Фильм доступен к просмотру</h2></div></div><div class="pp-collection"><div class="pp-collection__numbers"><div><span>Получено</span><strong>3 млн ₽</strong></div><div><span>Бюджет проекта</span><strong>3 млн ₽</strong></div></div><div class="pp-progress" role="progressbar" aria-label="Финансирование получено полностью" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><i></i></div><p>100% финансирования получено</p></div><div class="pp-watch-card"><a class="pp-button" id="pp-watch" href="' + filmUrl + '" target="_blank" rel="noopener">Смотреть фильм <span>↗</span></a><p class="pp-watch-card__note">Проект стал победителем конкурса Президентского фонда культурных инициатив и завершён в полном объёме.</p></div>';
     q('.pp-support-feed').innerHTML = '<span><i></i> Проект реализован</span><p><b>100% финансирования</b> получено при поддержке ПФКИ</p><small>март 2025 года</small>';
