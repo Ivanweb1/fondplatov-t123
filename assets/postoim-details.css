@@ -1,0 +1,50 @@
+.fx-page.pd-page{background:#080a0c}
+.pd-page .fx-hero{min-height:760px;padding-bottom:92px}
+.pd-page .fx-hero:before{background-image:linear-gradient(90deg,#080a0c 0%,rgba(8,10,12,.94) 42%,rgba(8,10,12,.66) 68%,rgba(8,10,12,.22) 100%),url('https://static.tildacdn.com/tild6630-3161-4662-b030-656265653265/image.png');background-position:center,76% 42%;background-size:cover,62% auto;background-repeat:no-repeat;filter:grayscale(.58) sepia(.14) contrast(1.08);opacity:.72}
+.pd-page .fx-hero h1{max-width:980px}
+.pd-page .fx-hero__lead{max-width:760px}
+.pd-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.pd-nav a{display:flex;align-items:center;justify-content:space-between;gap:28px;min-width:190px;min-height:48px;padding:0 16px;border:1px solid rgba(226,201,129,.25);color:rgba(240,237,230,.68);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:.25s}
+.pd-nav a:hover{color:#080a0c;background:var(--gold);border-color:var(--gold)}
+.pd-nav i{color:var(--gold);font-style:normal}.pd-nav a:hover i{color:#080a0c}
+.pd-section{position:relative;padding:120px 0;border-bottom:1px solid var(--line)}
+.pd-overview{background:radial-gradient(circle at 90% 20%,rgba(226,201,129,.08),transparent 26%),#0d1012}
+.pd-grid{display:grid;grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr);gap:clamp(60px,9vw,140px);align-items:start}
+.pd-sticky{position:sticky;top:125px}
+.pd-label{display:flex;align-items:center;gap:14px;margin:0 0 23px;color:var(--gold);font-size:8px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.pd-label:before{content:'';width:38px;height:1px;background:var(--gold)}
+.pd-section h2{margin:0;font-family:var(--display);font-size:clamp(42px,5vw,72px);font-weight:400;line-height:1.08;letter-spacing:-.04em}
+.pd-section h2 em{color:var(--gold);font-style:normal}
+.pd-intro{color:var(--muted);font-size:15px;line-height:1.9}
+.pd-intro p{margin:0 0 24px}
+.pd-quote{margin:38px 0 0;padding:28px 30px;border-left:1px solid var(--gold);background:rgba(226,201,129,.045);font-family:var(--display);font-size:20px;line-height:1.65}
+.pd-quote cite{display:block;margin-top:16px;color:rgba(240,237,230,.4);font-family:var(--body);font-size:8px;font-style:normal;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.pd-film{overflow:hidden;background:#080a0c}
+.pd-film:before{content:'';position:absolute;right:-6%;bottom:-12%;width:50%;aspect-ratio:1;border:1px solid rgba(226,201,129,.08);border-radius:50%;box-shadow:0 0 0 90px rgba(226,201,129,.018),0 0 0 180px rgba(226,201,129,.012);pointer-events:none}
+.pd-film--don{background:#0d1012}.pd-film--don:before{right:auto;left:-12%}
+.pd-film__head{display:grid;grid-template-columns:190px minmax(0,1fr);gap:42px;align-items:end;padding-bottom:48px;border-bottom:1px solid var(--line)}
+.pd-number{color:transparent;font-family:var(--display);font-size:128px;line-height:.8;-webkit-text-stroke:1px rgba(226,201,129,.45)}
+.pd-film__head h2{font-size:clamp(46px,5.2vw,76px)}
+.pd-film__head h2 small{display:block;margin-bottom:12px;color:var(--gold);font-family:var(--body);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.pd-film__body{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.72fr);gap:clamp(45px,7vw,100px);padding-top:52px}
+.pd-copy{color:var(--muted);font-size:14px;line-height:1.9}.pd-copy p{margin:0 0 22px}
+.pd-facts{border-top:1px solid var(--line)}
+.pd-facts div{padding:22px 0;border-bottom:1px solid var(--line)}
+.pd-facts span{display:block;color:rgba(240,237,230,.34);font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+.pd-facts strong{display:block;margin-top:8px;font-family:var(--display);font-size:20px;font-weight:400;line-height:1.4}
+.pd-list{padding:120px 0 140px;background:radial-gradient(circle at 15% 20%,rgba(226,201,129,.07),transparent 28%),#090b0d}
+.pd-list__head{display:grid;grid-template-columns:1fr 430px;gap:60px;align-items:end;margin-bottom:64px}
+.pd-list__head p{margin:0;color:var(--muted);line-height:1.8}
+.pd-series{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.pd-series article{position:relative;min-height:260px;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.012);transition:.28s}
+.pd-series article:hover{background:rgba(226,201,129,.055);transform:translateY(-4px)}
+.pd-series span{color:var(--gold);font-size:9px;font-weight:700;letter-spacing:.12em}
+.pd-series h3{margin:56px 0 12px;font-family:var(--display);font-size:23px;font-weight:400;line-height:1.32}
+.pd-series p{margin:0;color:rgba(240,237,230,.46);font-size:11px;line-height:1.7}
+.pd-cta{padding:90px 0;background:linear-gradient(90deg,rgba(226,201,129,.1),transparent),#0d1012}
+.pd-cta__inner{display:grid;grid-template-columns:1fr auto;align-items:center;gap:50px}
+.pd-cta h2{font-size:clamp(38px,4.4vw,62px)}
+.pd-cta a{display:flex;align-items:center;justify-content:space-between;gap:35px;min-width:280px;min-height:62px;padding:0 22px;color:#080a0c;background:linear-gradient(90deg,var(--gold),#c4a25d);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.pd-cta a i{font-style:normal;font-size:17px}
+@media(max-width:1000px){.pd-page .fx-hero{min-height:0}.pd-grid,.pd-film__body{grid-template-columns:1fr;gap:42px}.pd-sticky{position:static}.pd-film__head{grid-template-columns:125px 1fr}.pd-number{font-size:92px}.pd-list__head{grid-template-columns:1fr;gap:28px}.pd-series{grid-template-columns:1fr 1fr}.pd-cta__inner{grid-template-columns:1fr}}
+@media(max-width:600px){.pd-page .fx-hero:before{background-image:linear-gradient(180deg,rgba(8,10,12,.72),#080a0c 92%),url('https://static.tildacdn.com/tild6630-3161-4662-b030-656265653265/image.png');background-position:center;background-size:cover;opacity:.6}.pd-page .fx-hero h1{font-size:40px}.pd-page .fx-summary{grid-template-columns:1fr 1fr}.pd-nav{display:grid;grid-template-columns:1fr 1fr}.pd-nav a{min-width:0;gap:10px;padding:0 12px}.pd-section,.pd-list{padding:78px 0}.pd-film__head{grid-template-columns:1fr;gap:26px}.pd-number{font-size:74px}.pd-film__head h2{font-size:42px}.pd-film__body{padding-top:38px}.pd-intro{font-size:13px}.pd-quote{padding:22px 20px;font-size:17px}.pd-series{grid-template-columns:1fr}.pd-series article{min-height:210px}.pd-series h3{margin-top:36px}.pd-cta{padding:68px 0}.pd-cta a{min-width:0;width:100%}}
