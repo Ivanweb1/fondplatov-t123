@@ -15,11 +15,6 @@
       <a class="ps-back" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects"><i>←</i> Все проекты</a>
       <div class="ps-heading"><div><p class="ps-kicker">Материалы проекта</p><h1 id="ps-title">Видео-<em>презентация</em></h1></div><p id="ps-lead">Короткая презентация знакомит с идеей цикла документальных фильмов о казачьих войсках России.</p></div>
       <div class="ps-video" id="ps-video"><iframe src="https://vkvideo.ru/video_ext.php?oid=-216254329&id=456239119&hd=2" title="Видео-презентация проекта Постоим за честь державы" loading="lazy" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="ps-docs" id="ps-docs" hidden>
-        <a class="ps-doc" href="https://ivanweb1.github.io/fondplatov-t123/assets/postoim-support-1.jpg" target="_blank" rel="noopener"><div class="ps-doc__image"><img src="https://ivanweb1.github.io/fondplatov-t123/assets/postoim-support-1.jpg" alt="Документ о поддержке проекта, страница 1"></div><div class="ps-doc__meta"><span>Документ поддержки 01</span><i>↗</i></div></a>
-        <a class="ps-doc" href="https://ivanweb1.github.io/fondplatov-t123/assets/postoim-support-2.jpg" target="_blank" rel="noopener"><div class="ps-doc__image"><img src="https://ivanweb1.github.io/fondplatov-t123/assets/postoim-support-2.jpg" alt="Документ о поддержке проекта, страница 2"></div><div class="ps-doc__meta"><span>Документ поддержки 02</span><i>↗</i></div></a>
-        <a class="ps-doc" href="https://ivanweb1.github.io/fondplatov-t123/assets/postoim-support-3.jpg" target="_blank" rel="noopener"><div class="ps-doc__image"><img src="https://ivanweb1.github.io/fondplatov-t123/assets/postoim-support-3.jpg" alt="Документ о поддержке проекта, страница 3"></div><div class="ps-doc__meta"><span>Документ поддержки 03</span><i>↗</i></div></a>
-      </div>
     </div>
   </section>
 
@@ -28,24 +23,10 @@
 
 <script>
 (() => {
-  const params = new URLSearchParams(location.search);
-  const supportView = params.get('view') === 'support';
   const header = document.querySelector('.fx-header');
   const menu = document.querySelector('.fx-menu');
   const nav = document.querySelector('.fx-mobile-nav');
-  const video = document.getElementById('ps-video');
-  const docs = document.getElementById('ps-docs');
-  if (supportView) {
-    document.title = 'Нас поддерживают — Постоим за честь державы';
-    document.querySelector('.ps-main').classList.add('ps-support-main');
-    document.querySelector('.ps-kicker').textContent = 'Поддержка проекта';
-    document.getElementById('ps-title').innerHTML = 'Нас <em>поддерживают</em>';
-    document.getElementById('ps-lead').textContent = 'Документы и письма в поддержку создания цикла документальных фильмов о казачьих войсках России.';
-    video.hidden = true;
-    docs.hidden = false;
-  } else {
-    document.title = 'Видео-презентация — Постоим за честь державы';
-  }
+  document.title = 'Видео-презентация — Постоим за честь державы';
   const updateHeader = () => header && header.classList.toggle('is-scrolled', window.scrollY > 40);
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
