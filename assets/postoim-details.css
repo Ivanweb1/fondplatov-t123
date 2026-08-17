@@ -34,6 +34,8 @@
 .pd-facts strong{display:block;margin-top:8px;font-family:var(--display);font-size:20px;font-weight:400;line-height:1.4}
 .pd-list{padding:120px 0 140px;background:radial-gradient(circle at 15% 20%,rgba(226,201,129,.07),transparent 28%),#090b0d}
 .pd-list__head{display:grid;grid-template-columns:1fr 430px;gap:60px;align-items:end;margin-bottom:64px}
+.pd-list__head h2,.pd-cta h2{font-family:var(--display);font-weight:400;line-height:1.08;letter-spacing:-.04em}
+.pd-list__head h2 em,.pd-cta h2 em{color:var(--gold);font-style:normal}
 .pd-list__head p{margin:0;color:var(--muted);line-height:1.8}
 .pd-series{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .pd-series article{position:relative;min-height:260px;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.012);transition:.28s}
