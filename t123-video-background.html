@@ -349,7 +349,7 @@
               <a href="https://ivanweb1.github.io/fondplatov-t123/project-postoim-details/">Подробнее <i>→</i></a>
               <a href="https://ivanweb1.github.io/fondplatov-t123/project-postoim-video/">Видео-презентация <i>→</i></a>
               <a href="https://ivanweb1.github.io/fondplatov-t123/project-postoim-support/">Нас поддерживают <i>→</i></a>
-              <a href="https://ivanweb1.github.io/fondplatov-t123/project-postoim/#pp-donate">Поддержать <i>→</i></a>
+              <a href="#fp-donate">Поддержать <i>→</i></a>
             </div>
           </div>
         </article>
@@ -774,7 +774,7 @@
     min-height: 108px;
     transform: translateX(-50%);
     border-bottom: 1px solid rgba(255,255,255,.15);
-    background: transparent;
+    background: rgba(9,11,13,.96);
     transition: background-color .3s ease, border-color .3s ease, min-height .3s ease, backdrop-filter .3s ease;
   }
 
@@ -2567,6 +2567,19 @@
     margin-top: 27px;
     padding-top: 20px;
     border-top: 1px solid rgba(255,255,255,.1);
+  }
+
+  #fp-home-v1 .fp-header::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    background: #090b0d;
+    box-shadow: 0 1px rgba(255,255,255,.12);
+    transform: translateX(-50%);
   }
   #fp-home-v1 .fp-project-card__actions > a,
   #fp-home-v1 .fp-project-card__actions > span {

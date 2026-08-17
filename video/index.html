@@ -26,9 +26,17 @@
 </head>
 <body>
   <iframe
+    id="home-frame"
     src="../t123-video-background.html"
     title="Предпросмотр первых двух экранов сайта фонда с видеофоном"
     allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
   ></iframe>
+  <script>
+    const homeFrame = document.getElementById('home-frame');
+    if (location.hash) homeFrame.src += location.hash;
+    window.addEventListener('hashchange', () => {
+      if (homeFrame.contentWindow) homeFrame.contentWindow.location.hash = location.hash;
+    });
+  </script>
 </body>
 </html>
