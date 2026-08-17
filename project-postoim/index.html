@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Поддержать создание документального цикла «Постоим за честь державы» о казачьих войсках России.">
+  <title>Постоим за честь державы — поддержать проект</title>
+  <style>
+    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #080a0c; }
+    iframe { position: fixed; inset: 0; display: block; width: 100%; height: 100%; border: 0; background: #080a0c; }
+  </style>
+</head>
+<body>
+  <iframe id="project-frame" src="../t123-project-platov-v6.html?project=postoim" title="Страница проекта «Постоим за честь державы»" allow="payment *; fullscreen; autoplay; encrypted-media; picture-in-picture"></iframe>
+  <script>
+    const projectFrame = document.getElementById('project-frame');
+    if (location.hash) projectFrame.src += location.hash;
+    window.addEventListener('hashchange', () => {
+      if (projectFrame.contentWindow) projectFrame.contentWindow.location.hash = location.hash;
+    });
+  </script>
+</body>
+</html>
