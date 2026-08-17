@@ -382,6 +382,17 @@
   #fp-project-platov .pp-footer__bottom p { margin: 0; }
   #fp-project-platov .pp-footer__bottom div { display: flex; gap: 24px; }
 
+  #fp-project-platov.is-facts .pp-hero__art { background-image: url("https://static.tildacdn.com/tild6465-6531-4135-a362-643661656339/which-classic-movie-.jpg"); background-position: 50% 38%; filter: grayscale(.42) sepia(.12) contrast(1.08) brightness(.44); }
+  #fp-project-platov.is-facts .pp-status i { background: #6e927a; box-shadow: 0 0 10px rgba(110,146,122,.8); }
+  #fp-project-platov.is-facts .pp-progress i { width: 100%; background: #6e927a; box-shadow: 0 0 12px rgba(110,146,122,.55); }
+  #fp-project-platov.is-facts .pp-donate { border-color: rgba(110,146,122,.42); }
+  #fp-project-platov.is-facts .pp-watch-card { padding-top: 22px; }
+  #fp-project-platov.is-facts .pp-watch-card__note { margin: 17px 0 0; padding: 17px; color: rgba(240,237,230,.56); border: 1px solid rgba(110,146,122,.3); background: rgba(110,146,122,.07); font-size: 10px; line-height: 1.65; }
+  #fp-project-platov.is-facts .pp-story__rings { display: none; }
+  #fp-project-platov.is-facts .pp-story__portrait img { inset: 0; width: 100%; max-width: none; height: 100%; object-fit: cover; object-position: center; transform: none; filter: grayscale(.55) sepia(.12) contrast(1.05) brightness(.72); }
+  #fp-project-platov.is-facts .pp-stage__bg { background-image: linear-gradient(90deg, #080a0c 0%, rgba(8,10,12,.76), #080a0c), url("https://static.tildacdn.com/tild3636-3337-4430-a263-636632666365/Rectangle_8.png"); }
+  #fp-project-platov.is-facts .pp-meaning__visual { background-image: linear-gradient(180deg,rgba(5,7,8,.08),rgba(5,7,8,.48)), url("https://static.tildacdn.com/tild6465-6531-4135-a362-643661656339/which-classic-movie-.jpg"); background-position: center; }
+
   #fp-project-platov .pp-observe { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
   #fp-project-platov .pp-observe.is-visible { opacity: 1; transform: none; }
   @keyframes ppPulse { 0%,100% { opacity: .65; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.1); } }
@@ -488,6 +499,54 @@
   const root = document.getElementById('fp-project-platov');
   if (!root || root.dataset.ready === '1') return;
   root.dataset.ready = '1';
+
+  const projectKey = new URLSearchParams(window.location.search).get('project');
+  if (projectKey === 'facts') {
+    const q = selector => root.querySelector(selector);
+    const mainDonationUrl = 'https://ivanweb1.github.io/fondplatov-t123/video/#fp-give';
+    const filmUrl = 'https://vkvideo.ru/video-226878202_456239023';
+    root.classList.add('is-facts');
+    document.title = '7 фактов о Платове — документальный фильм';
+
+    q('.pp-skip').href = '#pp-watch';
+    q('.pp-skip').textContent = 'Перейти к просмотру фильма';
+    [q('.pp-header__donate'), q('.pp-mobile-nav__donate')].forEach(link => { if (link) link.href = mainDonationUrl; });
+    q('.pp-breadcrumb').innerHTML = 'Проекты фонда <span>/</span> Документальное кино';
+    q('.pp-status').innerHTML = '<i></i> Проект реализован';
+    q('.pp-eyebrow').textContent = 'Документальный фильм о легендарном донском атамане';
+    q('#pp-title').innerHTML = '«7 фактов<br><em>о Платове»</em>';
+    q('.pp-hero__lead').textContent = 'Историко-документальный фильм о Матвее Ивановиче Платове, созданный фондом при поддержке Президентского фонда культурных инициатив.';
+    q('.pp-hero__facts').innerHTML = '<div><span>Формат</span><strong>Документальный фильм</strong></div><div><span>Хронометраж</span><strong>52 минуты</strong></div><div><span>Бюджет</span><strong>3 млн ₽</strong></div><div><span>Статус</span><strong>Проект завершён</strong></div>';
+    q('.pp-project-links').innerHTML = '<span class="is-disabled" aria-disabled="true">Презентация проекта <small>Скоро</small></span><span class="is-disabled" aria-disabled="true">Нас поддерживают <small>Скоро</small></span><span class="is-disabled" aria-disabled="true">Партнёры проекта <small>Скоро</small></span><a href="' + filmUrl + '" target="_blank" rel="noopener">Смотреть фильм <span>↗</span></a>';
+
+    q('.pp-donate').innerHTML = '<div class="pp-donate__head"><div><p>Проект реализован</p><h2 id="pp-donate-title">Фильм доступен к просмотру</h2></div></div><div class="pp-collection"><div class="pp-collection__numbers"><div><span>Получено</span><strong>3 млн ₽</strong></div><div><span>Бюджет проекта</span><strong>3 млн ₽</strong></div></div><div class="pp-progress" role="progressbar" aria-label="Финансирование получено полностью" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><i></i></div><p>100% финансирования получено</p></div><div class="pp-watch-card"><a class="pp-button" id="pp-watch" href="' + filmUrl + '" target="_blank" rel="noopener">Смотреть фильм <span>↗</span></a><p class="pp-watch-card__note">Проект стал победителем конкурса Президентского фонда культурных инициатив и завершён в полном объёме.</p></div>';
+    q('.pp-support-feed').innerHTML = '<span><i></i> Проект реализован</span><p><b>100% финансирования</b> получено при поддержке ПФКИ</p><small>март 2025 года</small>';
+
+    q('.pp-story .pp-kicker').innerHTML = '<span></span> О документальном фильме';
+    q('#pp-story-title').innerHTML = 'Семь фактов,<br><em>которые важно знать</em>';
+    q('.pp-story__lead').textContent = 'Фильм возвращает зрителю образ Матвея Платова — донского атамана, генерала от кавалерии и героя Отечественной войны 1812 года. История раскрывается в доступном документальном формате.';
+    q('.pp-story blockquote').textContent = 'Проект создан, чтобы сохранить историческую память и познакомить широкую аудиторию с личностью легендарного вихорь-атамана.';
+    q('.pp-story__formats').innerHTML = '<div><span>01</span><h3>52 минуты истории</h3><p>Завершённый документальный фильм, доступный для просмотра онлайн.</p></div><div><span>02</span><h3>Поддержка ПФКИ</h3><p>Проект получил полное грантовое финансирование и был реализован фондом.</p></div>';
+    q('.pp-story__portrait img').src = 'https://static.tildacdn.com/tild6465-6531-4135-a362-643661656339/which-classic-movie-.jpg';
+
+    q('.pp-stage .pp-kicker').innerHTML = '<span></span> Этапы реализации';
+    q('#pp-stage-title').innerHTML = 'От замысла<br><em>до премьеры</em>';
+    q('.pp-section-head > p').textContent = 'Все основные производственные этапы завершены. Фильм представлен зрителям и доступен на российских видеоплощадках.';
+    q('.pp-timeline').innerHTML = '<article class="is-done"><span>01</span><i></i><div><small>Выполнено</small><h3>Исследование</h3><p>Собраны исторические материалы и определена драматургическая структура фильма.</p></div></article><article class="is-done"><span>02</span><i></i><div><small>Выполнено</small><h3>Съёмки</h3><p>Проведены документальные съёмки с участием экспертов и творческой команды.</p></div></article><article class="is-done"><span>03</span><i></i><div><small>Выполнено</small><h3>Постпродакшн</h3><p>Завершены монтаж, озвучивание и подготовка финальной версии фильма.</p></div></article><article class="is-done"><span>04</span><i></i><div><small>Завершено</small><h3>Премьера</h3><p>Проект представлен зрителям в марте 2025 года и опубликован онлайн.</p></div></article>';
+
+    q('.pp-meaning .pp-kicker').innerHTML = '<span></span> Фильм уже доступен';
+    q('#pp-meaning-title').innerHTML = 'Откройте для себя<br><em>семь фактов о Платове</em>';
+    q('.pp-meaning__copy > p:not(.pp-kicker)').textContent = 'Посмотрите завершённый документальный фильм и поделитесь им с теми, кому важны история России и культурное наследие казачества.';
+    q('.pp-meaning .pp-button').href = filmUrl;
+    q('.pp-meaning .pp-button').target = '_blank';
+    q('.pp-meaning .pp-button').rel = 'noopener';
+    q('.pp-meaning .pp-button').innerHTML = 'Смотреть фильм <span>↗</span>';
+    q('.pp-meaning__visual span').textContent = '7';
+
+    q('.pp-faq .pp-kicker').innerHTML = '<span></span> О проекте';
+    q('#pp-faq-title').innerHTML = 'Важно знать<br><em>о фильме</em>';
+    q('.pp-accordion').innerHTML = '<details open><summary>Где посмотреть фильм?<i></i></summary><p>Фильм доступен онлайн. Используйте кнопку «Смотреть фильм» на этой странице.</p></details><details><summary>Кто поддержал проект?<i></i></summary><p>Проект реализован при поддержке Президентского фонда культурных инициатив.</p></details><details><summary>Завершено ли производство?<i></i></summary><p>Да. Производство завершено, финансирование получено в полном объёме, фильм представлен зрителям.</p></details><details><summary>Где посмотреть документы фонда?<i></i></summary><p>Учредительные документы, отчётность, публичная оферта и реквизиты размещены на главной странице фонда.</p></details>';
+  }
 
   let amount = 1000;
   let frequency = 'once';
