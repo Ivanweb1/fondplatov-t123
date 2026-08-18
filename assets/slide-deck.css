@@ -1,0 +1,9 @@
+.sd-section{padding:120px 0;background:#090b0d}
+.sd-head{display:grid;grid-template-columns:1fr 430px;gap:60px;align-items:end;margin-bottom:56px}
+.sd-head p{margin:0;color:var(--muted);line-height:1.8}
+.sd-deck{display:grid;gap:26px}
+.sd-slide{position:relative;margin:0;border:1px solid rgba(226,201,129,.16);background:#000;overflow:hidden}
+.sd-slide img{display:block;width:100%;height:auto}
+.sd-slide figcaption{position:absolute;left:0;bottom:0;padding:10px 16px;color:rgba(240,237,230,.7);background:linear-gradient(0deg,rgba(0,0,0,.72),transparent);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:1000px){.sd-head{grid-template-columns:1fr;gap:24px}}
+@media(max-width:600px){.sd-section{padding:70px 0}.sd-deck{gap:16px}}
