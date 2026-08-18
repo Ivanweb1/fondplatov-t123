@@ -11,6 +11,13 @@
   </style>
 </head>
 <body>
-  <iframe src="../t123-project-festival.html" title="Страница проекта «Всероссийский кинофестиваль «Постоим за честь державы»»" allow="payment *"></iframe>
+  <iframe id="festival-frame" src="../t123-project-festival.html" title="Страница проекта «Всероссийский кинофестиваль «Постоим за честь державы»»" allow="payment *"></iframe>
+  <script>
+    const festivalFrame = document.getElementById('festival-frame');
+    if (location.hash) festivalFrame.src += location.hash;
+    window.addEventListener('hashchange', () => {
+      if (festivalFrame.contentWindow) festivalFrame.contentWindow.location.hash = location.hash;
+    });
+  </script>
 </body>
 </html>
