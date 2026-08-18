@@ -1,0 +1,27 @@
+.np-section,.cp-section{padding:120px 0;background:#090b0d;border-bottom:1px solid var(--line)}
+.np-list{border-top:1px solid var(--line)}
+.np-card{display:grid;grid-template-columns:120px 1fr 44px;gap:28px;align-items:center;min-height:130px;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;transition:background-color .25s ease,padding .25s ease}
+.np-card:hover{padding:22px 16px;background:rgba(226,201,129,.05)}
+.np-card time{display:block;color:var(--gold);font-family:var(--display)}
+.np-card time span{display:block;font-size:44px;line-height:1}
+.np-card time b{display:block;margin-top:4px;font-family:var(--body);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,237,230,.4)}
+.np-card p{margin:0 0 8px;color:var(--gold);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.np-card h3{margin:0 0 8px;font-family:var(--display);font-size:22px;font-weight:400;line-height:1.28}
+.np-card span.np-desc{display:block;color:rgba(240,237,230,.5);font-size:13px;line-height:1.7}
+.np-card i{display:grid;place-items:center;width:44px;height:44px;border:1px solid rgba(255,255,255,.14);color:var(--gold);font-style:normal;font-size:16px}
+
+.cp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.cp-cell{padding:32px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cp-cell span{display:block;margin-bottom:10px;color:rgba(240,237,230,.4);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.cp-cell strong{display:block;font-family:var(--display);font-size:19px;font-weight:400;line-height:1.4}
+.cp-cell a{color:inherit;text-decoration:none}
+.cp-cell a:hover{color:var(--gold)}
+
+@media(max-width:760px){
+  .np-section,.cp-section{padding:70px 0}
+  .np-card{grid-template-columns:64px 1fr;gap:16px}
+  .np-card i{display:none}
+  .np-card time span{font-size:28px}
+  .cp-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:500px){.cp-grid{grid-template-columns:1fr}}
