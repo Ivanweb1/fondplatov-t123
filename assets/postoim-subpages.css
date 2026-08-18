@@ -12,7 +12,15 @@
 .ps-video:before{content:'';position:absolute;z-index:2;inset:-10px;pointer-events:none;border:1px solid rgba(226,201,129,.09)}
 .ps-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .ps-support-main{padding-bottom:135px;background:#0a0c0e}
+.ps-main--bitva:before{background-image:linear-gradient(90deg,rgba(8,10,12,.1),rgba(8,10,12,.14)),url('https://ivanweb1.github.io/fondplatov-t123/assets/bitva-slide-01.webp')}
+.ps-main--festival:before{background-image:linear-gradient(90deg,rgba(8,10,12,.1),rgba(8,10,12,.14)),url('https://ivanweb1.github.io/fondplatov-t123/assets/festival-slide-01.webp')}
+.ps-main--kazak:before{background-image:linear-gradient(90deg,rgba(8,10,12,.1),rgba(8,10,12,.14)),url('https://ivanweb1.github.io/fondplatov-t123/assets/kazak-slide-01.webp')}
 .ps-docs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.ps-docs--single{grid-template-columns:minmax(0,380px)}
+.ps-docs--single .ps-doc:last-child{grid-column:auto;width:auto}
+.ps-empty{padding:52px 44px;border:1px solid rgba(226,201,129,.2);background:rgba(226,201,129,.035)}
+.ps-empty p{margin:0;color:var(--muted);font-size:14px;line-height:1.85}
+.ps-empty strong{display:block;margin-bottom:12px;color:var(--gold);font-family:var(--display);font-size:22px;font-weight:400}
 .ps-doc{display:block;padding:12px;border:1px solid rgba(255,255,255,.12);background:#111416;transition:.3s}
 .ps-doc:hover{border-color:rgba(226,201,129,.48);transform:translateY(-7px);box-shadow:0 30px 80px rgba(0,0,0,.42)}
 .ps-doc__image{position:relative;overflow:hidden;aspect-ratio: .71;background:#e9e5dc}
@@ -20,5 +28,5 @@
 .ps-doc:hover img{transform:scale(1.02)}
 .ps-doc__meta{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:66px;padding:14px 8px 2px}
 .ps-doc__meta span{color:rgba(240,237,230,.55);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.ps-doc__meta i{color:var(--gold);font-style:normal;font-size:16px}
-@media(max-width:900px){.ps-main{padding-top:140px}.ps-heading{grid-template-columns:1fr;gap:24px}.ps-docs{grid-template-columns:1fr 1fr}.ps-doc:last-child{grid-column:1/-1;width:calc(50% - 11px)}}
-@media(max-width:600px){.ps-main{min-height:0;padding:120px 0 72px}.ps-main:before{background-position:70% center;opacity:.3}.ps-heading{margin:38px 0}.ps-heading h1{font-size:42px;white-space:normal}.ps-heading>p{font-size:12px}.ps-video{width:100%}.ps-docs{grid-template-columns:1fr}.ps-doc:last-child{grid-column:auto;width:auto}.ps-doc__image{aspect-ratio:.71}}
+@media(max-width:900px){.ps-main{padding-top:140px}.ps-heading{grid-template-columns:1fr;gap:24px}.ps-docs{grid-template-columns:1fr 1fr}.ps-doc:last-child{grid-column:1/-1;width:calc(50% - 11px)}.ps-docs--single{grid-template-columns:1fr}}
+@media(max-width:600px){.ps-main{min-height:0;padding:120px 0 72px}.ps-main:before{background-position:70% center;opacity:.3}.ps-heading{margin:38px 0}.ps-heading h1{font-size:42px;white-space:normal}.ps-heading>p{font-size:12px}.ps-video{width:100%}.ps-docs{grid-template-columns:1fr}.ps-doc:last-child{grid-column:auto;width:auto}.ps-doc__image{aspect-ratio:.71}.ps-empty{padding:32px 24px}}
