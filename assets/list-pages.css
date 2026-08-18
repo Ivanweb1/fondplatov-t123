@@ -32,6 +32,10 @@
 .ab-achieve span{color:var(--gold);font-family:var(--display);font-size:15px}
 .ab-achieve p{margin:0;color:rgba(240,237,230,.7);line-height:1.7}
 
+.fv-video{position:relative;width:100%;aspect-ratio:16/9;background:#000;border:1px solid rgba(226,201,129,.18)}
+.fv-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.fv-note{margin:18px 0 0;color:rgba(240,237,230,.4);font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+
 @media(max-width:760px){
   .np-section,.cp-section{padding:70px 0}
   .np-card{grid-template-columns:64px 1fr;gap:16px}

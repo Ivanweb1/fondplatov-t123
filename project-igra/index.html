@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Исторический сериал «Великая игра» — трейлер и синопсис.">
+  <title>«Великая игра» — фонд имени М. И. Платова</title>
+  <style>
+    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #080a0c; }
+    iframe { position: fixed; inset: 0; display: block; width: 100%; height: 100%; border: 0; background: #080a0c; }
+  </style>
+</head>
+<body>
+  <iframe id="igra-frame" src="../t123-project-igra.html" title="Страница проекта «Великая игра»" allow="payment *"></iframe>
+  <script>
+    const igraFrame = document.getElementById('igra-frame');
+    if (location.hash) igraFrame.src += location.hash;
+    window.addEventListener('hashchange', () => {
+      if (igraFrame.contentWindow) igraFrame.contentWindow.location.hash = location.hash;
+    });
+  </script>
+</body>
+</html>
