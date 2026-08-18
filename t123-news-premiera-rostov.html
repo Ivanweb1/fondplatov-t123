@@ -12,37 +12,31 @@
 
   <div class="fx-mobile-nav" aria-hidden="true"><a href="https://ivanweb1.github.io/fondplatov-t123/about/">О фонде</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">Проекты</a><a href="https://ivanweb1.github.io/fondplatov-t123/news/">Новости</a><a href="https://ivanweb1.github.io/fondplatov-t123/documents/">Документы</a><a href="https://ivanweb1.github.io/fondplatov-t123/contacts/">Контакты</a><a class="fx-mobile-nav__svo" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-svo">Помощь казакам — участникам СВО</a><a class="fx-mobile-nav__donate" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-donate">Помочь фонду</a></div>
 
-  <section class="fx-hero" aria-labelledby="fc-title">
+  <section class="fx-hero" aria-labelledby="na-title">
     <div class="fx-shell fx-hero__inner">
-      <a class="fx-back" href="https://ivanweb1.github.io/fondplatov-t123/contacts/"><i>←</i> На главную</a>
-      <p class="fx-kicker">Контакты</p>
-      <h1 id="fc-title">Свяжитесь<br><em>с фондом</em></h1>
-      <p class="fx-hero__lead">Благотворительный фонд имени Матвея Ивановича Платова. Пишите или звоните — ответим на вопросы о проектах и пожертвованиях.</p>
+      <a class="fx-back" href="https://ivanweb1.github.io/fondplatov-t123/news/"><i>←</i> Все новости</a>
+      <p class="fx-kicker">Премьера</p>
+      <h1 id="na-title">Показ фильма<br><em>«7 фактов о Платове»</em></h1>
+      <div class="na-meta"><span><b>4 марта 2025</b></span><span>Ростов-на-Дону</span><span>Документальное кино</span></div>
     </div>
   </section>
 
-  <section class="cp-section">
+  <section class="na-article">
     <div class="fx-shell">
-      <div class="cp-grid">
-        <div class="cp-cell"><span>Телефон</span><strong><a href="tel:+79772505555">+7 (977) 250-55-55</a></strong></div>
-        <div class="cp-cell"><span>Email</span><strong><a href="mailto:info@fondplatov.ru">info@fondplatov.ru</a></strong></div>
-        
-        <div class="cp-cell"><span>Юридический адрес</span><strong>105005, г. Москва, ул. Бауманская, д. 7, стр. 1, Бизнес-центр «Central Yard», офис 328</strong></div>
-        <div class="cp-cell"><span>Директор фонда</span><strong>Яицкий Сергей Анатольевич</strong></div>
-        <div class="cp-cell"><span>Учредитель</span><strong>РОО «Землячество ростовчан «Донская станица»»</strong></div>
-      </div>
-    </div>
-  </section>
+      <div class="na-body">
+        <p class="na-lead">В кинотеатре «Горизонт CINEMA&amp;EMOTION» в Ростове-на-Дону состоялся премьерный показ документального фильма «7 фактов о Платове — легендарном вихорь-атамане».</p>
 
-  <section class="cp-section" style="border-bottom:0">
-    <div class="fx-shell">
-      <div class="cp-grid">
-        <div class="cp-cell"><span>ОГРН</span><strong>1227700559052</strong></div>
-        <div class="cp-cell"><span>ИНН / КПП</span><strong>9701219100 / 770101001</strong></div>
-        <div class="cp-cell"><span>Расчётный счёт</span><strong>40701810638000110111</strong></div>
-        <div class="cp-cell"><span>Банк</span><strong>ПАО Сбербанк</strong></div>
-        <div class="cp-cell"><span>БИК</span><strong>044525225</strong></div>
-        <div class="cp-cell"><span>Выписка ЕГРЮЛ</span><strong><a href="https://disk.yandex.ru/i/HXs80g0W4u1dbQ" target="_blank" rel="noopener">Скачать PDF ↗</a></strong></div>
+        <p>Фильм создан Благотворительным фондом имени донского атамана М. И. Платова при поддержке Президентского фонда культурных инициатив. Хронометраж картины — 52 минуты.</p>
+
+        <p>Ведущий фильма — Заслуженный артист России Сергей Анатольевич Маховиков, режиссёр — Вячеслав Серкез. Съёмки проходили в Ростовской области: в станице Старочеркасской, Новочеркасске и Ростове-на-Дону.</p>
+
+        <h2>О проекте</h2>
+
+        <p>Проект стал победителем Второго грантового конкурса 2024 года, проводимого Президентским фондом культурных инициатив, по тематическому направлению «История страны. Вехи» — проекты, посвящённые выдающимся деятелям и событиям в жизни общества и страны. Финансирование получено в полном объёме.</p>
+
+        <p>После премьеры фильм был размещён на информационных ресурсах Всевеликого войска Донского, показан юным казакам и воспитанникам ялтинского отделения ДОСААФ, представлен на конференции «Юнармии».</p>
+
+        <a class="na-back" href="https://ivanweb1.github.io/fondplatov-t123/news/"><i>←</i> Вернуться ко всем новостям</a>
       </div>
     </div>
   </section>
@@ -62,12 +56,7 @@
   window.addEventListener('scroll', updateHeader, { passive: true });
   if (menu && nav) {
     const close = () => { menu.setAttribute('aria-expanded','false'); nav.classList.remove('is-open'); nav.setAttribute('aria-hidden','true'); };
-    menu.addEventListener('click', () => {
-      const open = menu.getAttribute('aria-expanded') !== 'true';
-      menu.setAttribute('aria-expanded', String(open));
-      nav.classList.toggle('is-open', open);
-      nav.setAttribute('aria-hidden', String(!open));
-    });
+    menu.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; menu.setAttribute('aria-expanded', String(open)); nav.classList.toggle('is-open', open); nav.setAttribute('aria-hidden', String(!open)); });
     nav.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
   }
 })();
