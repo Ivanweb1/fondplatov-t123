@@ -20,6 +20,8 @@
 - вариант с видео: `https://ivanweb1.github.io/fondplatov-t123/video/`;
 - светлый вариант: `https://ivanweb1.github.io/fondplatov-t123/light/`;
 - страница проекта «Вихорь-атаман Матвей Платов»: `https://ivanweb1.github.io/fondplatov-t123/project-platov/`.
+- презентация проекта «Удалой казак»: `https://ivanweb1.github.io/fondplatov-t123/project-kazak-presentation/`;
+- презентация сериала «Атаман Платов и его лихие казаки»: `https://ivanweb1.github.io/fondplatov-t123/project-likhie-presentation/`.
 
 ## Страницы проектов
 
