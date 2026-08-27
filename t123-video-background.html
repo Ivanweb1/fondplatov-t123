@@ -56,17 +56,17 @@
       <button class="fp-menu" type="button" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span>
       </button>
-    </header>
 
-    <div class="fp-mobile-nav" aria-hidden="true">
-      <a href="https://ivanweb1.github.io/fondplatov-t123/about/" target="_top">О фонде</a>
-      <a href="#fp-projects">Проекты</a>
-      <a href="https://ivanweb1.github.io/fondplatov-t123/news/" target="_top">Новости</a>
-      <a href="https://ivanweb1.github.io/fondplatov-t123/documents/" target="_top">Документы</a>
-      <a href="https://ivanweb1.github.io/fondplatov-t123/contacts/" target="_top">Контакты</a>
-      <a class="fp-mobile-nav__svo" href="#fp-svo">Помощь казакам — участникам СВО</a>
-      <a class="fp-mobile-nav__donate" href="#fp-donate">Помочь фонду</a>
-    </div>
+      <div class="fp-mobile-nav" aria-hidden="true">
+        <a href="https://ivanweb1.github.io/fondplatov-t123/about/" target="_top">О фонде</a>
+        <a href="#fp-projects">Проекты</a>
+        <a href="https://ivanweb1.github.io/fondplatov-t123/news/" target="_top">Новости</a>
+        <a href="https://ivanweb1.github.io/fondplatov-t123/documents/" target="_top">Документы</a>
+        <a href="https://ivanweb1.github.io/fondplatov-t123/contacts/" target="_top">Контакты</a>
+        <a class="fp-mobile-nav__svo" href="#fp-svo">Помощь казакам — участникам СВО</a>
+        <a class="fp-mobile-nav__donate" href="#fp-donate">Помочь фонду</a>
+      </div>
+    </header>
 
   <section class="fp-hero" aria-labelledby="fp-main-title">
     <div class="fp-hero__media" aria-hidden="true">
@@ -1970,12 +1970,12 @@
     }
 
     #fp-home-v1 .fp-mobile-nav {
-      position: fixed;
+      position: absolute;
       z-index: 19;
-      top: 92px;
-      right: 32px;
+      top: 100%;
+      right: 0;
       display: grid;
-      width: min(330px, calc(100% - 64px));
+      width: min(330px, calc(100vw - 64px));
       max-height: calc(100svh - 104px);
       overflow-y: auto;
       overscroll-behavior: contain;
@@ -2162,6 +2162,10 @@
   }
 
   @media (max-width: 600px) {
+    #fp-home-v1 .fp-mobile-nav {
+      width: calc(100vw - 40px);
+    }
+
     #fp-home-v1 .fp-hero {
       min-height: 1080px;
     }
