@@ -541,6 +541,64 @@
     #fp-project-platov .pp-footer__bottom div { display: grid; gap: 10px; }
   }
 
+  /* Кинематографичный фон блока поддержки — только для проекта «Вихорь-атаман» */
+  #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning { background: #0b0d0f; }
+  #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__layout {
+    position: relative;
+    display: block;
+    min-height: 560px;
+    padding: clamp(54px,6vw,86px);
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 1px solid rgba(226,201,129,.24);
+    background-image:
+      linear-gradient(90deg,rgba(5,7,8,.96) 0%,rgba(5,7,8,.86) 32%,rgba(5,7,8,.42) 58%,rgba(5,7,8,.08) 100%),
+      linear-gradient(180deg,rgba(5,7,8,.06),rgba(5,7,8,.24)),
+      url("https://ivanweb1.github.io/fondplatov-t123/assets/platov-battle-color.png?v=20260826");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__layout::after {
+    content: "";
+    position: absolute;
+    z-index: 3;
+    inset: 18px;
+    border: 1px solid rgba(226,201,129,.28);
+    pointer-events: none;
+  }
+  #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__copy { position: relative; z-index: 2; max-width: 580px; padding: 38px 0; }
+  #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__copy > p:not(.pp-kicker) { color: rgba(240,237,230,.76); }
+  #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__visual { position: absolute; inset: 0; min-height: 0; overflow: visible; border: 0; background: none; filter: none; pointer-events: none; }
+  #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__visual::after { display: none; }
+  #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__visual span { right: 42px; bottom: 34px; font-size: 82px; }
+
+  @media (max-width: 900px) {
+    #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__layout {
+      min-height: 590px;
+      padding: 52px 42px;
+      background-image:
+        linear-gradient(90deg,rgba(5,7,8,.95) 0%,rgba(5,7,8,.84) 48%,rgba(5,7,8,.3) 100%),
+        linear-gradient(180deg,rgba(5,7,8,.08),rgba(5,7,8,.3)),
+        url("https://ivanweb1.github.io/fondplatov-t123/assets/platov-battle-color.png?v=20260826");
+      background-position: 58% center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning { padding: 48px 0; }
+    #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__layout {
+      min-height: 640px;
+      padding: 44px 28px 92px;
+      background-image:
+        linear-gradient(180deg,rgba(5,7,8,.96) 0%,rgba(5,7,8,.88) 52%,rgba(5,7,8,.38) 100%),
+        url("https://ivanweb1.github.io/fondplatov-t123/assets/platov-battle-color.png?v=20260826");
+      background-position: 66% center;
+    }
+    #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__copy { max-width: none; padding: 12px 0; }
+    #fp-project-platov:not(.is-facts):not(.is-postoim) .pp-meaning__visual span { right: 28px; bottom: 26px; font-size: 56px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #fp-project-platov *, #fp-project-platov *::before, #fp-project-platov *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
