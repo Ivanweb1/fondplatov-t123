@@ -1970,12 +1970,15 @@
     }
 
     #fp-home-v1 .fp-mobile-nav {
-      position: absolute;
+      position: fixed;
       z-index: 19;
       top: 92px;
       right: 32px;
       display: grid;
       width: min(330px, calc(100% - 64px));
+      max-height: calc(100svh - 104px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
       padding: 20px;
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(9,11,13,.96);
