@@ -409,8 +409,8 @@
     #fp-project-platov .pp-menu span:last-child { transform: translate(-50%,4px); }
     #fp-project-platov .pp-menu[aria-expanded="true"] span:first-child { transform: translate(-50%,0) rotate(45deg); }
     #fp-project-platov .pp-menu[aria-expanded="true"] span:last-child { transform: translate(-50%,0) rotate(-45deg); }
-    #fp-project-platov .pp-mobile-nav { position: absolute; z-index: 19; top: 108px; right: 32px; display: grid; width: min(360px,calc(100% - 64px)); padding: 28px; gap: 16px; border: 1px solid rgba(226,201,129,.2); background: rgba(7,9,10,.97); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .25s ease, transform .25s ease, visibility .25s; }
-    #fp-project-platov .pp-mobile-nav.is-open { opacity: 1; visibility: visible; transform: none; }
+    #fp-project-platov .pp-mobile-nav { position: fixed; z-index: 190; top: 108px; right: 32px; display: grid; width: min(360px,calc(100% - 64px)); padding: 28px; gap: 16px; border: 1px solid rgba(226,201,129,.2); background: rgba(7,9,10,.97); box-shadow: 0 22px 60px rgba(0,0,0,.42); opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-10px); transition: opacity .25s ease, transform .25s ease, visibility .25s; }
+    #fp-project-platov .pp-mobile-nav.is-open { opacity: 1 !important; visibility: visible !important; pointer-events: auto; transform: none; }
     #fp-project-platov .pp-mobile-nav a { color: rgba(240,237,230,.76); font-family: var(--display); font-size: 18px; }
     #fp-project-platov .pp-mobile-nav__svo { padding-top: 13px; border-top: 1px solid rgba(255,255,255,.12); }
     #fp-project-platov .pp-mobile-nav__donate { margin-top: 5px; padding: 15px 18px; color: #090b0c !important; background: var(--gold-light); font-family: var(--sans) !important; font-size: 10px !important; font-weight: 700; letter-spacing: .1em; text-align: center; text-transform: uppercase; }
