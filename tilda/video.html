@@ -1,0 +1,3183 @@
+<!--
+  FONDPLATOV / ДВА ПЕРВЫХ ЭКРАНА ГЛАВНОЙ
+  Готово для вставки целиком в блок T123.
+
+  Перед публикацией:
+  1) замените #fp-projects на адрес страницы проектов;
+  2) при наличии оригинального видео укажите MP4 в теге <source>;
+  3) замените демонстрационные записи в массиве fpDonations внизу.
+
+  ПОЖЕРТВОВАНИЯ.
+  Блок «Ваш вклад превращает идею в кадр» (#fp-donate) работает через штатную
+  корзину Tilda. На ЭТОЙ ЖЕ странице обязательно должен стоять блок «Корзина»
+  (T706 / ST100) с подключённой платёжной системой — так же, как на текущем
+  сайте fondplatov.ru. Кнопка формирует ссылку #order:Пожертвование=СУММА,
+  скрипт корзины перехватывает клик и открывает окно оплаты.
+  Настройки блока корзины (как на текущем сайте):
+    — «Только один товар в корзине» = да;
+    — поля формы: Имя, Телефон, E-mail, чекбоксы «Политика конфиденциальности»
+      и «Публичная оферта»;
+    — платёжная система: ЮKassa.
+
+  ЕЖЕМЕСЯЧНЫЕ ПОЖЕРТВОВАНИЯ.
+  Корзина Tilda регулярные платежи по ЮKassa не поддерживает: у Tilda рекуррент
+  есть только для CloudPayments и bePaid, и там он включается на весь сайт —
+  выбирать «разово или ежемесячно» для конкретного заказа нельзя. Поэтому
+  подписку должен принимать отдельный сервис (автоплатежи ЮKassa по API либо
+  отдельный проект на CloudPayments). Его адрес вписывается в константу
+  FP_RECURRING_URL в скрипте внизу файла — тумблер «Помогать ежемесячно»
+  начнёт вести на него автоматически.
+  Пока константа пустая, тумблер остаётся на месте, но платёж уходит в корзину
+  как разовый — с пометкой «Пожертвование (ежемесячно)» в названии заказа,
+  чтобы фонд видел намерение донора. Автосписания при этом НЕ происходит.
+-->
+
+<link rel="preload" as="image" href="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Prata&display=swap" rel="stylesheet">
+
+<div id="fp-home-v1">
+  <a class="fp-skip" href="#fp-impact">Перейти к содержанию</a>
+
+  <header class="fp-header">
+      <a class="fp-brand" href="/" aria-label="Благотворительный фонд имени М. И. Платова — на главную">
+        <svg class="fp-brand__legacy-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M22.3534 2.18036C22.2109 2.28343 21.8142 2.97397 21.4581 3.70574C20.7255 5.2002 20.9901 4.98376 19.0061 5.74645C18.4771 5.95259 17.8565 6.19994 17.6326 6.2927C16.9713 6.56068 14.0819 8.06544 13.909 8.23035C13.8276 8.3128 13.7157 8.37464 13.6851 8.37464C13.6139 8.37464 12.505 9.0858 12.393 9.19917C12.3625 9.23009 12.1183 9.41561 11.8335 9.61144C10.8466 10.2917 9.07632 11.8583 8.47605 12.5591C8.14031 12.9508 7.84527 13.2909 7.81474 13.3218C7.58074 13.5383 6.67526 14.9297 6.45143 15.4244C6.08516 16.2077 6.10551 17.0734 6.5023 17.5063C7.18396 18.2484 8.01822 18.2175 8.01822 17.4548C8.01822 17.1765 7.7537 16.8261 7.54005 16.8261C7.41796 16.8261 7.30604 16.589 7.30604 16.3107C7.30604 16.1046 7.90631 14.909 8.19118 14.5483C8.95423 13.5898 9.50363 13.0229 10.6126 12.0026C11.3756 11.312 12.8712 10.1989 13.6648 9.75573C13.8377 9.66297 13.9904 9.5496 14.0209 9.51868C14.1531 9.33316 17.948 7.34398 18.1617 7.34398C18.1922 7.34398 18.4567 7.23061 18.7416 7.09662C19.4029 6.78742 19.8201 6.68436 19.8201 6.83895C19.8201 6.95233 18.8027 8.94151 18.1515 10.1062C17.948 10.4669 17.7853 10.7864 17.7853 10.8173C17.7853 10.8895 15.313 15.3625 14.6008 16.5684C14.2651 17.1353 13.909 17.7331 13.8174 17.9083C13.3901 18.6606 13.1561 19.042 13.1052 19.0935C13.0747 19.1244 12.8 19.5573 12.4948 20.0727C10.8364 22.8451 7.60109 27.3388 7.25517 27.3388C7.18396 27.3388 6.93978 27.545 6.70578 27.8026C5.9936 28.5859 4.87446 29.3898 4.39628 29.462C4.15211 29.4929 3.9181 29.4929 3.85706 29.4517C3.79602 29.4208 3.74515 29.4414 3.74515 29.4929C3.74515 29.5547 3.62306 29.6063 3.47045 29.596L3.18558 29.5857L3.43993 29.5135C3.6841 29.4414 3.6841 29.4311 3.31784 29.3074C2.91088 29.1734 2.55479 28.8642 2.26992 28.4313C2.05626 28.1015 1.94435 28.1427 2.11731 28.4932C2.22922 28.7199 2.21905 28.7199 2.07661 28.5344C1.98504 28.421 1.93417 28.2458 1.9647 28.153C1.99522 28.0603 1.95452 27.782 1.87313 27.5346C1.63913 26.8132 1.57808 26.236 1.58826 24.9683C1.59843 23.8346 1.65948 23.1234 1.78156 22.4432C1.81209 22.268 1.85278 21.9382 1.85278 21.7011C1.86296 21.4744 1.89348 21.2991 1.924 21.3198C1.9647 21.3404 2.01557 21.2373 2.04609 21.1033C2.06644 20.959 2.04609 20.8147 2.00539 20.7838C1.95452 20.7529 1.91383 20.6704 1.91383 20.6086C1.91383 20.5365 1.95452 20.5365 2.00539 20.6292C2.08678 20.7529 2.11731 20.7117 2.16818 20.4746C2.20887 20.3097 2.26992 20.0623 2.32079 19.9181C2.36148 19.7738 2.50392 19.31 2.62601 18.8874C2.75827 18.4648 2.88036 18.0423 2.91088 17.9598C2.9414 17.8773 2.95157 17.7743 2.95157 17.7227C2.9414 17.6815 2.97192 17.6506 3.02279 17.6506C3.07366 17.6506 3.09401 17.5578 3.06349 17.4548C3.03297 17.3414 3.12453 17.0322 3.25679 16.7539C3.39923 16.486 3.4908 16.1871 3.47045 16.1046C3.42975 15.9809 3.43993 15.9706 3.52132 16.0943C3.63323 16.2489 3.88758 16.1561 3.79602 15.9912C3.75532 15.9397 3.78584 15.8985 3.83671 15.8985C3.89776 15.8985 3.93845 15.7233 3.92828 15.5068C3.9181 15.1976 3.86723 15.0946 3.65358 14.9915C3.30766 14.8266 2.9821 14.8369 2.82949 15.0224C2.75827 15.1049 2.63618 15.177 2.56496 15.177C2.48357 15.177 2.42253 15.2492 2.42253 15.3316C2.42253 15.4141 2.38183 15.4862 2.33096 15.4862C2.20887 15.4862 1.65948 16.7539 1.25252 18.0216C-0.212538 22.4844 -0.405844 26.6998 0.743817 28.9776C1.06938 29.6063 2.01557 30.4823 2.62601 30.7091C3.37888 30.9874 3.87741 31.0801 3.78584 30.9255C3.73497 30.8431 3.88758 30.8328 4.35559 30.874C5.11864 30.9358 5.52559 30.7915 6.44125 30.101C7.27552 29.4723 8.62866 28.0809 8.62866 27.8542C8.62866 27.7614 8.87284 27.38 9.16788 27.009C9.46293 26.6483 9.88006 26.102 10.1039 25.7928C10.3277 25.4836 10.5617 25.1641 10.6329 25.092C10.7042 25.0198 10.7652 24.9168 10.7652 24.8652C10.7652 24.8137 10.8262 24.7106 10.8975 24.6385C11.1111 24.4117 12.7084 22.0103 13.207 21.1548C13.3189 20.959 13.5427 20.5983 13.6953 20.3509C15.0586 18.1762 18.1922 12.621 19.525 10.0237C19.8302 9.43622 20.1049 8.90028 20.1558 8.83844C20.1965 8.78691 20.5119 8.17882 20.8476 7.49858C21.1834 6.81834 21.5191 6.19994 21.5903 6.1278C21.7022 6.01443 21.9973 5.91136 22.974 5.64339C23.0554 5.62277 23.2792 5.55063 23.4725 5.49909C23.8897 5.36511 23.9812 5.42695 23.7981 5.71553C23.7269 5.82891 23.5743 6.09688 23.4623 6.30301C23.3504 6.50914 23.2182 6.71528 23.1775 6.77712C23.1164 6.86987 22.6993 7.64287 21.8447 9.30224C21.5598 9.85879 20.5322 12.085 20.5322 12.1572C20.5322 12.1881 20.4712 12.353 20.3898 12.5282C19.9727 13.4558 18.8739 16.5787 18.5483 17.8052C17.653 21.0827 17.246 23.5666 17.0731 26.6586C16.9612 28.6375 16.9815 29.0703 17.2155 29.2146C17.3986 29.3383 17.8565 29.3074 17.9582 29.1631C18.0193 29.1013 18.0905 28.4622 18.1312 27.7511C18.294 24.4736 18.9858 20.2376 19.7692 17.7537C20.2067 16.352 20.5526 15.311 20.6848 15.0224C20.7561 14.8472 20.868 14.5277 20.9392 14.3009C21.0104 14.0742 21.102 13.8372 21.1427 13.7856C21.1834 13.7238 21.2749 13.497 21.3462 13.2703C21.4174 13.0435 21.5395 12.7446 21.6107 12.6004C21.6819 12.4561 21.8854 12.0129 22.0583 11.6212C22.5365 10.5287 23.8897 7.849 24.0524 7.6841C24.1338 7.60164 24.1949 7.49858 24.1949 7.44705C24.1949 7.40582 24.378 7.0657 24.6018 6.71528C24.8155 6.35454 25.1411 5.80829 25.314 5.51971C25.6294 4.95284 25.6396 4.95284 26.6672 4.76732C26.9826 4.71579 27.5014 4.61273 27.8066 4.56119C28.122 4.49935 28.9563 4.38598 29.6685 4.30353C31.5303 4.07678 31.6931 4.04586 31.8864 3.82942C32.0899 3.60268 32.0085 3.1698 31.7338 3.02551C31.5303 2.91213 28.7833 3.13888 28.1627 3.3244C27.9694 3.37593 27.3488 3.49961 26.7892 3.58206C25.7718 3.73666 24.1135 4.09739 23.0961 4.39629C22.679 4.50966 22.5467 4.51997 22.506 4.4169C22.4755 4.34475 22.6484 3.93249 22.8723 3.479C23.3403 2.59263 23.3504 2.30404 22.9231 2.10822C22.5976 1.95362 22.6383 1.95362 22.3534 2.18036Z"/>
+        </svg>
+        <img
+          class="fp-brand__mark"
+          src="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1"
+          fetchpriority="high"
+          decoding="sync"
+          alt="Благотворительный фонд имени М. И. Платова"
+        >
+        <span class="fp-brand__text">
+          <span>Благотворительный фонд</span>
+          <strong>имени М. И. Платова</strong>
+        </span>
+      </a>
+
+      <nav class="fp-nav" aria-label="Основная навигация">
+        <a href="/about">О фонде</a>
+        <a href="#fp-projects">Проекты</a>
+        <a href="/news">Новости</a>
+        <a href="/documents">Документы</a>
+        <a href="/contacts">Контакты</a>
+      </nav>
+
+      <div class="fp-header__actions">
+        <a class="fp-header__donate" href="#fp-donate">
+          <span>Помочь фонду</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M4 10h11M11 6l4 4-4 4"/>
+          </svg>
+        </a>
+        <a class="fp-header__svo" href="#fp-svo"><i></i> Помощь казакам СВО</a>
+      </div>
+
+      <button class="fp-menu" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+
+      <div class="fp-mobile-nav" aria-hidden="true">
+        <a href="/about">О фонде</a>
+        <a href="#fp-projects">Проекты</a>
+        <a href="/news">Новости</a>
+        <a href="/documents">Документы</a>
+        <a href="/contacts">Контакты</a>
+        <a class="fp-mobile-nav__svo" href="#fp-svo">Помощь казакам — участникам СВО</a>
+        <a class="fp-mobile-nav__donate" href="#fp-donate">Помочь фонду</a>
+      </div>
+    </header>
+
+  <section class="fp-hero" aria-labelledby="fp-main-title">
+    <div class="fp-hero__media" aria-hidden="true">
+      <div class="fp-hero__backdrop"></div>
+      <video
+        class="fp-hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="https://static.tildacdn.com/tild3735-3234-4135-a337-633866643065/11.jpg"
+      >
+        <source
+          src="https://ivanweb1.github.io/fondplatov-t123/assets/platov-background-720.mp4"
+          type="video/mp4"
+        >
+      </video>
+      <div class="fp-hero__vignette"></div>
+      <div class="fp-grain"></div>
+    </div>
+
+    <div class="fp-hero__content">
+      <div class="fp-hero__eyebrow fp-reveal" style="--delay: .1s">
+        <span class="fp-hero__eyebrow-line"></span>
+        Игровое • документальное • анимационное кино
+      </div>
+
+      <h1 id="fp-main-title" class="fp-hero__title fp-reveal" style="--delay: .2s">
+        Возрождаем<br>
+        <em>казачью славу</em>
+        <span class="fp-title-small">через кино и культуру</span>
+      </h1>
+
+      <p class="fp-hero__lead fp-reveal" style="--delay: .34s">
+        Благотворительный фонд имени Матвея Ивановича Платова создаёт игровые,
+        документальные и анимационные проекты, сохраняющие историческую память
+        и культурное наследие России. Станьте частью великого дела.
+      </p>
+
+      <div class="fp-hero__actions fp-reveal" style="--delay: .48s">
+        <a class="fp-button fp-button--gold" href="#fp-donate">
+          <span>Поддержать проекты</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h13M14 7l5 5-5 5"/>
+          </svg>
+        </a>
+        <a class="fp-button fp-button--ghost" href="#fp-impact">
+          <span class="fp-button__play">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m8 6 6 4-6 4V6Z"/></svg>
+          </span>
+          Узнать больше
+        </a>
+      </div>
+    </div>
+
+    <aside class="fp-current fp-reveal" style="--delay: .62s" aria-label="Главный проект фонда">
+      <div class="fp-current__top">
+        <span class="fp-live"><i></i> Идёт сбор</span>
+        <span class="fp-current__number">01 / 06</span>
+      </div>
+      <p class="fp-current__label">Главный проект</p>
+      <h2>«Вихорь-атаман<br>Матвей Платов»</h2>
+      <div class="fp-current__funding">
+        <div>
+          <strong>1,2 млн ₽</strong>
+          <span>собрано</span>
+        </div>
+        <div class="fp-current__goal">
+          <strong>400 млн ₽</strong>
+          <span>цель проекта</span>
+        </div>
+      </div>
+      <div class="fp-mini-progress" aria-label="Собрано 0,3 процента">
+        <span></span>
+      </div>
+    </aside>
+
+    <div class="fp-donation fp-reveal" style="--delay: .76s" aria-live="polite">
+      <div class="fp-donation__copy">
+        <span class="fp-donation__name">Александр</span>
+        <span>поддержал проект на <strong class="fp-donation__amount">1 000 ₽</strong></span>
+      </div>
+      <span class="fp-donation__time">только что</span>
+    </div>
+
+    <a class="fp-scroll" href="#fp-impact" aria-label="Прокрутить к следующему экрану">
+      <span>Смотреть далее</span>
+      <i><b></b></i>
+    </a>
+
+  </section>
+
+  <section class="fp-impact" id="fp-impact" aria-labelledby="fp-impact-title">
+    <div class="fp-impact__halo" aria-hidden="true"></div>
+    <div class="fp-impact__atmosphere" aria-hidden="true">
+      <span class="fp-impact__scene fp-impact__scene--battle"></span>
+      <span class="fp-impact__scene fp-impact__scene--cathedral"></span>
+    </div>
+    <div class="fp-grain" aria-hidden="true"></div>
+
+    <div class="fp-impact__inner">
+      <div class="fp-section-head fp-observe">
+        <div>
+          <p class="fp-kicker"><span></span> Результаты фонда</p>
+          <h2 id="fp-impact-title">
+            Наша работа<br><em>в цифрах</em>
+          </h2>
+        </div>
+        <p class="fp-section-head__lead">
+          Фонд создаёт игровые, документальные и анимационные проекты,
+          посвящённые истории и культуре России. Каждый вклад помогает
+          новым произведениям пройти путь от идеи до встречи со зрителем.
+        </p>
+      </div>
+
+      <div class="fp-stats fp-observe" aria-label="Основные показатели фонда">
+        <article class="fp-stat">
+          <span class="fp-stat__number" data-count="8">0</span>
+          <span class="fp-stat__unit">проектов</span>
+          <p>представлены в программе фонда</p>
+        </article>
+        <article class="fp-stat">
+          <span class="fp-stat__number" data-count="4.2" data-decimals="1">0</span>
+          <span class="fp-stat__unit">млн ₽</span>
+          <p>собрано фондом на текущий момент</p>
+        </article>
+        <article class="fp-stat">
+          <span class="fp-stat__number" data-count="3">0</span>
+          <span class="fp-stat__unit">формата</span>
+          <p>игровое, документальное и анимационное кино</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="fp-directions" id="fp-about" aria-labelledby="fp-directions-title">
+    <div class="fp-directions__wash" aria-hidden="true"></div>
+    <div class="fp-grain" aria-hidden="true"></div>
+    <div class="fp-shell">
+      <div class="fp-section-head fp-observe">
+        <div>
+          <p class="fp-kicker"><span></span> Направления деятельности</p>
+          <h2 id="fp-directions-title">Сохраняем память<br><em>Создаём будущее</em></h2>
+        </div>
+        <p class="fp-section-head__lead">
+          Фонд поддерживает не только кинопроизводство. В его задачи входят
+          культурные, образовательные, патриотические и общественно значимые инициативы.
+        </p>
+      </div>
+
+      <div class="fp-directions__grid fp-observe">
+        <article class="fp-direction fp-direction--cinema">
+          <span class="fp-direction__number">01</span>
+          <div class="fp-direction__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M8 14h32v23H8zM14 8l4 6m5-6 4 6m5-6 4 6M17 23h14M24 18v10"/></svg>
+          </div>
+          <h3>Кино и анимация</h3>
+          <p>Игровые и документальные фильмы, сериалы и анимационные проекты о российской истории и казачестве.</p>
+        </article>
+        <article class="fp-direction fp-direction--culture">
+          <span class="fp-direction__number">02</span>
+          <div class="fp-direction__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M10 38h28M13 34h22M16 18h16v16H16zM12 18l12-9 12 9M21 23h6v11"/></svg>
+          </div>
+          <h3>Культура и просвещение</h3>
+          <p>Фестивали, выставки, лекции, творческие встречи и образовательные программы для детей и взрослых.</p>
+        </article>
+        <article class="fp-direction fp-direction--patriot">
+          <span class="fp-direction__number">03</span>
+          <div class="fp-direction__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M24 7 38 13v10c0 9-5 15-14 19-9-4-14-10-14-19V13zM17 24l5 5 10-11"/></svg>
+          </div>
+          <h3>Патриотические инициативы</h3>
+          <p>Культурно-массовые, памятные и военно-патриотические мероприятия, работа с молодёжью и волонтёрами.</p>
+        </article>
+        <article class="fp-direction fp-direction--charity">
+          <span class="fp-direction__number">04</span>
+          <div class="fp-direction__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M24 39S9 31 9 19c0-6 7-10 15-2 8-8 15-4 15 2 0 12-15 20-15 20ZM24 17v14M17 24h14"/></svg>
+          </div>
+          <h3>Благотворительные программы</h3>
+          <p>Поддержка общественно значимых проектов, социальных инициатив и программ духовно-нравственного развития.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="fp-svo" id="fp-svo" aria-labelledby="fp-svo-title">
+    <div class="fp-svo__image" aria-hidden="true"></div>
+    <div class="fp-grain" aria-hidden="true"></div>
+    <div class="fp-shell fp-svo__inner fp-observe">
+      <div class="fp-svo__mark" aria-hidden="true">СВО</div>
+      <div class="fp-svo__copy">
+        <p class="fp-kicker"><span></span> Отдельное направление помощи</p>
+        <h2 id="fp-svo-title">Помощь казакам<br><em>участникам СВО</em></h2>
+        <p>Поддержите целевой сбор фонда. Средства направляются на оказание помощи казакам, принимающим участие в специальной военной операции.</p>
+      </div>
+      <a class="fp-button fp-button--gold fp-svo__button" href="#fp-donate">
+        <span>Оказать помощь</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="fp-projects" id="fp-projects" aria-labelledby="fp-projects-title">
+    <div class="fp-shell">
+      <div class="fp-projects__head fp-observe">
+        <div>
+          <p class="fp-kicker"><span></span> Проекты фонда</p>
+          <h2 id="fp-projects-title">Истории, которым<br><em>нужна поддержка</em></h2>
+        </div>
+        <a class="fp-text-link" href="#fp-projects">
+          Все 8 проектов <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <div class="fp-project-grid">
+        <article class="fp-project-card fp-observe">
+          <div class="fp-project-card__visual fp-project-card__visual--facts">
+            <span class="fp-project-card__status">Проект реализован</span>
+            <span class="fp-project-card__index">01</span>
+          </div>
+          <div class="fp-project-card__body">
+            <p class="fp-project-card__type">Документальное кино</p>
+            <h3>«7 фактов о Платове»</h3>
+            <p>Документальный фильм о легендарном «вихорь-атамане», созданный при поддержке ПФКИ.</p>
+            <div class="fp-card-progress fp-card-progress--done">
+              <div><span>3 млн ₽</span><span>100%</span></div>
+              <i><b style="width:100%"></b></i>
+              <small>Финансирование получено в полном объёме</small>
+            </div>
+            <div class="fp-project-card__actions fp-project-card__actions--facts">
+              <a href="/step-work">Подробнее <i>→</i></a>
+              <span aria-disabled="true">Участие проекта в мероприятиях</span>
+              <a href="/film_page">Смотреть фильм <i>→</i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="fp-project-card fp-observe">
+          <div class="fp-project-card__visual fp-project-card__visual--platov">
+            <span class="fp-project-card__status fp-project-card__status--live"><i></i> Идёт сбор</span>
+            <span class="fp-project-card__index">02</span>
+          </div>
+          <div class="fp-project-card__body">
+            <p class="fp-project-card__type">Игровое кино</p>
+            <h3>«Вихорь-атаман Матвей Платов»</h3>
+            <p>Исторический полнометражный фильм и телевизионный сериал о легендарном атамане.</p>
+            <div class="fp-card-progress">
+              <div><span>1,2 млн ₽</span><span>400 млн ₽</span></div>
+              <i><b style="width:.3%"></b></i>
+              <small>Собрано 0,3% от цели</small>
+            </div>
+            <div class="fp-project-card__actions">
+              <a href="/presentation">Подробнее <i>→</i></a>
+              <a href="/presentation#pp-story">Презентация <i>→</i></a>
+              <a href="/presentation#pp-donate">Поддержать <i>→</i></a>
+              <span aria-disabled="true">Нас поддерживают</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="fp-project-card fp-observe">
+          <div class="fp-project-card__visual fp-project-card__visual--postoim">
+            <span class="fp-project-card__status fp-project-card__status--live"><i></i> Идёт сбор</span>
+            <span class="fp-project-card__index">03</span>
+          </div>
+          <div class="fp-project-card__body">
+            <p class="fp-project-card__type">Документальный цикл</p>
+            <h3>«Постоим за честь державы»</h3>
+            <p>Видео-энциклопедия из 14 фильмов о Войсковых казачьих обществах России — об их прошлом, настоящем и будущем.</p>
+            <div class="fp-card-progress">
+              <div><span>0,5 млн ₽</span><span>35 млн ₽</span></div>
+              <i><b style="width:1.4%"></b></i>
+              <small>Собрано 1,4% от цели</small>
+            </div>
+            <div class="fp-project-card__actions">
+              <a href="/sinopsis">Подробнее <i>→</i></a>
+              <a href="/project/postoim-video">Видео-презентация <i>→</i></a>
+              <a href="/sup">Нас поддерживают <i>→</i></a>
+              <a href="#fp-donate">Поддержать <i>→</i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="fp-project-card fp-observe">
+          <div class="fp-project-card__visual fp-project-card__visual--bitva">
+            <span class="fp-project-card__status">Финансирование получено</span>
+            <span class="fp-project-card__index">04</span>
+          </div>
+          <div class="fp-project-card__body">
+            <p class="fp-project-card__type">Фильм-концерт</p>
+            <h3>«Битва за Лукоморье»</h3>
+            <p>Документальная история с элементами игрового кино о казаках на Кинбурнской косе.</p>
+            <div class="fp-card-progress fp-card-progress--done">
+              <div><span>7 млн ₽</span><span>100%</span></div>
+              <i><b style="width:100%"></b></i>
+              <small>Проект получил грантовое финансирование</small>
+            </div>
+            <div class="fp-project-card__actions">
+              <a href="/project/bitva">Подробнее <i>→</i></a>
+              <a href="/bitva_presentation">Презентация <i>→</i></a>
+              <a href="/sup_bitva">Нас поддерживают <i>→</i></a>
+              <span aria-disabled="true">Проект профинансирован</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="fp-project-card fp-observe">
+          <div class="fp-project-card__visual fp-project-card__visual--udaloy">
+            <span class="fp-project-card__status fp-project-card__status--live"><i></i> Идёт сбор</span>
+            <span class="fp-project-card__index">05</span>
+          </div>
+          <div class="fp-project-card__body">
+            <p class="fp-project-card__type">Анимация</p>
+            <h3>«Удалой казак»</h3>
+            <p>Анимационный учебный фильм о традициях, казачьем быте и воинской службе.</p>
+            <div class="fp-card-progress">
+              <div><span>0,2 млн ₽</span><span>7 млн ₽</span></div>
+              <i><b style="width:2.9%"></b></i>
+              <small>Собрано 2,9% от цели</small>
+            </div>
+            <div class="fp-project-card__actions">
+              <a href="/project/kazak">Подробнее <i>→</i></a>
+              <a href="/kazak_presentation">Презентация <i>→</i></a>
+              <a href="/sup_kazak">Нас поддерживают <i>→</i></a>
+              <a href="#fp-donate">Поддержать <i>→</i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="fp-project-card fp-observe">
+          <div class="fp-project-card__visual fp-project-card__visual--likhie">
+            <span class="fp-project-card__status fp-project-card__status--live"><i></i> Идёт сбор</span>
+            <span class="fp-project-card__index">06</span>
+          </div>
+          <div class="fp-project-card__body">
+            <p class="fp-project-card__type">Анимационный сериал</p>
+            <h3>«Атаман Платов и его лихие казаки»</h3>
+            <p>Добрый приключенческий сериал, в котором донские казаки побеждают великих злодеев.</p>
+            <div class="fp-card-progress">
+              <div><span>0,3 млн ₽</span><span>18 млн ₽</span></div>
+              <i><b style="width:1.7%"></b></i>
+              <small>Собрано 1,7% от цели</small>
+            </div>
+            <div class="fp-project-card__actions">
+              <a href="/project/likhie">Подробнее <i>→</i></a>
+              <span aria-disabled="true">Видеоролик</span>
+              <a href="/project/likhie-presentation">Презентация <i>→</i></a>
+              <a href="#fp-donate">Поддержать <i>→</i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="fp-project-card fp-observe">
+          <div class="fp-project-card__visual fp-project-card__visual--game">
+            <span class="fp-project-card__status fp-project-card__status--live"><i></i> Идёт сбор</span>
+            <span class="fp-project-card__index">07</span>
+          </div>
+          <div class="fp-project-card__body">
+            <p class="fp-project-card__type">Исторический сериал</p>
+            <h3>«Великая игра»</h3>
+            <p>Шпионский триллер и военная драма о тайной операции времён Отечественной войны 1812 года.</p>
+            <div class="fp-card-progress">
+              <div><span>0,5 млн ₽</span><span>580 млн ₽</span></div>
+              <i><b style="width:.09%"></b></i>
+              <small>Собрано менее 0,1% от цели</small>
+            </div>
+            <div class="fp-project-card__actions">
+              <a href="/project/igra">Подробнее <i>→</i></a>
+              <a href="/project/igra#trailer">Трейлер <i>→</i></a>
+              <a href="/project/igra-presentation">Презентация <i>→</i></a>
+              <a href="#fp-donate">Поддержать <i>→</i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="fp-project-card fp-observe">
+          <div class="fp-project-card__visual fp-project-card__visual--festival">
+            <span class="fp-project-card__status fp-project-card__status--live"><i></i> Идёт сбор</span>
+            <span class="fp-project-card__index">08</span>
+          </div>
+          <div class="fp-project-card__body">
+            <p class="fp-project-card__type">Кинофестиваль</p>
+            <h3>Всероссийский кинофестиваль «Постоим за честь державы»</h3>
+            <p>Ежегодный фестиваль казачьего и патриотического кино имени М. И. Платова.</p>
+            <div class="fp-card-progress">
+              <div><span>1,5 млн ₽</span><span>10 млн ₽</span></div>
+              <i><b style="width:15%"></b></i>
+              <small>Собрано 15% от цели</small>
+            </div>
+            <div class="fp-project-card__actions">
+              <a href="/project/festival">Подробнее <i>→</i></a>
+              <a href="/festival_presentation">Презентация <i>→</i></a>
+              <a href="/sup_festival">Нас поддерживают <i>→</i></a>
+              <a href="#fp-donate">Поддержать <i>→</i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="fp-trust" id="fp-documents" aria-labelledby="fp-trust-title">
+    <div class="fp-trust__portrait" aria-hidden="true"></div>
+    <div class="fp-grain" aria-hidden="true"></div>
+    <div class="fp-shell fp-trust__inner">
+      <div class="fp-trust__copy fp-observe">
+        <p class="fp-kicker"><span></span> Открытость фонда</p>
+        <h2 id="fp-trust-title">Доверие начинается<br><em>с прозрачности</em></h2>
+        <p>
+          Учредительные документы, отчётность, публичная оферта и реквизиты
+          собраны в одном месте. Благотворитель всегда может проверить,
+          как устроена работа фонда.
+        </p>
+      </div>
+
+      <div class="fp-documents fp-observe" aria-label="Документы фонда">
+        <a href="/documents#reports"><span>01</span><strong>Отчёты фонда</strong><i>PDF →</i></a>
+        <a href="https://ivanweb1.github.io/fondplatov-t123/assets/documents/fondplatov-egrul.pdf" target="_blank" rel="noopener"><span>02</span><strong>Выписка ЕГРЮЛ</strong><i>PDF →</i></a>
+        <a href="https://ivanweb1.github.io/fondplatov-t123/assets/documents/fondplatov-public-offer.pdf" target="_blank" rel="noopener"><span>03</span><strong>Публичная оферта</strong><i>PDF →</i></a>
+        <a href="/politika"><span>04</span><strong>Политика обработки данных</strong><i>PDF →</i></a>
+        <a href="https://ivanweb1.github.io/fondplatov-t123/assets/documents/fondplatov-charter.pdf" target="_blank" rel="noopener"><span>05</span><strong>Устав благотворительного фонда</strong><i>PDF →</i></a>
+      </div>
+    </div>
+
+    <div class="fp-shell fp-council fp-observe" aria-labelledby="fp-council-title">
+      <div class="fp-council__head">
+        <p class="fp-kicker"><span></span> Люди фонда</p>
+        <h3 id="fp-council-title">Попечительский совет<br>фонда</h3>
+      </div>
+      <div class="fp-council__list">
+        <article class="fp-person">
+          <div class="fp-person__photo">
+            <img src="https://ivanweb1.github.io/fondplatov-t123/assets/igor-matasov.png" loading="lazy" alt="Игорь Александрович Матасов">
+          </div>
+          <div class="fp-person__info">
+            <p>Председатель Совета</p>
+            <h4>Игорь Александрович Матасов</h4>
+          </div>
+        </article>
+        <article class="fp-person">
+          <div class="fp-person__photo">
+            <img src="https://ivanweb1.github.io/fondplatov-t123/assets/andrey-bugera.png" loading="lazy" alt="Андрей Борисович Бугера">
+          </div>
+          <div class="fp-person__info">
+            <p>Предприниматель</p>
+            <h4>Андрей Борисович Бугера</h4>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="fp-news" id="fp-news" aria-labelledby="fp-news-title">
+    <div class="fp-shell">
+      <div class="fp-projects__head fp-observe">
+        <div>
+          <p class="fp-kicker"><span></span> Новости и события</p>
+          <h2 id="fp-news-title">Фонд работает<br><em>История продолжается</em></h2>
+        </div>
+        <a class="fp-text-link" href="/news">Все события <span>→</span></a>
+      </div>
+
+      <div class="fp-news__list fp-observe">
+        <article class="fp-news-card fp-news-card--lead">
+          <time datetime="2026-08-19"><span>19</span> августа 2026</time>
+          <div>
+            <p>Презентация проекта</p>
+            <h3>«Битва за Лукоморье» представлена в Новочеркасске</h3>
+            <span>Презентация прошла в Новочеркасском музее истории донского казачества под эгидой фонда.</span>
+          </div>
+          <a href="https://www.novochmuseum.ru/novosti/3552-19-avgusta-v-novocherkasskom-muzee-istorii-donskogo-kazachestva-proshla-prezentacija-proekta-bitva-za-lukomore-pod-jegidoj-blagotvoritelnogo-fonda-m-i-platova.html?ysclid=mt3akf1imx521224228" target="_blank" rel="noopener" aria-label="Открыть новость музея">→</a>
+        </article>
+        <article class="fp-news-card fp-news-card--lead">
+          <time datetime="2025-03-04"><span>04</span> марта 2025</time>
+          <div>
+            <p>Премьера</p>
+            <h3>Показ фильма «7 фактов о Платове» в Ростове-на-Дону</h3>
+            <span>Документальный фильм представлен зрителям в кинотеатре «Горизонт CINEMA&EMOTION».</span>
+          </div>
+          <a href="/news" aria-label="Все новости">→</a>
+        </article>
+        <article class="fp-news-card">
+          <time datetime="2024-10-01"><span>01</span> октября 2024</time>
+          <div>
+            <p>Съёмки</p>
+            <h3>Экспедиция по историческим местам Ростовской области</h3>
+            <span>Съёмки прошли в Старочеркасской, Новочеркасске и Ростове-на-Дону.</span>
+          </div>
+          <a href="/news" aria-label="Все новости">→</a>
+        </article>
+        <article class="fp-news-card">
+          <time datetime="2024-06-11"><span>11</span> июня 2024</time>
+          <div>
+            <p>Достижение</p>
+            <h3>Проект фонда стал победителем конкурса ПФКИ</h3>
+            <span>Поддержку получил документальный фильм о Матвее Ивановиче Платове.</span>
+          </div>
+          <a href="/news" aria-label="Все новости">→</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="fp-give" id="fp-donate" aria-labelledby="fp-give-title">
+    <div class="fp-give__rings" aria-hidden="true"></div>
+    <div class="fp-grain" aria-hidden="true"></div>
+    <div class="fp-shell fp-give__inner">
+      <div class="fp-give__copy fp-observe">
+        <p class="fp-kicker"><span></span> Стать частью истории</p>
+        <h2 id="fp-give-title">Ваш вклад превращает<br><em>идею в кадр</em></h2>
+        <p>Выберите удобную сумму. Поддержать можно один раз или оформить регулярное пожертвование.</p>
+        <div class="fp-give__impact"><span>500 ₽</span><p>помогают оплатить подготовку материалов и архивный поиск</p></div>
+      </div>
+
+      <div class="fp-give__panel fp-observe">
+        <p>Сумма пожертвования</p>
+        <div class="fp-give__amounts" role="group" aria-label="Выберите сумму пожертвования">
+          <button type="button" data-amount="500">500 ₽</button>
+          <button type="button" class="is-selected" data-amount="1000">1 000 ₽ <small>популярно</small></button>
+          <button type="button" data-amount="3000">3 000 ₽</button>
+          <button type="button" data-amount="5000">5 000 ₽</button>
+        </div>
+        <label class="fp-give__custom">Своя сумма <input type="number" min="100" step="100" placeholder="Введите сумму" inputmode="numeric"></label>
+        <label class="fp-give__regular"><input type="checkbox"><span></span> Помогать ежемесячно</label>
+        <a class="fp-button fp-button--gold fp-give__submit" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-donate-name="Пожертвование" data-donate-name-regular="Пожертвование (ежемесячно)" data-donate-min="100"><span>Пожертвовать 1 000 ₽</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+        <p class="fp-give__hint" role="status" hidden></p>
+        <p class="fp-give__legal">Нажимая кнопку, вы соглашаетесь с <a href="https://ivanweb1.github.io/fondplatov-t123/assets/documents/fondplatov-public-offer.pdf" target="_blank" rel="noopener">публичной офертой</a> и <a href="/politika">политикой обработки персональных данных</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="fp-footer" id="fp-contacts">
+    <div class="fp-shell">
+      <div class="fp-footer__top">
+        <div class="fp-footer__brand">
+          <img src="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" alt="Благотворительный фонд имени М. И. Платова" loading="lazy">
+          <p>Сохраняем историческую память и культурное наследие России.</p>
+        </div>
+        <nav class="fp-footer__nav" aria-label="Навигация в подвале">
+          <a href="/about">О фонде</a><a href="#fp-projects">Проекты</a><a href="/news">Новости</a><a href="/documents">Документы</a><a href="#fp-svo">Помощь казакам СВО</a>
+        </nav>
+        <address class="fp-footer__contacts">
+          <a href="tel:+79772505555">+7 (977) 250-55-55</a>
+          <a href="mailto:info@fondplatov.ru">info@fondplatov.ru</a>
+          <p>105005, Москва, ул. Бауманская, д. 7, стр. 1, офис 328</p>
+        </address>
+      </div>
+
+      <div class="fp-footer__requisites" id="fp-requisites">
+        <div><span>ОГРН</span><strong>1227700559052</strong></div>
+        <div><span>ИНН / КПП</span><strong>9701219100 / 770101001</strong></div>
+        <div><span>Расчётный счёт</span><strong>40701810638000110111</strong></div>
+        <div><span>Банк / БИК</span><strong>ПАО Сбербанк / 044525225</strong></div>
+      </div>
+
+      <div class="fp-footer__bottom">
+        <p>© 2022–2026 Благотворительный фонд имени донского атамана М. И. Платова</p>
+        <div><a href="/politika">Политика конфиденциальности</a><a href="https://ivanweb1.github.io/fondplatov-t123/assets/documents/fondplatov-public-offer.pdf" target="_blank" rel="noopener">Публичная оферта</a></div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    background: #090b0d;
+  }
+
+  #fp-home-v1 {
+    --fp-bg: #090b0d;
+    --fp-bg-soft: #111416;
+    --fp-ink: #f0ede6;
+    --fp-muted: #aaa79e;
+    --fp-gold: #c4a25d;
+    --fp-gold-light: #e2c981;
+    --fp-line: rgba(226, 201, 129, .22);
+    --fp-font-display: "Prata", "Times New Roman", serif;
+    --fp-font-sans: "Manrope", sans-serif;
+    width: 100%;
+    margin-left: 0;
+    overflow: clip;
+    background: var(--fp-bg);
+    color: var(--fp-ink);
+    font-family: var(--fp-font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #fp-home-v1,
+  #fp-home-v1 * {
+    box-sizing: border-box;
+  }
+
+  #fp-home-v1 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #fp-home-v1 button {
+    color: inherit;
+    font: inherit;
+  }
+
+  #fp-home-v1 .fp-skip {
+    position: fixed;
+    z-index: 999;
+    top: 12px;
+    left: 12px;
+    padding: 10px 16px;
+    color: #090b0d;
+    background: var(--fp-gold-light);
+    transform: translateY(-160%);
+    transition: transform .2s ease;
+  }
+
+  #fp-home-v1 .fp-skip:focus {
+    transform: translateY(0);
+  }
+
+  #fp-home-v1 .fp-hero {
+    position: relative;
+    min-height: max(760px, 100svh);
+    background: var(--fp-bg);
+    isolation: isolate;
+  }
+
+  #fp-home-v1 .fp-hero__media,
+  #fp-home-v1 .fp-hero__backdrop,
+  #fp-home-v1 .fp-hero__vignette,
+  #fp-home-v1 .fp-grain {
+    position: absolute;
+    inset: 0;
+  }
+
+  #fp-home-v1 .fp-hero__media {
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  #fp-home-v1 .fp-hero__backdrop {
+    background:
+      linear-gradient(90deg, rgba(7, 9, 10, .98) 0%, rgba(7, 9, 10, .87) 34%, rgba(7, 9, 10, .32) 69%, rgba(7, 9, 10, .58) 100%),
+      linear-gradient(180deg, rgba(7, 9, 10, .48) 0%, transparent 42%, rgba(7, 9, 10, .72) 100%),
+      url("https://static.tildacdn.com/tild3735-3234-4135-a337-633866643065/11.jpg") center / cover no-repeat;
+    filter: saturate(.42) contrast(1.12);
+    transform: scale(1.035);
+    animation: fpBackdrop 16s cubic-bezier(.2,.7,.3,1) both;
+  }
+
+  #fp-home-v1 .fp-hero__video {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 42%;
+    filter: saturate(.48) contrast(1.08) brightness(.62);
+  }
+
+  #fp-home-v1 .fp-hero__portrait {
+    position: absolute;
+    z-index: 1;
+    right: 5vw;
+    bottom: -3%;
+    width: min(49vw, 740px);
+    max-height: 91%;
+    object-fit: contain;
+    object-position: bottom right;
+    filter: saturate(.62) sepia(.12) contrast(1.05) brightness(.72);
+    opacity: .84;
+    transform-origin: 70% 100%;
+    animation: fpPortrait 1.8s cubic-bezier(.2,.7,.2,1) both;
+  }
+
+  #fp-home-v1 .fp-hero__vignette {
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg,
+        rgba(4, 5, 6, .9) 0%,
+        rgba(4, 5, 6, .48) 16%,
+        rgba(4, 5, 6, .08) 34%,
+        rgba(4, 5, 6, .08) 66%,
+        rgba(4, 5, 6, .5) 84%,
+        rgba(4, 5, 6, .92) 100%),
+      radial-gradient(circle at 79% 45%, transparent 0 25%, rgba(4, 5, 6, .18) 57%, rgba(4, 5, 6, .7) 100%),
+      linear-gradient(90deg, transparent 0 72%, rgba(5, 6, 7, .42) 100%);
+  }
+
+  #fp-home-v1 .fp-grain {
+    z-index: 3;
+    pointer-events: none;
+    opacity: .12;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
+  }
+
+  #fp-home-v1 .fp-header {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 50%;
+    display: grid;
+    grid-template-columns: minmax(230px, 1fr) auto minmax(230px, 1fr);
+    align-items: center;
+    width: min(100% - 96px, 1440px);
+    min-height: 108px;
+    transform: translateX(-50%);
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    background: transparent;
+    transition: background-color .35s ease, border-color .35s ease, min-height .35s ease, backdrop-filter .35s ease;
+  }
+
+  #fp-home-v1 .fp-header.is-scrolled {
+    min-height: 84px;
+    border-bottom-color: rgba(255,255,255,.12);
+    background: rgba(9,11,13,.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  #fp-home-v1 [id] { scroll-margin-top: 112px; }
+
+  #fp-home-v1 .fp-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+    gap: 13px;
+  }
+
+  #fp-home-v1 .fp-brand__legacy-mark {
+    display: none;
+  }
+
+  #fp-home-v1 .fp-brand__mark {
+    width: 190px;
+    height: 78px;
+    flex: 0 0 190px;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+  }
+
+  #fp-home-v1 .fp-brand__text {
+    display: none;
+    gap: 1px;
+    font-size: 10px;
+    line-height: 1.35;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-brand__text span {
+    color: rgba(255,255,255,.58);
+  }
+
+  #fp-home-v1 .fp-brand__text strong {
+    font-weight: 600;
+    color: var(--fp-ink);
+  }
+
+  #fp-home-v1 .fp-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(24px, 2.8vw, 48px);
+  }
+
+  #fp-home-v1 .fp-nav a {
+    position: relative;
+    padding: 12px 0;
+    color: rgba(255,255,255,.82);
+    font-family: var(--fp-font-display);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: .015em;
+    transition: color .25s ease;
+  }
+
+  #fp-home-v1 .fp-nav a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    left: 0;
+    height: 1px;
+    background: var(--fp-gold-light);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+
+  #fp-home-v1 .fp-nav a:hover,
+  #fp-home-v1 .fp-nav a:focus-visible {
+    color: #fff;
+  }
+
+  #fp-home-v1 .fp-nav a:hover::after,
+  #fp-home-v1 .fp-nav a:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  #fp-home-v1 .fp-header__donate {
+    display: inline-flex;
+    align-items: center;
+    justify-self: end;
+    gap: 16px;
+    min-height: 46px;
+    padding: 0 4px 0 22px;
+    color: var(--fp-gold-light);
+    border: 1px solid rgba(226,201,129,.42);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .075em;
+    text-transform: uppercase;
+    transition: color .25s ease, background-color .25s ease, border-color .25s ease;
+  }
+
+  #fp-home-v1 .fp-header__donate svg {
+    width: 38px;
+    height: 38px;
+    padding: 11px;
+    border-left: 1px solid rgba(226,201,129,.28);
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  #fp-home-v1 .fp-header__donate:hover,
+  #fp-home-v1 .fp-header__donate:focus-visible {
+    color: #0b0c0d;
+    border-color: var(--fp-gold-light);
+    background: var(--fp-gold-light);
+  }
+
+  #fp-home-v1 .fp-header__actions {
+    display: grid;
+    justify-items: start;
+    justify-self: end;
+    gap: 7px;
+  }
+
+  #fp-home-v1 .fp-header__svo {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255,255,255,.68);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    transition: color .25s ease;
+  }
+
+  #fp-home-v1 .fp-header__svo i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #b84239;
+    box-shadow: 0 0 0 4px rgba(184,66,57,.12);
+  }
+
+  #fp-home-v1 .fp-header__svo:hover,
+  #fp-home-v1 .fp-header__svo:focus-visible { color: #fff; }
+
+  #fp-home-v1 .fp-menu,
+  #fp-home-v1 .fp-mobile-nav {
+    display: none;
+  }
+
+  #fp-home-v1 .fp-hero__content {
+    position: absolute;
+    z-index: 8;
+    top: 50%;
+    left: max(48px, calc((100% - 1440px) / 2));
+    width: min(660px, 52vw);
+    transform: translateY(-44%);
+  }
+
+  #fp-home-v1 .fp-hero__eyebrow,
+  #fp-home-v1 .fp-kicker {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 24px;
+    color: var(--fp-gold-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-hero__eyebrow-line,
+  #fp-home-v1 .fp-kicker span {
+    display: inline-block;
+    width: 42px;
+    height: 1px;
+    background: var(--fp-gold-light);
+  }
+
+  #fp-home-v1 .fp-hero__title {
+    max-width: 730px;
+    margin: 0;
+    font-family: var(--fp-font-display);
+    font-size: clamp(62px, 6.2vw, 106px);
+    font-weight: 400;
+    line-height: .98;
+    letter-spacing: -.035em;
+  }
+
+  #fp-home-v1 .fp-hero__title em,
+  #fp-home-v1 .fp-section-head h2 em {
+    color: var(--fp-gold-light);
+    font-style: normal;
+  }
+
+  #fp-home-v1 .fp-title-small {
+    display: block;
+    margin-top: 7px;
+    font-size: .54em;
+    line-height: 1.25;
+    letter-spacing: -.015em;
+  }
+
+  #fp-home-v1 .fp-hero__lead {
+    max-width: 600px;
+    margin: 30px 0 0;
+    color: rgba(240,237,230,.72);
+    font-size: clamp(15px, 1.18vw, 18px);
+    line-height: 1.75;
+  }
+
+  #fp-home-v1 .fp-hero__actions,
+  #fp-home-v1 .fp-feature__actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 38px;
+  }
+
+  #fp-home-v1 .fp-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    min-height: 58px;
+    padding: 0 26px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .075em;
+    text-transform: uppercase;
+    transition: transform .3s ease, color .3s ease, background-color .3s ease, border-color .3s ease;
+  }
+
+  #fp-home-v1 .fp-button::before {
+    content: "";
+    position: absolute;
+    top: -80%;
+    left: -60%;
+    width: 30%;
+    height: 260%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.38), transparent);
+    transform: rotate(18deg);
+    transition: left .7s ease;
+  }
+
+  #fp-home-v1 .fp-button:hover::before {
+    left: 135%;
+  }
+
+  #fp-home-v1 .fp-button:hover,
+  #fp-home-v1 .fp-button:focus-visible {
+    transform: translateY(-2px);
+  }
+
+  #fp-home-v1 .fp-button svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform .3s ease;
+  }
+
+  #fp-home-v1 .fp-button:hover svg {
+    transform: translateX(4px);
+  }
+
+  #fp-home-v1 .fp-button--gold {
+    color: #11110f;
+    background: linear-gradient(135deg, var(--fp-gold-light), #ad8949);
+    box-shadow: 0 16px 44px rgba(137,101,38,.2);
+  }
+
+  #fp-home-v1 .fp-button--ghost {
+    color: rgba(255,255,255,.82);
+    border: 1px solid rgba(255,255,255,.22);
+    background: rgba(255,255,255,.025);
+    backdrop-filter: blur(8px);
+  }
+
+  #fp-home-v1 .fp-button--ghost:hover,
+  #fp-home-v1 .fp-button--ghost:focus-visible {
+    color: #fff;
+    border-color: rgba(255,255,255,.5);
+    background: rgba(255,255,255,.07);
+  }
+
+  #fp-home-v1 .fp-button__play {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,.38);
+    border-radius: 50%;
+  }
+
+  #fp-home-v1 .fp-button__play svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    stroke: none;
+  }
+
+  #fp-home-v1 .fp-current {
+    position: absolute;
+    z-index: 9;
+    right: max(48px, calc((100% - 1440px) / 2));
+    bottom: 116px;
+    width: min(335px, 25vw);
+    padding: 24px 26px 22px;
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(9,11,13,.58);
+    box-shadow: 0 24px 70px rgba(0,0,0,.26);
+    backdrop-filter: blur(16px);
+  }
+
+  #fp-home-v1 .fp-current::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 78px;
+    height: 1px;
+    background: var(--fp-gold-light);
+  }
+
+  #fp-home-v1 .fp-current__top,
+  #fp-home-v1 .fp-current__funding,
+  #fp-home-v1 .fp-progress__labels,
+  #fp-home-v1 .fp-progress__note,
+  #fp-home-v1 .fp-feature__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #fp-home-v1 .fp-live {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #d9d7d0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-live i {
+    width: 7px;
+    height: 7px;
+    background: #df4b43;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(223,75,67,.22), 0 0 12px rgba(223,75,67,.5);
+    animation: fpPulse 1.8s ease infinite;
+  }
+
+  #fp-home-v1 .fp-current__number {
+    color: rgba(255,255,255,.38);
+    font-size: 10px;
+    letter-spacing: .12em;
+  }
+
+  #fp-home-v1 .fp-current__label {
+    margin: 23px 0 7px;
+    color: var(--fp-gold-light);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-current h2 {
+    margin: 0;
+    font-family: var(--fp-font-display);
+    font-size: clamp(22px, 2vw, 30px);
+    font-weight: 400;
+    line-height: 1.28;
+  }
+
+  #fp-home-v1 .fp-current__funding {
+    align-items: flex-end;
+    margin-top: 22px;
+  }
+
+  #fp-home-v1 .fp-current__funding div {
+    display: grid;
+    gap: 2px;
+  }
+
+  #fp-home-v1 .fp-current__funding strong {
+    color: var(--fp-gold-light);
+    font-family: var(--fp-font-display);
+    font-size: 17px;
+    font-weight: 400;
+  }
+
+  #fp-home-v1 .fp-current__funding span {
+    color: rgba(255,255,255,.42);
+    font-size: 9px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-current__goal {
+    text-align: right;
+  }
+
+  #fp-home-v1 .fp-mini-progress,
+  #fp-home-v1 .fp-progress__track {
+    position: relative;
+    overflow: visible;
+    width: 100%;
+    height: 2px;
+    margin-top: 15px;
+    background: rgba(255,255,255,.15);
+  }
+
+  #fp-home-v1 .fp-mini-progress span,
+  #fp-home-v1 .fp-progress__track span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: max(.3%, 9px);
+    height: 100%;
+    background: linear-gradient(90deg, var(--fp-gold), var(--fp-gold-light));
+    box-shadow: 0 0 13px rgba(226,201,129,.7);
+  }
+
+  #fp-home-v1 .fp-mini-progress span::after,
+  #fp-home-v1 .fp-progress__track span::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -4px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--fp-bg);
+    background: var(--fp-gold-light);
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+
+  #fp-home-v1 .fp-donation {
+    position: absolute;
+    z-index: 10;
+    right: max(48px, calc((100% - 1440px) / 2));
+    bottom: 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 24px;
+    width: min(335px, 25vw);
+    min-height: 64px;
+    padding: 11px 16px 11px 19px;
+    border: 1px solid rgba(226,201,129,.42);
+    border-left: 3px solid var(--fp-gold-light);
+    background:
+      linear-gradient(105deg, rgba(35,35,32,.97), rgba(12,14,15,.95));
+    box-shadow:
+      0 20px 56px rgba(0,0,0,.5),
+      0 0 30px rgba(210,177,99,.1);
+    backdrop-filter: blur(18px);
+    transition:
+      opacity .42s ease,
+      transform .42s cubic-bezier(.22,.78,.25,1),
+      filter .42s ease;
+  }
+
+  #fp-home-v1 .fp-donation.is-changing {
+    opacity: .08;
+    transform: translateX(34px) scale(.97);
+    filter: blur(2px);
+  }
+
+  #fp-home-v1 .fp-donation.is-arriving {
+    animation: fpDonationArrival .9s cubic-bezier(.22,.78,.25,1);
+  }
+
+  #fp-home-v1 .fp-donation__copy {
+    display: grid;
+    gap: 3px;
+    color: rgba(255,255,255,.66);
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  #fp-home-v1 .fp-donation__name {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  #fp-home-v1 .fp-donation__amount {
+    color: var(--fp-gold-light);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  #fp-home-v1 .fp-donation__time {
+    align-self: start;
+    padding-top: 4px;
+    color: rgba(255,255,255,.55);
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  @keyframes fpDonationArrival {
+    0% {
+      border-color: rgba(226,201,129,.9);
+      box-shadow:
+        0 20px 56px rgba(0,0,0,.5),
+        0 0 0 0 rgba(226,201,129,.38);
+    }
+    45% {
+      box-shadow:
+        0 20px 56px rgba(0,0,0,.5),
+        0 0 0 8px rgba(226,201,129,0),
+        0 0 38px rgba(210,177,99,.2);
+    }
+    100% {
+      border-color: rgba(226,201,129,.42);
+      box-shadow:
+        0 20px 56px rgba(0,0,0,.5),
+        0 0 30px rgba(210,177,99,.1);
+    }
+  }
+
+  #fp-home-v1 .fp-scroll {
+    position: absolute;
+    z-index: 10;
+    bottom: 42px;
+    left: max(48px, calc((100% - 1440px) / 2));
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: rgba(255,255,255,.42);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-scroll i {
+    position: relative;
+    display: block;
+    width: 1px;
+    height: 38px;
+    overflow: hidden;
+    background: rgba(255,255,255,.17);
+  }
+
+  #fp-home-v1 .fp-scroll b {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background: var(--fp-gold-light);
+    animation: fpScroll 2.3s ease-in-out infinite;
+  }
+
+  #fp-home-v1 .fp-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fpReveal .9s cubic-bezier(.2,.7,.2,1) var(--delay, 0s) forwards;
+  }
+
+  #fp-home-v1 .fp-impact {
+    position: relative;
+    min-height: auto;
+    padding: clamp(90px, 9vw, 150px) 48px clamp(56px, 5vw, 84px);
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, #0b0e10 0%, #101315 52%, #0b0d0f 100%);
+    isolation: isolate;
+  }
+
+  #fp-home-v1 .fp-impact::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    opacity: .18;
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(90deg, transparent, #000 25%, #000 75%, transparent);
+  }
+
+  #fp-home-v1 .fp-impact__halo {
+    position: absolute;
+    z-index: 1;
+    top: 8%;
+    right: -18%;
+    width: 62vw;
+    height: 62vw;
+    max-width: 980px;
+    max-height: 980px;
+    border: 1px solid rgba(226,201,129,.09);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 90px rgba(226,201,129,.025),
+      0 0 0 180px rgba(226,201,129,.018);
+  }
+
+  #fp-home-v1 .fp-impact__atmosphere {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  #fp-home-v1 .fp-impact__scene {
+    position: absolute;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(1) sepia(.3) contrast(1.12) brightness(.52);
+    will-change: transform;
+  }
+
+  #fp-home-v1 .fp-impact__scene--battle {
+    top: -5%;
+    left: -5%;
+    width: 75%;
+    height: 61%;
+    opacity: .34;
+    background-image:
+      url("https://static.tildacdn.com/tild3232-3535-4632-a531-383937616136/Friedland_mazurovsky.jpg");
+    background-position: center 62%;
+    mask-image:
+      radial-gradient(ellipse at 34% 34%, #000 0 32%, rgba(0,0,0,.86) 48%, transparent 78%);
+    animation: fpAtmosphereBattle 22s ease-in-out infinite alternate;
+  }
+
+  #fp-home-v1 .fp-impact__scene--cathedral {
+    right: -7%;
+    bottom: -8%;
+    width: 48%;
+    height: 58%;
+    opacity: .19;
+    background-image:
+      url("https://static.tildacdn.com/tild3636-3337-4430-a263-636632666365/Rectangle_8.png");
+    background-position: center 20%;
+    mask-image:
+      radial-gradient(ellipse at 68% 70%, #000 0 28%, rgba(0,0,0,.78) 46%, transparent 76%);
+    animation: fpAtmosphereCathedral 26s ease-in-out infinite alternate;
+  }
+
+  #fp-home-v1 .fp-impact__inner {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 1440px);
+    margin: 0 auto;
+  }
+
+  #fp-home-v1 .fp-section-head {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    align-items: end;
+    gap: clamp(50px, 8vw, 130px);
+  }
+
+  #fp-home-v1 .fp-section-head h2 {
+    margin: 0;
+    font-family: var(--fp-font-display);
+    font-size: clamp(44px, 4.6vw, 76px);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -.035em;
+  }
+
+  #fp-home-v1 .fp-section-head__lead {
+    max-width: 560px;
+    margin: 0 0 7px;
+    color: var(--fp-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  #fp-home-v1 .fp-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 70px 0 68px;
+    border-top: 1px solid var(--fp-line);
+    border-bottom: 1px solid var(--fp-line);
+  }
+
+  #fp-home-v1 .fp-stat {
+    position: relative;
+    min-height: 196px;
+    padding: 34px 36px 30px 0;
+  }
+
+  #fp-home-v1 .fp-stat + .fp-stat {
+    padding-left: 42px;
+    border-left: 1px solid var(--fp-line);
+  }
+
+  #fp-home-v1 .fp-stat__number {
+    display: inline-block;
+    color: var(--fp-gold-light);
+    font-family: var(--fp-font-display);
+    font-size: clamp(54px, 5vw, 78px);
+    line-height: 1;
+    letter-spacing: -.045em;
+  }
+
+  #fp-home-v1 .fp-stat__unit {
+    margin-left: 8px;
+    color: rgba(255,255,255,.75);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-stat p {
+    max-width: 300px;
+    margin: 18px 0 0;
+    color: rgba(255,255,255,.44);
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  #fp-home-v1 .fp-feature {
+    display: grid;
+    grid-template-columns: minmax(390px, .86fr) minmax(440px, 1.14fr);
+    min-height: 520px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: #0d1012;
+    box-shadow: 0 40px 90px rgba(0,0,0,.26);
+  }
+
+  #fp-home-v1 .fp-feature__visual {
+    position: relative;
+    min-height: 520px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 64% 42%, rgba(196,162,93,.18), transparent 34%),
+      linear-gradient(145deg, #1b1d1d 0%, #0d0f11 72%);
+  }
+
+  #fp-home-v1 .fp-feature__visual::before,
+  #fp-home-v1 .fp-feature__visual::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(226,201,129,.16);
+    border-radius: 50%;
+  }
+
+  #fp-home-v1 .fp-feature__visual::before {
+    top: 7%;
+    left: 22%;
+    width: 72%;
+    aspect-ratio: 1;
+  }
+
+  #fp-home-v1 .fp-feature__visual::after {
+    top: 14%;
+    left: 29%;
+    width: 58%;
+    aspect-ratio: 1;
+  }
+
+  #fp-home-v1 .fp-feature__visual img {
+    position: absolute;
+    z-index: 2;
+    bottom: -4%;
+    left: 50%;
+    width: min(78%, 500px);
+    height: 92%;
+    object-fit: contain;
+    object-position: bottom;
+    filter: grayscale(.82) sepia(.13) contrast(1.08) brightness(.82);
+    transform: translateX(-50%);
+    transition: filter .7s ease, transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+
+  #fp-home-v1 .fp-feature:hover .fp-feature__visual img {
+    filter: grayscale(.55) sepia(.18) contrast(1.06) brightness(.88);
+    transform: translateX(-50%) scale(1.02);
+  }
+
+  #fp-home-v1 .fp-feature__stamp {
+    position: absolute;
+    z-index: 3;
+    top: 28px;
+    right: 25px;
+    width: 98px;
+    height: 98px;
+    color: var(--fp-gold-light);
+    animation: fpRotate 22s linear infinite;
+  }
+
+  #fp-home-v1 .fp-feature__stamp text {
+    fill: currentColor;
+    font-family: var(--fp-font-sans);
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: .1em;
+  }
+
+  #fp-home-v1 .fp-feature__stamp-mark {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: .8;
+  }
+
+  #fp-home-v1 .fp-feature__visual-caption {
+    position: absolute;
+    z-index: 4;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 24px;
+    border-top: 1px solid rgba(255,255,255,.11);
+    background: rgba(8,10,11,.74);
+    backdrop-filter: blur(10px);
+  }
+
+  #fp-home-v1 .fp-feature__visual-caption span {
+    color: rgba(255,255,255,.48);
+    font-size: 9px;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-feature__visual-caption strong {
+    color: var(--fp-gold-light);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .08em;
+  }
+
+  #fp-home-v1 .fp-feature__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(44px, 5vw, 82px);
+  }
+
+  #fp-home-v1 .fp-feature__meta {
+    padding-bottom: 19px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    color: var(--fp-gold-light);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-feature__meta span:last-child {
+    color: rgba(255,255,255,.42);
+  }
+
+  #fp-home-v1 .fp-feature__body h3 {
+    margin: 31px 0 19px;
+    font-family: var(--fp-font-display);
+    font-size: clamp(34px, 3.3vw, 54px);
+    font-weight: 400;
+    line-height: 1.16;
+  }
+
+  #fp-home-v1 .fp-feature__body > p {
+    max-width: 650px;
+    margin: 0;
+    color: rgba(255,255,255,.52);
+    font-size: 13px;
+    line-height: 1.78;
+  }
+
+  #fp-home-v1 .fp-progress {
+    margin-top: 32px;
+  }
+
+  #fp-home-v1 .fp-progress__labels {
+    color: rgba(255,255,255,.53);
+    font-size: 10px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-progress__labels strong {
+    margin-left: 5px;
+    color: var(--fp-gold-light);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  #fp-home-v1 .fp-progress__track {
+    height: 3px;
+    margin-top: 12px;
+  }
+
+  #fp-home-v1 .fp-progress__track span {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.4s cubic-bezier(.2,.7,.2,1) .35s;
+  }
+
+  #fp-home-v1 .fp-feature.is-visible .fp-progress__track span {
+    transform: scaleX(1);
+  }
+
+  #fp-home-v1 .fp-progress__note {
+    margin-top: 12px;
+    color: rgba(255,255,255,.28);
+    font-size: 9px;
+  }
+
+  #fp-home-v1 .fp-progress__note span:first-child {
+    color: rgba(255,255,255,.56);
+  }
+
+  #fp-home-v1 .fp-feature__actions {
+    margin-top: 31px;
+  }
+
+  #fp-home-v1 .fp-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 4px;
+    color: rgba(255,255,255,.66);
+    border-bottom: 1px solid rgba(255,255,255,.18);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    transition: color .25s ease, border-color .25s ease;
+  }
+
+  #fp-home-v1 .fp-text-link span {
+    color: var(--fp-gold-light);
+    font-size: 15px;
+    transition: transform .25s ease;
+  }
+
+  #fp-home-v1 .fp-text-link:hover,
+  #fp-home-v1 .fp-text-link:focus-visible {
+    color: #fff;
+    border-color: var(--fp-gold-light);
+  }
+
+  #fp-home-v1 .fp-text-link:hover span {
+    transform: translate(3px,-3px);
+  }
+
+  #fp-home-v1 .fp-observe {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+
+  #fp-home-v1 .fp-observe.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes fpReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fpBackdrop {
+    from { transform: scale(1.08); }
+    to { transform: scale(1.035); }
+  }
+
+  @keyframes fpPortrait {
+    from { opacity: 0; transform: translateX(34px) scale(1.035); }
+    to { opacity: .84; transform: translateX(0) scale(1); }
+  }
+
+  @keyframes fpPulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(223,75,67,.24), 0 0 10px rgba(223,75,67,.52); }
+    50% { box-shadow: 0 0 0 9px rgba(223,75,67,0), 0 0 17px rgba(223,75,67,.72); }
+  }
+
+  @keyframes fpScroll {
+    0% { top: -60%; }
+    60%, 100% { top: 120%; }
+  }
+
+  @keyframes fpRotate {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes fpAtmosphereBattle {
+    from { transform: scale(1.04) translate3d(-1%, 0, 0); }
+    to { transform: scale(1.1) translate3d(2%, 1.5%, 0); }
+  }
+
+  @keyframes fpAtmosphereCathedral {
+    from { transform: scale(1.03) translate3d(0, 1%, 0); }
+    to { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
+  }
+
+  @media (min-width: 881px) {
+    #fp-home-v1 .fp-hero__video {
+      transform: scale(2.7);
+      transform-origin: 50% 42%;
+    }
+
+    #fp-home-v1 .fp-hero__vignette {
+      background:
+        linear-gradient(90deg,
+          #050607 0%,
+          rgba(5, 6, 7, .92) 5%,
+          rgba(5, 6, 7, .5) 17%,
+          rgba(5, 6, 7, .08) 34%,
+          rgba(5, 6, 7, .08) 66%,
+          rgba(5, 6, 7, .52) 83%,
+          rgba(5, 6, 7, .94) 95%,
+          #050607 100%),
+        radial-gradient(circle at 79% 45%, transparent 0 25%, rgba(4, 5, 6, .18) 57%, rgba(4, 5, 6, .7) 100%),
+        linear-gradient(90deg, transparent 0 72%, rgba(5, 6, 7, .42) 100%);
+    }
+  }
+
+  @media (min-width: 881px) and (max-height: 820px) {
+    #fp-home-v1 .fp-hero {
+      min-height: 100svh;
+      height: 100svh;
+    }
+
+    #fp-home-v1 .fp-header {
+      width: min(100% - 72px, 1440px);
+      min-height: 82px;
+    }
+
+    #fp-home-v1 .fp-brand__mark {
+      width: 166px;
+      height: 68px;
+      flex-basis: 166px;
+    }
+
+    #fp-home-v1 .fp-nav {
+      gap: 28px;
+    }
+
+    #fp-home-v1 .fp-nav a {
+      font-size: 14px;
+    }
+
+    #fp-home-v1 .fp-header__donate {
+      min-height: 42px;
+      font-size: 10px;
+    }
+
+    #fp-home-v1 .fp-hero__content {
+      top: 47%;
+      width: min(600px, 50vw);
+      transform: translateY(-42%);
+    }
+
+    #fp-home-v1 .fp-hero__eyebrow {
+      margin-bottom: 16px;
+      font-size: 10px;
+    }
+
+    #fp-home-v1 .fp-hero__title {
+      max-width: 620px;
+      font-size: clamp(52px, 5.1vw, 78px);
+    }
+
+    #fp-home-v1 .fp-hero__lead {
+      max-width: 560px;
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    #fp-home-v1 .fp-hero__actions {
+      margin-top: 22px;
+    }
+
+    #fp-home-v1 .fp-button {
+      min-height: 50px;
+      padding-inline: 22px;
+      font-size: 10px;
+    }
+
+    #fp-home-v1 .fp-current {
+      bottom: 88px;
+      padding: 16px 20px 15px;
+    }
+
+    #fp-home-v1 .fp-current__label {
+      margin: 14px 0 5px;
+    }
+
+    #fp-home-v1 .fp-current h2 {
+      font-size: 23px;
+      line-height: 1.2;
+    }
+
+    #fp-home-v1 .fp-current__funding {
+      margin-top: 13px;
+    }
+
+    #fp-home-v1 .fp-mini-progress {
+      margin-top: 10px;
+    }
+
+    #fp-home-v1 .fp-donation {
+      bottom: 20px;
+      min-height: 56px;
+      padding-block: 8px;
+    }
+
+    #fp-home-v1 .fp-scroll {
+      bottom: 20px;
+    }
+  }
+
+  @media (max-width: 1180px) {
+    #fp-home-v1 .fp-header {
+      grid-template-columns: 1fr auto;
+      width: calc(100% - 64px);
+    }
+
+    #fp-home-v1 .fp-nav,
+    #fp-home-v1 .fp-header__actions {
+      display: none;
+    }
+
+    #fp-home-v1 .fp-menu {
+      display: grid;
+      align-content: center;
+      justify-items: end;
+      gap: 7px;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(0,0,0,.14);
+      cursor: pointer;
+    }
+
+    #fp-home-v1 .fp-menu span {
+      display: block;
+      width: 20px;
+      height: 1px;
+      margin-right: 11px;
+      background: #fff;
+      transition: transform .3s ease, width .3s ease;
+    }
+
+    #fp-home-v1 .fp-menu span:last-child {
+      width: 13px;
+    }
+
+    #fp-home-v1 .fp-menu[aria-expanded="true"] span:first-child {
+      width: 18px;
+      transform: translateY(4px) rotate(45deg);
+    }
+
+    #fp-home-v1 .fp-menu[aria-expanded="true"] span:last-child {
+      width: 18px;
+      transform: translateY(-4px) rotate(-45deg);
+    }
+
+    #fp-home-v1 .fp-mobile-nav {
+      position: absolute;
+      z-index: 19;
+      top: 100%;
+      right: 0;
+      display: grid;
+      width: min(330px, calc(100vw - 64px));
+      max-height: calc(100svh - 104px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(9,11,13,.96);
+      box-shadow: 0 28px 60px rgba(0,0,0,.36);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    #fp-home-v1 .fp-mobile-nav.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    #fp-home-v1 .fp-mobile-nav a {
+      padding: 13px 4px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      color: rgba(255,255,255,.72);
+      font-family: var(--fp-font-display);
+      font-size: 16px;
+    }
+
+    #fp-home-v1 .fp-mobile-nav .fp-mobile-nav__donate {
+      margin-top: 12px;
+      padding: 14px;
+      color: #111;
+      border: 0;
+      background: var(--fp-gold-light);
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    #fp-home-v1 .fp-mobile-nav .fp-mobile-nav__svo {
+      margin-top: 10px;
+      padding: 14px;
+      color: #f0ede6;
+      border: 1px solid rgba(184,66,57,.62);
+      background: rgba(184,66,57,.12);
+      font-family: var(--fp-font-body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    #fp-home-v1 .fp-hero__content {
+      left: 32px;
+      width: min(640px, 62vw);
+    }
+
+    #fp-home-v1 .fp-current,
+    #fp-home-v1 .fp-donation {
+      right: 32px;
+      width: 300px;
+    }
+
+    #fp-home-v1 .fp-scroll {
+      left: 32px;
+    }
+
+    #fp-home-v1 .fp-feature {
+      grid-template-columns: minmax(330px, .8fr) 1.2fr;
+    }
+  }
+
+  @media (max-width: 880px) {
+    #fp-home-v1 .fp-impact__scene--battle {
+      top: 0;
+      left: -28%;
+      width: 128%;
+      height: 44%;
+      opacity: .26;
+    }
+
+    #fp-home-v1 .fp-impact__scene--cathedral {
+      right: -26%;
+      bottom: 0;
+      width: 82%;
+      height: 43%;
+      opacity: .13;
+    }
+
+    #fp-home-v1 .fp-hero {
+      min-height: 880px;
+    }
+
+    #fp-home-v1 .fp-header {
+      width: calc(100% - 40px);
+      min-height: 86px;
+    }
+
+    #fp-home-v1 .fp-brand__mark {
+      width: 156px;
+      height: 64px;
+      flex-basis: 156px;
+    }
+
+    #fp-home-v1 .fp-hero__portrait {
+      right: -13%;
+      bottom: 0;
+      width: 76vw;
+      opacity: .54;
+    }
+
+    #fp-home-v1 .fp-hero__backdrop {
+      background:
+        linear-gradient(180deg, rgba(7,9,10,.64), rgba(7,9,10,.83) 68%, #07090a 100%),
+        url("https://static.tildacdn.com/tild3735-3234-4135-a337-633866643065/11.jpg") center / cover no-repeat;
+    }
+
+    #fp-home-v1 .fp-hero__content {
+      top: 154px;
+      left: 20px;
+      width: calc(100% - 40px);
+      transform: none;
+    }
+
+    #fp-home-v1 .fp-hero__lead {
+      max-width: 590px;
+    }
+
+    #fp-home-v1 .fp-current {
+      right: auto;
+      bottom: 112px;
+      left: 20px;
+      width: calc(100% - 40px);
+      max-width: 440px;
+    }
+
+    #fp-home-v1 .fp-donation {
+      right: auto;
+      bottom: 42px;
+      left: 20px;
+      width: calc(100% - 40px);
+      max-width: 440px;
+    }
+
+    #fp-home-v1 .fp-scroll {
+      display: none;
+    }
+
+    #fp-home-v1 .fp-impact {
+      padding: 86px 20px 48px;
+    }
+
+    #fp-home-v1 .fp-section-head {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    #fp-home-v1 .fp-stats {
+      grid-template-columns: 1fr;
+      margin: 52px 0;
+    }
+
+    #fp-home-v1 .fp-stat {
+      min-height: auto;
+      padding: 28px 0;
+    }
+
+    #fp-home-v1 .fp-stat + .fp-stat {
+      padding-left: 0;
+      border-top: 1px solid var(--fp-line);
+      border-left: 0;
+    }
+
+    #fp-home-v1 .fp-feature {
+      grid-template-columns: 1fr;
+    }
+
+    #fp-home-v1 .fp-feature__visual {
+      min-height: 480px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #fp-home-v1 .fp-mobile-nav {
+      width: calc(100vw - 40px);
+    }
+
+    #fp-home-v1 .fp-hero {
+      min-height: 1080px;
+    }
+
+    #fp-home-v1 .fp-brand__text span {
+      display: none;
+    }
+
+    #fp-home-v1 .fp-brand__text {
+      font-size: 9px;
+    }
+
+    #fp-home-v1 .fp-brand__mark {
+      width: 148px;
+      height: 61px;
+      flex-basis: 148px;
+    }
+
+    #fp-home-v1 .fp-hero__eyebrow {
+      max-width: 290px;
+      margin-bottom: 18px;
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    #fp-home-v1 .fp-hero__eyebrow-line {
+      width: 25px;
+      flex: 0 0 25px;
+    }
+
+    #fp-home-v1 .fp-hero__title {
+      max-width: 100%;
+      font-size: clamp(42px, 12.5vw, 50px);
+      line-height: 1.03;
+      letter-spacing: -.03em;
+    }
+
+    #fp-home-v1 .fp-hero__content {
+      left: 24px;
+      width: calc(100% - 48px);
+    }
+
+    #fp-home-v1 .fp-hero__lead {
+      margin-top: 22px;
+      color: rgba(240,237,230,.82);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    #fp-home-v1 .fp-hero__actions {
+      display: grid;
+      margin-top: 28px;
+    }
+
+    #fp-home-v1 .fp-button {
+      min-height: 54px;
+      width: 100%;
+    }
+
+    #fp-home-v1 .fp-current {
+      bottom: 104px;
+      padding: 20px;
+    }
+
+    #fp-home-v1 .fp-current h2 {
+      font-size: 22px;
+    }
+
+    #fp-home-v1 .fp-donation {
+      right: auto;
+      bottom: 32px;
+      left: 20px;
+    }
+
+    #fp-home-v1 .fp-donation__time {
+      display: none;
+    }
+
+    #fp-home-v1 .fp-donation {
+      grid-template-columns: 1fr;
+    }
+
+    #fp-home-v1 .fp-impact {
+      padding-top: 76px;
+    }
+
+    #fp-home-v1 .fp-kicker {
+      font-size: 9px;
+    }
+
+    #fp-home-v1 .fp-section-head h2 {
+      font-size: 42px;
+    }
+
+    #fp-home-v1 .fp-stat__number {
+      font-size: 56px;
+    }
+
+    #fp-home-v1 .fp-feature__visual {
+      min-height: 390px;
+    }
+
+    #fp-home-v1 .fp-feature__stamp {
+      width: 78px;
+      height: 78px;
+    }
+
+    #fp-home-v1 .fp-feature__body {
+      padding: 32px 22px 36px;
+    }
+
+    #fp-home-v1 .fp-feature__body h3 {
+      font-size: 35px;
+    }
+
+    #fp-home-v1 .fp-progress__labels,
+    #fp-home-v1 .fp-progress__note {
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    #fp-home-v1 .fp-progress__labels span:last-child,
+    #fp-home-v1 .fp-progress__note span:last-child {
+      text-align: right;
+    }
+
+    #fp-home-v1 .fp-feature__actions {
+      display: grid;
+      justify-items: stretch;
+    }
+
+    #fp-home-v1 .fp-text-link {
+      justify-content: center;
+    }
+  }
+
+  /* Продолжение главной страницы */
+  #fp-home-v1 .fp-shell {
+    position: relative;
+    z-index: 2;
+    width: min(100% - 96px, 1360px);
+    margin: 0 auto;
+  }
+
+  #fp-home-v1 .fp-directions,
+  #fp-home-v1 .fp-svo,
+  #fp-home-v1 .fp-projects,
+  #fp-home-v1 .fp-trust,
+  #fp-home-v1 .fp-news,
+  #fp-home-v1 .fp-give,
+  #fp-home-v1 .fp-footer {
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: 24px;
+  }
+
+  #fp-home-v1 .fp-directions {
+    padding: 64px 0 144px;
+    background: #0b0e10;
+  }
+
+  #fp-home-v1 .fp-directions__wash {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, #0b0e10 0%, rgba(11,14,16,.91) 48%, rgba(11,14,16,.72) 100%),
+      url("https://static.tildacdn.com/tild3232-3535-4632-a531-383937616136/Friedland_mazurovsky.jpg") center / cover no-repeat;
+    filter: grayscale(.72) sepia(.18) contrast(1.06) brightness(.58);
+    opacity: .43;
+  }
+
+  #fp-home-v1 .fp-directions .fp-section-head,
+  #fp-home-v1 .fp-projects__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 520px);
+    align-items: end;
+    gap: 80px;
+    margin-bottom: 76px;
+  }
+
+  #fp-home-v1 .fp-directions .fp-section-head h2,
+  #fp-home-v1 .fp-projects__head h2,
+  #fp-home-v1 .fp-trust h2,
+  #fp-home-v1 .fp-give h2 {
+    margin: 0;
+    font-family: var(--fp-font-display);
+    font-size: clamp(48px, 5.3vw, 82px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -.035em;
+  }
+
+  #fp-home-v1 .fp-directions .fp-section-head h2 em,
+  #fp-home-v1 .fp-projects__head h2 em,
+  #fp-home-v1 .fp-trust h2 em,
+  #fp-home-v1 .fp-give h2 em {
+    color: var(--fp-gold-light);
+    font-style: normal;
+  }
+
+  #fp-home-v1 .fp-directions__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--fp-line);
+    border-bottom: 1px solid var(--fp-line);
+  }
+
+  #fp-home-v1 .fp-direction {
+    position: relative;
+    min-height: 410px;
+    padding: 34px 30px 38px;
+    border-right: 1px solid var(--fp-line);
+    background: rgba(9,11,13,.34);
+  }
+
+  #fp-home-v1 .fp-direction:last-child { border-right: 0; }
+
+  #fp-home-v1 .fp-direction__number {
+    color: rgba(240,237,230,.42);
+    font-size: 10px;
+    letter-spacing: .18em;
+  }
+
+  #fp-home-v1 .fp-direction__icon {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    margin: 82px 0 34px;
+    border: 1px solid rgba(226,201,129,.32);
+    transform: rotate(45deg);
+  }
+
+  #fp-home-v1 .fp-direction__icon svg {
+    width: 32px;
+    height: 32px;
+    fill: none;
+    stroke: var(--fp-gold-light);
+    stroke-width: 1.4;
+    transform: rotate(-45deg);
+  }
+
+  #fp-home-v1 .fp-direction h3 {
+    min-height: 62px;
+    margin: 0 0 18px;
+    font-family: var(--fp-font-display);
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  #fp-home-v1 .fp-direction p {
+    margin: 0;
+    color: rgba(240,237,230,.58);
+    font-size: 13px;
+    line-height: 1.72;
+  }
+
+  #fp-home-v1 .fp-svo {
+    min-height: 430px;
+    padding: 94px 0;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    background: #111416;
+  }
+
+  #fp-home-v1 .fp-svo__image {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, #111416 0%, rgba(17,20,22,.91) 43%, rgba(17,20,22,.55) 100%),
+      url("https://static.tildacdn.com/tild3232-3535-4632-a531-383937616136/Friedland_mazurovsky.jpg") 70% 47% / cover no-repeat;
+    filter: grayscale(.78) sepia(.14) contrast(1.08) brightness(.68);
+    opacity: .62;
+  }
+
+  #fp-home-v1 .fp-svo__inner {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 58px;
+  }
+
+  #fp-home-v1 .fp-svo__mark {
+    color: transparent;
+    font-family: var(--fp-font-display);
+    font-size: 104px;
+    line-height: 1;
+    letter-spacing: -.08em;
+    -webkit-text-stroke: 1px rgba(226,201,129,.36);
+    opacity: .8;
+  }
+
+  #fp-home-v1 .fp-svo h2 {
+    margin: 0;
+    font-family: var(--fp-font-display);
+    font-size: clamp(40px, 4.5vw, 68px);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -.035em;
+  }
+
+  #fp-home-v1 .fp-svo h2 em { color: var(--fp-gold-light); font-style: normal; }
+  #fp-home-v1 .fp-svo__copy > p:last-child { max-width: 680px; margin: 25px 0 0; color: rgba(240,237,230,.62); font-size: 14px; line-height: 1.75; }
+  #fp-home-v1 .fp-svo__button { min-width: 210px; }
+
+  #fp-home-v1 .fp-projects {
+    padding: 140px 0 154px;
+    background:
+      radial-gradient(circle at 82% 20%, rgba(196,162,93,.11), transparent 29%),
+      #080a0c;
+  }
+
+  #fp-home-v1 .fp-projects__head {
+    grid-template-columns: 1fr auto;
+  }
+
+  #fp-home-v1 .fp-project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  #fp-home-v1 .fp-project-card {
+    border: 1px solid rgba(255,255,255,.12);
+    background: #101315;
+    transition: border-color .3s ease, transform .35s ease, box-shadow .35s ease;
+  }
+
+  #fp-home-v1 .fp-project-card:hover {
+    border-color: rgba(226,201,129,.34);
+    box-shadow: 0 28px 70px rgba(0,0,0,.34);
+    transform: translateY(-8px);
+  }
+
+  #fp-home-v1 .fp-project-card__visual {
+    position: relative;
+    min-height: 300px;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+  }
+
+  #fp-home-v1 .fp-project-card__visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 62%, rgba(5,7,8,.42));
+  }
+
+  #fp-home-v1 .fp-project-card__visual--platov {
+    background-image: url("https://static.tildacdn.com/tild3261-3564-4663-b762-633764376664/Group_20.png"), linear-gradient(145deg, #31383a, #0b0e10);
+    background-size: contain, cover;
+    background-repeat: no-repeat;
+  }
+
+  #fp-home-v1 .fp-project-card__visual--facts {
+    background-image: url("https://static.tildacdn.com/tild3636-3337-4430-a263-636632666365/Rectangle_8.png");
+    filter: saturate(.52) sepia(.12) contrast(1.05);
+  }
+
+  #fp-home-v1 .fp-project-card__visual--postoim { background-color: #25282a; background-image: linear-gradient(180deg,rgba(5,7,8,.04),rgba(5,7,8,.24)),url("https://ivanweb1.github.io/fondplatov-t123/assets/cossack-troops-map.png?v=20260826"); background-position: center; background-size: cover; filter: saturate(.88) contrast(1.04); }
+  #fp-home-v1 .fp-project-card__visual--bitva { background-image: url("https://static.tildacdn.com/tild3936-6234-4931-b164-376135366233/image.png"); background-position: center 28%; }
+  #fp-home-v1 .fp-project-card__visual--udaloy { background-image: url("https://static.tildacdn.com/tild3435-3264-4564-b932-323866616532/image.png"); }
+  #fp-home-v1 .fp-project-card__visual--likhie { background-image: url("https://static.tildacdn.com/tild3633-3561-4266-b630-373838626131/image.png"); }
+  #fp-home-v1 .fp-project-card__visual--game { background-image: url("https://static.tildacdn.com/tild6162-6664-4165-b237-353635613765/image.png"); background-position: center 24%; }
+  #fp-home-v1 .fp-project-card__visual--festival { background-image: url("https://static.tildacdn.com/tild6438-3438-4539-a662-303166356664/image.png"); }
+
+  #fp-home-v1 .fp-project-card__status,
+  #fp-home-v1 .fp-project-card__index {
+    position: absolute;
+    z-index: 2;
+    top: 22px;
+    font-size: 9px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  #fp-home-v1 .fp-project-card__status {
+    left: 22px;
+    padding: 9px 11px;
+    color: rgba(255,255,255,.83);
+    background: rgba(7,9,10,.74);
+    backdrop-filter: blur(10px);
+  }
+
+  #fp-home-v1 .fp-project-card__status--live i {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: #df4b43;
+    box-shadow: 0 0 10px #df4b43;
+  }
+
+  #fp-home-v1 .fp-project-card__index { right: 22px; color: rgba(255,255,255,.82); text-shadow: 0 1px 10px rgba(0,0,0,.85), 0 0 3px rgba(0,0,0,.6); }
+
+  #fp-home-v1 .fp-project-card__body { padding: 30px 28px 28px; }
+  #fp-home-v1 .fp-project-card__type { margin: 0 0 14px; color: var(--fp-gold-light); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
+  #fp-home-v1 .fp-project-card h3 { min-height: 70px; margin: 0 0 15px; font-family: var(--fp-font-display); font-size: 28px; font-weight: 400; line-height: 1.24; }
+  #fp-home-v1 .fp-project-card__body > p:not(.fp-project-card__type) { min-height: 70px; margin: 0; color: rgba(240,237,230,.58); font-size: 13px; line-height: 1.72; }
+
+  #fp-home-v1 .fp-card-progress { margin-top: 26px; }
+  #fp-home-v1 .fp-card-progress > div { display: flex; justify-content: space-between; color: rgba(240,237,230,.78); font-size: 11px; }
+  #fp-home-v1 .fp-card-progress > i { display: block; height: 2px; margin: 11px 0 9px; background: rgba(255,255,255,.12); }
+  #fp-home-v1 .fp-card-progress > i b { display: block; min-width: 5px; height: 100%; background: linear-gradient(90deg, var(--fp-gold), var(--fp-gold-light)); }
+  #fp-home-v1 .fp-card-progress small { color: rgba(240,237,230,.42); font-size: 10px; }
+  #fp-home-v1 .fp-card-progress--done > i b { background: #6e927a; }
+
+  #fp-home-v1 .fp-project-card__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin-top: 27px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,.1);
+  }
+
+  #fp-home-v1 .fp-header::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    background: #090b0d;
+    box-shadow: 0 1px rgba(255,255,255,.12);
+    transform: translateX(-50%);
+  }
+  #fp-home-v1 .fp-project-card__actions > a,
+  #fp-home-v1 .fp-project-card__actions > span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 42px;
+    padding: 0 11px;
+    color: rgba(240,237,230,.68);
+    border: 1px solid rgba(255,255,255,.13);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    transition: color .22s ease, border-color .22s ease, background-color .22s ease;
+  }
+  #fp-home-v1 .fp-project-card__actions > a:hover { color: #0b0d0e; border-color: var(--fp-gold-light); background: var(--fp-gold-light); }
+  #fp-home-v1 .fp-project-card__actions > a i { color: var(--fp-gold-light); font-size: 12px; font-style: normal; }
+  #fp-home-v1 .fp-project-card__actions > a:hover i { color: #0b0d0e; }
+  #fp-home-v1 .fp-project-card__actions > span { color: rgba(240,237,230,.24); border-color: rgba(255,255,255,.08); cursor: not-allowed; }
+  #fp-home-v1 .fp-project-card__actions--facts { grid-template-columns: 1fr 1fr; }
+
+  #fp-home-v1 .fp-trust {
+    min-height: 760px;
+    padding: 142px 0;
+    background: #101416;
+  }
+
+  #fp-home-v1 .fp-trust__portrait {
+    position: absolute;
+    inset: 0 48% 0 0;
+    background:
+      linear-gradient(90deg, rgba(16,20,22,.1), #101416 94%),
+      linear-gradient(180deg, rgba(16,20,22,.32), rgba(16,20,22,.78)),
+      url("https://static.tildacdn.com/tild3931-6130-4533-a139-313430396136/photo.jpg") 0% center / cover no-repeat;
+    filter: grayscale(.68) sepia(.16) contrast(1.03);
+    opacity: .34;
+  }
+
+  #fp-home-v1 .fp-trust__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(460px, .92fr);
+    gap: 100px;
+    align-items: center;
+  }
+
+  #fp-home-v1 .fp-trust__copy > p:not(.fp-kicker) { max-width: 590px; margin: 30px 0 0; color: rgba(240,237,230,.62); line-height: 1.8; }
+  #fp-home-v1 .fp-trust h2 { font-size: clamp(44px, 4.1vw, 66px); }
+  #fp-home-v1 .fp-trust h2 em { white-space: nowrap; }
+  #fp-home-v1 .fp-trust__people { display: grid; gap: 17px; margin-top: 42px; }
+  #fp-home-v1 .fp-trust__people div { padding-left: 17px; border-left: 1px solid var(--fp-gold-light); }
+  #fp-home-v1 .fp-trust__people span { display: block; color: rgba(240,237,230,.42); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+  #fp-home-v1 .fp-trust__people strong { display: block; margin-top: 5px; font-size: 13px; font-weight: 500; }
+
+  #fp-home-v1 .fp-documents { border-top: 1px solid rgba(255,255,255,.15); }
+  #fp-home-v1 .fp-documents a { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 16px; min-height: 80px; border-bottom: 1px solid rgba(255,255,255,.15); transition: background-color .25s ease, padding .25s ease; }
+  #fp-home-v1 .fp-documents a:hover { padding: 0 14px; background: rgba(226,201,129,.06); }
+  #fp-home-v1 .fp-documents span { color: rgba(240,237,230,.36); font-size: 9px; }
+  #fp-home-v1 .fp-documents strong { font-family: var(--fp-font-display); font-size: 17px; font-weight: 400; }
+  #fp-home-v1 .fp-documents i { color: var(--fp-gold-light); font-size: 9px; font-style: normal; letter-spacing: .1em; }
+  #fp-home-v1 .fp-doc-disabled { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 16px; min-height: 80px; border-bottom: 1px solid rgba(255,255,255,.15); color: rgba(240,237,230,.34); cursor: not-allowed; }
+  #fp-home-v1 .fp-doc-disabled i { color: rgba(240,237,230,.28); }
+
+  #fp-home-v1 .fp-council {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(460px, .92fr);
+    align-items: end;
+    gap: 100px;
+    margin-top: 105px;
+    padding-top: 54px;
+    border-top: 1px solid rgba(255,255,255,.15);
+  }
+
+  #fp-home-v1 .fp-council__head { padding-top: 4px; }
+  #fp-home-v1 .fp-council__head h3 { margin: 0; scroll-margin-top: 24px; font-family: var(--fp-font-display); font-size: clamp(36px, 3.2vw, 50px); font-weight: 400; line-height: 1.06; letter-spacing: -.03em; }
+  #fp-home-v1 .fp-council__list { display: flex; flex-direction: column; }
+  #fp-home-v1 .fp-person { display: flex; align-items: center; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+  #fp-home-v1 .fp-person:last-child { border-bottom: 0; }
+  #fp-home-v1 .fp-person__photo { position: relative; width: 68px; height: 68px; aspect-ratio: 1; flex: none; overflow: hidden; border-radius: 50%; border: 1px solid rgba(255,255,255,.14); background: #e8e5df; }
+  #fp-home-v1 .fp-person__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.68) contrast(1.04); transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .4s ease; }
+  #fp-home-v1 .fp-person:hover .fp-person__photo img { transform: scale(1.035); filter: saturate(.9) contrast(1.02); }
+  #fp-home-v1 .fp-person__info p { margin: 0 0 4px; color: var(--fp-gold-light); font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  #fp-home-v1 .fp-person__info h4 { margin: 0; font-family: var(--fp-font-display); font-size: 18px; font-weight: 400; line-height: 1.22; overflow-wrap: normal; word-break: normal; hyphens: none; }
+
+  #fp-home-v1 .fp-news { padding: 140px 0; background: #080a0c; }
+  #fp-home-v1 .fp-news__list { border-top: 1px solid rgba(255,255,255,.13); }
+  #fp-home-v1 .fp-news-card { display: grid; grid-template-columns: 160px 1fr 48px; align-items: center; gap: 45px; min-height: 190px; border-bottom: 1px solid rgba(255,255,255,.13); transition: background-color .3s ease, padding .3s ease; }
+  #fp-home-v1 .fp-news-card:hover { padding: 0 22px; background: rgba(196,162,93,.055); }
+  #fp-home-v1 .fp-news-card time { color: rgba(240,237,230,.44); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+  #fp-home-v1 .fp-news-card time span { display: block; color: var(--fp-gold-light); font-family: var(--fp-font-display); font-size: 42px; line-height: 1; }
+  #fp-home-v1 .fp-news-card div > p { margin: 0 0 8px; color: var(--fp-gold); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+  #fp-home-v1 .fp-news-card h3 { margin: 0 0 10px; font-family: var(--fp-font-display); font-size: 26px; font-weight: 400; }
+  #fp-home-v1 .fp-news-card div > span { color: rgba(240,237,230,.48); font-size: 12px; }
+  #fp-home-v1 .fp-news-card > a { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid rgba(226,201,129,.3); color: var(--fp-gold-light); transition: background-color .25s ease, color .25s ease; }
+  #fp-home-v1 .fp-news-card > a:hover { color: #101214; background: var(--fp-gold-light); }
+
+  #fp-home-v1 .fp-give {
+    padding: 150px 0;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(196,162,93,.15), transparent 32%),
+      linear-gradient(135deg, #121718, #080a0c 72%);
+  }
+  #fp-home-v1 .fp-give__rings { position: absolute; width: 620px; height: 620px; left: -210px; top: 50%; border: 1px solid rgba(226,201,129,.09); border-radius: 50%; transform: translateY(-50%); box-shadow: 0 0 0 90px rgba(226,201,129,.025), 0 0 0 180px rgba(226,201,129,.018); }
+  #fp-home-v1 .fp-give__inner { display: grid; grid-template-columns: 1fr minmax(430px, 540px); align-items: center; gap: 100px; }
+  #fp-home-v1 .fp-give__copy > p:not(.fp-kicker) { max-width: 590px; margin: 28px 0 0; color: rgba(240,237,230,.58); line-height: 1.8; }
+  #fp-home-v1 .fp-give__impact { display: flex; align-items: center; gap: 20px; max-width: 480px; margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--fp-line); }
+  #fp-home-v1 .fp-give__impact span { color: var(--fp-gold-light); font-family: var(--fp-font-display); font-size: 28px; white-space: nowrap; }
+  #fp-home-v1 .fp-give__impact p { margin: 0; color: rgba(240,237,230,.5); font-size: 11px; line-height: 1.6; }
+
+  #fp-home-v1 .fp-give__panel { padding: 38px; border: 1px solid rgba(226,201,129,.26); background: rgba(8,10,12,.76); box-shadow: 0 40px 100px rgba(0,0,0,.34); backdrop-filter: blur(18px); }
+  #fp-home-v1 .fp-give__panel > p:first-child { margin: 0 0 17px; color: rgba(240,237,230,.56); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+  #fp-home-v1 .fp-give__amounts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  #fp-home-v1 .fp-give__amounts button { position: relative; min-height: 62px; padding: 0 14px; border: 1px solid rgba(255,255,255,.14); background: transparent; cursor: pointer; transition: border-color .25s ease, background-color .25s ease; }
+  #fp-home-v1 .fp-give__amounts button:hover,
+  #fp-home-v1 .fp-give__amounts button.is-selected { color: #111416; border-color: var(--fp-gold-light); background: var(--fp-gold-light); }
+  #fp-home-v1 .fp-give__amounts small { display: block; font-size: 7px; letter-spacing: .11em; text-transform: uppercase; }
+  #fp-home-v1 .fp-give__custom { display: block; margin-top: 20px; color: rgba(240,237,230,.48); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+  #fp-home-v1 .fp-give__custom input { display: block; width: 100%; height: 54px; margin-top: 8px; padding: 0 15px; color: #fff; border: 1px solid rgba(255,255,255,.14); outline: 0; background: rgba(255,255,255,.025); font: 14px var(--fp-font-sans); }
+  #fp-home-v1 .fp-give__custom input:focus { border-color: var(--fp-gold-light); }
+  #fp-home-v1 .fp-give__regular { display: flex; align-items: center; gap: 10px; margin: 20px 0; color: rgba(240,237,230,.68); font-size: 12px; cursor: pointer; }
+  #fp-home-v1 .fp-give__regular input { position: absolute; opacity: 0; }
+  #fp-home-v1 .fp-give__regular span { position: relative; width: 34px; height: 18px; border-radius: 18px; background: rgba(255,255,255,.16); transition: background-color .25s ease; }
+  #fp-home-v1 .fp-give__regular span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 12px; height: 12px; border-radius: 50%; background: #fff; transition: transform .25s ease; }
+  #fp-home-v1 .fp-give__regular input:checked + span { background: var(--fp-gold); }
+  #fp-home-v1 .fp-give__regular input:checked + span::after { transform: translateX(16px); }
+  #fp-home-v1 .fp-give__submit { width: 100%; }
+  #fp-home-v1 .fp-give__submit > span,
+  #fp-home-v1 .fp-give__submit > svg { pointer-events: none; }
+  #fp-home-v1 .fp-give__hint { margin: 12px 0 0 !important; color: #e2c981 !important; font-size: 11px !important; line-height: 1.6 !important; }
+  #fp-home-v1 .fp-give__hint[hidden] { display: none; }
+  #fp-home-v1 .fp-give__regular[hidden] { display: none; }
+  #fp-home-v1 .fp-give__hint.is-error { color: #e6866b !important; }
+  #fp-home-v1 .fp-give__legal a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  #fp-home-v1 .fp-give__legal { margin: 13px 0 0 !important; color: rgba(240,237,230,.32) !important; font-size: 8px !important; line-height: 1.55 !important; }
+
+  #fp-home-v1 .fp-footer { padding: 82px 0 30px; background: #050607; border-top: 1px solid rgba(226,201,129,.18); }
+  #fp-home-v1 .fp-footer__top { display: grid; grid-template-columns: 1.15fr .7fr 1fr; gap: 80px; padding-bottom: 58px; }
+  #fp-home-v1 .fp-footer__brand img { width: 190px; height: auto; }
+  #fp-home-v1 .fp-footer__brand p { max-width: 330px; margin: 23px 0 0; color: rgba(240,237,230,.42); font-size: 12px; line-height: 1.7; }
+  #fp-home-v1 .fp-footer__nav { display: grid; align-content: start; gap: 13px; }
+  #fp-home-v1 .fp-footer__nav a { color: rgba(240,237,230,.66); font-family: var(--fp-font-display); font-size: 15px; }
+  #fp-home-v1 .fp-footer__nav a:hover { color: var(--fp-gold-light); }
+  #fp-home-v1 .fp-footer__contacts { display: grid; align-content: start; gap: 8px; font-style: normal; }
+  #fp-home-v1 .fp-footer__contacts a { font-family: var(--fp-font-display); font-size: 17px; }
+  #fp-home-v1 .fp-footer__contacts p { margin: 10px 0 0; color: rgba(240,237,230,.42); font-size: 11px; line-height: 1.65; }
+  #fp-home-v1 .fp-footer__requisites { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,.11); border-bottom: 1px solid rgba(255,255,255,.11); }
+  #fp-home-v1 .fp-footer__requisites div { min-height: 100px; padding: 24px; border-right: 1px solid rgba(255,255,255,.11); }
+  #fp-home-v1 .fp-footer__requisites div:last-child { border-right: 0; }
+  #fp-home-v1 .fp-footer__requisites span { display: block; color: rgba(240,237,230,.34); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
+  #fp-home-v1 .fp-footer__requisites strong { display: block; margin-top: 8px; font-size: 11px; font-weight: 500; }
+  #fp-home-v1 .fp-footer__bottom { display: flex; justify-content: space-between; gap: 30px; padding-top: 28px; color: rgba(240,237,230,.28); font-size: 9px; }
+  #fp-home-v1 .fp-footer__bottom p { margin: 0; }
+  #fp-home-v1 .fp-footer__bottom div { display: flex; gap: 24px; }
+  #fp-home-v1 .fp-footer__bottom a:hover { color: rgba(240,237,230,.7); }
+
+  @media (max-width: 1100px) {
+    #fp-home-v1 .fp-svo__inner { grid-template-columns: 120px 1fr; gap: 36px; }
+    #fp-home-v1 .fp-svo__mark { font-size: 76px; }
+    #fp-home-v1 .fp-svo__button { grid-column: 2; justify-self: start; }
+    #fp-home-v1 .fp-directions__grid { grid-template-columns: repeat(2, 1fr); }
+    #fp-home-v1 .fp-direction:nth-child(2) { border-right: 0; }
+    #fp-home-v1 .fp-direction:nth-child(-n+2) { border-bottom: 1px solid var(--fp-line); }
+    #fp-home-v1 .fp-project-grid { grid-template-columns: 1fr 1fr; }
+    #fp-home-v1 .fp-project-card:last-child { grid-column: auto; max-width: none; }
+    #fp-home-v1 .fp-trust__inner,
+    #fp-home-v1 .fp-give__inner { grid-template-columns: 1fr 1fr; gap: 55px; }
+    #fp-home-v1 .fp-footer__top { gap: 40px; }
+    #fp-home-v1 .fp-footer__requisites { grid-template-columns: 1fr 1fr; }
+    #fp-home-v1 .fp-footer__requisites div:nth-child(2) { border-right: 0; }
+    #fp-home-v1 .fp-footer__requisites div:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.11); }
+  }
+
+  @media (max-width: 760px) {
+    #fp-home-v1 .fp-shell { width: calc(100% - 40px); }
+    #fp-home-v1 .fp-directions,
+    #fp-home-v1 .fp-svo,
+    #fp-home-v1 .fp-projects,
+    #fp-home-v1 .fp-trust,
+    #fp-home-v1 .fp-news,
+    #fp-home-v1 .fp-give { padding: 86px 0; }
+    #fp-home-v1 .fp-directions { padding-top: 48px; }
+    #fp-home-v1 .fp-directions .fp-section-head,
+    #fp-home-v1 .fp-projects__head { grid-template-columns: 1fr; gap: 28px; margin-bottom: 50px; }
+    #fp-home-v1 .fp-directions .fp-section-head h2,
+    #fp-home-v1 .fp-projects__head h2,
+    #fp-home-v1 .fp-give h2 { font-size: clamp(40px, 12vw, 56px); }
+    #fp-home-v1 .fp-trust h2 { font-size: clamp(36px, 9.8vw, 44px); }
+    #fp-home-v1 .fp-directions__grid,
+    #fp-home-v1 .fp-project-grid { grid-template-columns: minmax(0, 1fr); }
+    #fp-home-v1 .fp-direction,
+    #fp-home-v1 .fp-project-card { width: 100%; min-width: 0; }
+    #fp-home-v1 .fp-direction { min-height: auto; border-right: 0; border-bottom: 1px solid var(--fp-line); }
+    #fp-home-v1 .fp-direction:last-child { border-bottom: 0; }
+    #fp-home-v1 .fp-direction__icon { margin: 48px 0 30px; }
+    #fp-home-v1 .fp-svo__image { background-position: 63% center; opacity: .42; }
+    #fp-home-v1 .fp-svo__inner { grid-template-columns: 1fr; gap: 30px; }
+    #fp-home-v1 .fp-svo__mark { font-size: 66px; }
+    #fp-home-v1 .fp-svo h2 { font-size: clamp(38px, 11vw, 52px); }
+    #fp-home-v1 .fp-svo__button { grid-column: auto; width: 100%; }
+    #fp-home-v1 .fp-project-card:last-child { grid-column: auto; max-width: none; }
+    #fp-home-v1 .fp-project-card__visual { min-height: 260px; }
+    #fp-home-v1 .fp-project-card h3,
+    #fp-home-v1 .fp-project-card__body > p:not(.fp-project-card__type) { min-height: auto; }
+    #fp-home-v1 .fp-project-card__actions,
+    #fp-home-v1 .fp-project-card__actions--facts { grid-template-columns: minmax(0, 1fr); }
+    #fp-home-v1 .fp-project-card__actions > a,
+    #fp-home-v1 .fp-project-card__actions > span { min-width: 0; }
+    #fp-home-v1 .fp-trust__portrait { inset: 0; opacity: .14; }
+    #fp-home-v1 .fp-trust__inner,
+    #fp-home-v1 .fp-give__inner { grid-template-columns: 1fr; gap: 58px; }
+    #fp-home-v1 .fp-documents a { grid-template-columns: 26px 1fr auto; gap: 10px; }
+    #fp-home-v1 .fp-documents strong { font-size: 14px; }
+    #fp-home-v1 .fp-council { grid-template-columns: 1fr; gap: 24px; width: calc(100% - 40px); margin-top: 48px; padding-top: 28px; }
+    #fp-home-v1 .fp-council__head h3 { font-size: 28px; }
+    #fp-home-v1 .fp-person__photo { width: 60px; height: 60px; aspect-ratio: 1; flex: none; border-radius: 50%; }
+    #fp-home-v1 .fp-person__info p { margin: 0 0 3px; font-size: 8px; }
+    #fp-home-v1 .fp-person__info h4 { font-size: 15px; line-height: 1.25; }
+    #fp-home-v1 .fp-news-card { grid-template-columns: 70px minmax(0, 1fr) 34px; gap: 12px; min-height: 170px; }
+    #fp-home-v1 .fp-news-card > * { min-width: 0; }
+    #fp-home-v1 .fp-news-card time { font-size: 8px; }
+    #fp-home-v1 .fp-news-card time span { font-size: 32px; }
+    #fp-home-v1 .fp-news-card h3 { font-size: 19px; }
+    #fp-home-v1 .fp-news-card div > span { display: none; }
+    #fp-home-v1 .fp-give__panel { padding: 26px 20px; }
+    #fp-home-v1 .fp-footer { padding-top: 62px; }
+    #fp-home-v1 .fp-footer__top { grid-template-columns: 1fr; gap: 36px; }
+    #fp-home-v1 .fp-footer__requisites { grid-template-columns: 1fr; }
+    #fp-home-v1 .fp-footer__requisites div { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.11); }
+    #fp-home-v1 .fp-footer__requisites div:last-child { border-bottom: 0; }
+    #fp-home-v1 .fp-footer__bottom { display: grid; }
+    #fp-home-v1 .fp-footer__bottom div { display: grid; gap: 9px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #fp-home-v1 *,
+    #fp-home-v1 *::before,
+    #fp-home-v1 *::after {
+      scroll-behavior: auto !important;
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+    }
+  }
+  /* Читаемая типографика для основной аудитории фонда */
+  #fp-home-v1 .fp-project-card__type,
+  #fp-home-v1 .fp-news-card div > p { font-size: 12px; line-height: 1.45; }
+  #fp-home-v1 .fp-project-card__body > p:not(.fp-project-card__type) { min-height: 86px; font-size: 16px; line-height: 1.62; }
+  #fp-home-v1 .fp-card-progress div,
+  #fp-home-v1 .fp-card-progress small { font-size: 12px; line-height: 1.45; }
+  #fp-home-v1 .fp-project-card__actions a,
+  #fp-home-v1 .fp-project-card__actions span { min-height: 58px; font-size: 12px; line-height: 1.35; }
+  #fp-home-v1 .fp-news-card time { font-size: 12px; }
+  #fp-home-v1 .fp-news-card div > span { font-size: 15px; line-height: 1.55; }
+  #fp-home-v1 .fp-text-link,
+  #fp-home-v1 .fp-kicker { font-size: 12px; }
+  @media (max-width: 900px) {
+    #fp-home-v1 .fp-project-card__body > p:not(.fp-project-card__type) { min-height: auto; font-size: 15px; }
+    #fp-home-v1 .fp-project-card__actions a,
+    #fp-home-v1 .fp-project-card__actions span { min-height: 54px; font-size: 11px; }
+    #fp-home-v1 .fp-news-card time { font-size: 10px; }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById("fp-home-v1");
+    if (!root || root.dataset.initialized === "true") return;
+    root.dataset.initialized = "true";
+
+    /* Плавный переход только для внутренних якорей этого блока.
+       Ссылки #order:... — это команда корзины Tilda, а не якорь: их пропускаем. */
+    root.querySelectorAll('a[href^="#"]:not([href^="#order"])').forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        var href = link.getAttribute("href");
+        if (!href || href === "#" || href.indexOf("#order") === 0) return;
+        var target = null;
+        try {
+          target = document.querySelector(href);
+        } catch (error) {
+          return;
+        }
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    /* Фон шапки появляется после прокрутки первого экрана */
+    var header = root.querySelector(".fp-header");
+    var hero = root.querySelector(".fp-hero");
+    if (header) {
+      var updateHeader = function () {
+        var threshold = hero ? hero.offsetHeight - header.offsetHeight : 40;
+        header.classList.toggle("is-scrolled", window.scrollY > threshold);
+      };
+      updateHeader();
+      window.addEventListener("scroll", updateHeader, { passive: true });
+      window.addEventListener("resize", updateHeader, { passive: true });
+    }
+
+    /* Мобильное меню */
+    var menuButton = root.querySelector(".fp-menu");
+    var mobileNav = root.querySelector(".fp-mobile-nav");
+    if (menuButton && mobileNav) {
+      menuButton.addEventListener("click", function () {
+        var isOpen = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!isOpen));
+        mobileNav.classList.toggle("is-open", !isOpen);
+        mobileNav.setAttribute("aria-hidden", String(isOpen));
+      });
+
+      mobileNav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          menuButton.setAttribute("aria-expanded", "false");
+          mobileNav.classList.remove("is-open");
+          mobileNav.setAttribute("aria-hidden", "true");
+        });
+      });
+    }
+
+    /* Элементы появляются при прокрутке */
+    var observed = root.querySelectorAll(".fp-observe");
+    if ("IntersectionObserver" in window) {
+      var revealObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.14 });
+      observed.forEach(function (item) { revealObserver.observe(item); });
+    } else {
+      observed.forEach(function (item) { item.classList.add("is-visible"); });
+    }
+
+    /* Анимация чисел */
+    var counters = root.querySelectorAll("[data-count]");
+    var countersStarted = false;
+    function startCounters() {
+      if (countersStarted) return;
+      countersStarted = true;
+
+      counters.forEach(function (counter) {
+        var target = Number(counter.dataset.count);
+        var decimals = Number(counter.dataset.decimals || 0);
+        var duration = 1300;
+        var startTime = null;
+
+        function tick(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var value = target * eased;
+          var formatted = decimals
+            ? value.toFixed(decimals).replace(".", ",")
+            : Math.round(value).toLocaleString("ru-RU");
+          counter.textContent = formatted + (counter.dataset.suffix || "");
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }
+
+    var stats = root.querySelector(".fp-stats");
+    if (stats && "IntersectionObserver" in window) {
+      var counterObserver = new IntersectionObserver(function (entries, observer) {
+        if (entries[0].isIntersecting) {
+          startCounters();
+          observer.disconnect();
+        }
+      }, { threshold: 0.35 });
+      counterObserver.observe(stats);
+    } else {
+      startCounters();
+    }
+
+    /*
+      Демонстрационные записи.
+      Для реальной ленты этот массив можно заменить данными API/CRM.
+    */
+    var fpDonations = [
+      { name: "Александр", amount: "1 000 ₽", time: "только что" },
+      { name: "Елена", amount: "500 ₽", time: "2 мин. назад" },
+      { name: "Олег", amount: "3 000 ₽", time: "5 мин. назад" },
+      { name: "Виктор", amount: "250 ₽", time: "8 мин. назад" }
+    ];
+
+    var donationCard = root.querySelector(".fp-donation");
+    if (donationCard && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      var donationIndex = 0;
+      window.setInterval(function () {
+        donationIndex = (donationIndex + 1) % fpDonations.length;
+        donationCard.classList.add("is-changing");
+
+        window.setTimeout(function () {
+          var item = fpDonations[donationIndex];
+          donationCard.querySelector(".fp-donation__name").textContent = item.name;
+          donationCard.querySelector(".fp-donation__amount").textContent = item.amount;
+          donationCard.querySelector(".fp-donation__time").textContent = item.time;
+          donationCard.classList.remove("is-changing");
+          donationCard.classList.add("is-arriving");
+          window.setTimeout(function () {
+            donationCard.classList.remove("is-arriving");
+          }, 900);
+        }, 420);
+      }, 4600);
+    }
+
+    /* --- Форма пожертвования: связка с корзиной Tilda (блок T706) ---
+       Кнопка ведёт на ссылку вида #order:Пожертвование=СУММА — это штатный
+       способ Tilda положить товар в корзину. Скрипт корзины сам перехватывает
+       клик, открывает окно заказа и передаёт сумму в платёжную систему.
+       На демо-странице GitHub Pages корзины нет — показываем подсказку. */
+    var amountButtons = root.querySelectorAll(".fp-give__amounts button");
+    var customAmount = root.querySelector(".fp-give__custom input");
+    var giveSubmit = root.querySelector(".fp-give__submit");
+    var giveRegular = root.querySelector(".fp-give__regular input");
+    var giveHint = root.querySelector(".fp-give__hint");
+    var defaultAmountButton = root.querySelector(".fp-give__amounts button.is-selected") || amountButtons[0];
+    var donateMin = giveSubmit ? parseInt(giveSubmit.getAttribute("data-donate-min"), 10) || 0 : 0;
+
+    /* Адрес страницы оформления ЕЖЕМЕСЯЧНОГО пожертвования.
+       Корзина Tilda регулярные платежи по ЮKassa не умеет, поэтому подписку
+       принимает отдельный сервис (автоплатежи ЮKassa по API либо CloudPayments).
+       Впишите сюда его адрес — тумблер «Помогать ежемесячно» включится сам.
+       Необязательный плейсхолдер {amount} подставит выбранную сумму, например:
+       var FP_RECURRING_URL = "https://podpiska.fondplatov.ru/?sum={amount}";
+       Пока строка пустая, тумблер скрыт и обещаний донору не даётся. */
+    var FP_RECURRING_URL = "";
+
+    function fpFormatAmount(value) {
+      return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    function fpSelectedAmount() {
+      if (customAmount && customAmount.value.trim() !== "") {
+        return Math.floor(Number(customAmount.value)) || 0;
+      }
+      var active = root.querySelector(".fp-give__amounts button.is-selected");
+      return active ? parseInt(active.getAttribute("data-amount"), 10) || 0 : 0;
+    }
+
+    function fpIsRegular() {
+      return !!(giveRegular && giveRegular.checked);
+    }
+
+    /* Есть ли куда вести подписку. Пока FP_RECURRING_URL пуст, тумблер остаётся
+       на месте, но платёж уходит в корзину как разовый — с пометкой в названии
+       заказа, чтобы фонд видел намерение донора и связался с ним. */
+    function fpHasSubscriptionService() {
+      return !!FP_RECURRING_URL && fpIsRegular();
+    }
+
+    function fpDonationName() {
+      if (!giveSubmit) return "";
+      var attr = fpIsRegular() ? "data-donate-name-regular" : "data-donate-name";
+      return giveSubmit.getAttribute(attr) || giveSubmit.getAttribute("data-donate-name") || "";
+    }
+
+    function fpShowHint(text, isError) {
+      if (!giveHint) return;
+      giveHint.textContent = text;
+      giveHint.classList.toggle("is-error", !!isError);
+      giveHint.hidden = false;
+    }
+
+    function fpHideHint() {
+      if (giveHint) giveHint.hidden = true;
+    }
+
+    function fpSyncSubmit() {
+      if (!giveSubmit) return;
+      var amount = fpSelectedAmount();
+      var usesService = fpHasSubscriptionService();
+
+      if (usesService) {
+        giveSubmit.setAttribute("href", FP_RECURRING_URL.replace("{amount}", amount > 0 ? amount : ""));
+        giveSubmit.setAttribute("target", "_top");
+        giveSubmit.setAttribute("rel", "noopener");
+      } else {
+        giveSubmit.setAttribute("href", "#order:" + encodeURIComponent(fpDonationName()) + "=" + (amount > 0 ? amount : 0));
+        giveSubmit.removeAttribute("target");
+        giveSubmit.removeAttribute("rel");
+      }
+
+      var label = giveSubmit.querySelector("span");
+      if (label) {
+        var prefix = usesService ? "Помогать ежемесячно по " : "Пожертвовать ";
+        label.textContent = amount ? prefix + fpFormatAmount(amount) + " ₽" : prefix.trim();
+      }
+    }
+
+    /* Сумма пожертвования заменяется, а не суммируется: чистим корзину перед добавлением */
+    function fpClearCart() {
+      try {
+        var cart = window.tcart;
+        if (cart && Object.prototype.toString.call(cart.products) === "[object Array]" && cart.products.length) {
+          cart.products = [];
+          if (typeof window.tcart__updateTotalProductsinCartObj === "function") window.tcart__updateTotalProductsinCartObj();
+          if (typeof window.tcart__saveLocalObj === "function") window.tcart__saveLocalObj();
+          if (typeof window.tcart__reDrawProducts === "function") window.tcart__reDrawProducts();
+          if (typeof window.tcart__reDrawCartIcon === "function") window.tcart__reDrawCartIcon();
+        }
+      } catch (error) {}
+    }
+
+    amountButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        amountButtons.forEach(function (item) { item.classList.remove("is-selected"); });
+        button.classList.add("is-selected");
+        if (customAmount) customAmount.value = "";
+        fpHideHint();
+        fpSyncSubmit();
+      });
+    });
+
+    if (customAmount) {
+      customAmount.addEventListener("input", function () {
+        var isFilled = customAmount.value.trim() !== "";
+        amountButtons.forEach(function (item) { item.classList.remove("is-selected"); });
+        if (!isFilled && defaultAmountButton) defaultAmountButton.classList.add("is-selected");
+        fpHideHint();
+        fpSyncSubmit();
+      });
+    }
+
+    if (giveRegular) {
+      giveRegular.addEventListener("change", function () {
+        fpHideHint();
+        fpSyncSubmit();
+      });
+    }
+
+    if (giveSubmit) {
+      fpSyncSubmit();
+      giveSubmit.addEventListener("click", function (event) {
+        var amount = fpSelectedAmount();
+        if (!amount || amount < donateMin) {
+          event.preventDefault();
+          fpShowHint("Укажите сумму пожертвования — от " + fpFormatAmount(donateMin) + " ₽.", true);
+          if (customAmount) customAmount.focus();
+          return;
+        }
+        fpSyncSubmit();
+        if (fpHasSubscriptionService()) {
+          /* ежемесячное пожертвование оформляет внешний сервис подписок */
+          fpHideHint();
+          return;
+        }
+        if (typeof window.tcart__addProduct !== "function") {
+          event.preventDefault();
+          fpShowHint("Демонстрационная страница: корзина Tilda здесь не подключена. На сайте эта кнопка откроет форму оплаты.", false);
+          return;
+        }
+        fpHideHint();
+        fpClearCart();
+        /* дальше клик обрабатывает скрипт корзины Tilda */
+      });
+    }
+  })();
+</script>
