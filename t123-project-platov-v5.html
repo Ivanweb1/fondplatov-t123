@@ -104,7 +104,8 @@
             <label class="pp-custom">Своя сумма
               <span><input type="number" min="100" step="100" placeholder="Введите сумму"><b>₽</b></span>
             </label>
-            <button class="pp-button pp-cart-trigger" type="button" data-tilda-cart-trigger data-amount-selected="1000" data-frequency-selected="once">Поддержать проект <span>→</span></button>
+            <a class="pp-button pp-cart-trigger" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-tilda-cart-trigger data-donate-min="100" data-amount-selected="1000" data-frequency-selected="once"><b class="pp-cart-label">Поддержать проект</b> <span>→</span></a>
+            <p class="pp-hint" role="status" hidden></p>
           </div>
         </aside>
       </div>
@@ -298,6 +299,11 @@
   #fp-project-platov .pp-button { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 56px; margin-top: 20px; padding: 0 20px; color: #101214; border: 1px solid var(--gold-light); background: linear-gradient(90deg, var(--gold-light), var(--gold)); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: filter .2s ease, transform .2s ease; }
   #fp-project-platov .pp-button:hover { filter: brightness(1.08); transform: translateY(-2px); }
   #fp-project-platov .pp-button span { font-size: 16px; }
+  .pp-button { text-decoration: none; }
+  .pp-cart-label { font-weight: inherit; }
+  .pp-hint { margin: 12px 0 0; color: var(--gold-light); font-size: 12px; line-height: 1.55; }
+  .pp-hint[hidden] { display: none; }
+  .pp-hint.is-error { color: #e6866b; }
   #fp-project-platov .pp-support-feed { position: absolute; z-index: 5; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 35px; min-height: 62px; padding: 0 max(48px, calc((100% - 1380px) / 2)); border-top: 1px solid rgba(255,255,255,.13); background: rgba(5,7,8,.76); backdrop-filter: blur(16px); }
   #fp-project-platov .pp-support-feed > span, #fp-project-platov .pp-support-feed > p, #fp-project-platov .pp-support-feed > small { display: flex; align-self: stretch; align-items: center; line-height: 1.2; }
   #fp-project-platov .pp-support-feed > span { color: rgba(255,255,255,.42); font-size: 8px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
@@ -599,6 +605,90 @@
       root.querySelectorAll('[data-amount]').forEach(item => item.classList.remove('is-active'));
     }
   });
+
+  /* --- Пожертвование на проект: связка с корзиной Tilda (блок T706) ---
+     Кнопка формирует ссылку #order:Название=СУММА — скрипт корзины Tilda
+     перехватывает клик и открывает окно оплаты. Название заказа содержит
+     проект, чтобы фонд видел, на что жертвуют: на старом сайте у каждого
+     проекта была своя форма пожертвования.
+     Тумблер «Ежемесячно» помечает заказ, но автосписания не делает —
+     регулярные платежи корзина Tilda по ЮKassa не поддерживает. */
+  const ppProjectNames = { facts: '7 фактов о Платове', postoim: 'Постоим за честь державы' };
+  const ppProject = ppProjectNames[projectKey] || 'Вихорь-атаман Матвей Платов';
+  const ppHint = root.querySelector('.pp-hint');
+  const ppLabel = cartTrigger ? cartTrigger.querySelector('.pp-cart-label') : null;
+  const ppMin = cartTrigger ? parseInt(cartTrigger.dataset.donateMin, 10) || 0 : 0;
+
+  const ppFormat = value => String(value).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
+
+  const ppAmount = () => {
+    if (custom && custom.value.trim() !== '') return Math.floor(Number(custom.value)) || 0;
+    const active = root.querySelector('.pp-amounts [data-amount].is-active');
+    return active ? parseInt(active.dataset.amount, 10) || 0 : 0;
+  };
+
+  const ppFrequency = () => {
+    const active = root.querySelector('.pp-frequency [data-frequency].is-active');
+    return active ? active.dataset.frequency : 'once';
+  };
+
+  const ppOrderName = () =>
+    'Пожертвование' + (ppFrequency() === 'monthly' ? ' (ежемесячно)' : '') + ' — ' + ppProject;
+
+  const ppSync = () => {
+    if (!cartTrigger) return;
+    const value = ppAmount();
+    cartTrigger.dataset.amountSelected = String(value);
+    cartTrigger.dataset.frequencySelected = ppFrequency();
+    cartTrigger.setAttribute('href', '#order:' + encodeURIComponent(ppOrderName()) + '=' + (value > 0 ? value : 0));
+    if (ppLabel) ppLabel.textContent = value > 0 ? 'Поддержать на ' + ppFormat(value) + ' ₽' : 'Поддержать проект';
+  };
+
+  const ppShowHint = (text, isError) => {
+    if (!ppHint) return;
+    ppHint.textContent = text;
+    ppHint.classList.toggle('is-error', !!isError);
+    ppHint.hidden = false;
+  };
+  const ppHideHint = () => { if (ppHint) ppHint.hidden = true; };
+
+  /* сумма заменяется, а не суммируется: чистим корзину перед добавлением */
+  const ppClearCart = () => {
+    try {
+      const cart = window.tcart;
+      if (cart && Object.prototype.toString.call(cart.products) === '[object Array]' && cart.products.length) {
+        cart.products = [];
+        ['tcart__updateTotalProductsinCartObj', 'tcart__saveLocalObj', 'tcart__reDrawProducts', 'tcart__reDrawCartIcon']
+          .forEach(fn => { if (typeof window[fn] === 'function') window[fn](); });
+      }
+    } catch (error) {}
+  };
+
+  root.querySelectorAll('.pp-amounts [data-amount], .pp-frequency [data-frequency]').forEach(button =>
+    button.addEventListener('click', () => { ppHideHint(); ppSync(); }));
+  if (custom) custom.addEventListener('input', () => { ppHideHint(); ppSync(); });
+
+  if (cartTrigger) {
+    ppSync();
+    cartTrigger.addEventListener('click', event => {
+      const value = ppAmount();
+      if (!value || value < ppMin) {
+        event.preventDefault();
+        ppShowHint('Укажите сумму пожертвования — от ' + ppFormat(ppMin) + ' ₽.', true);
+        if (custom) custom.focus();
+        return;
+      }
+      ppSync();
+      if (typeof window.tcart__addProduct !== 'function') {
+        event.preventDefault();
+        ppShowHint('Демонстрационная страница: корзина Tilda здесь не подключена. На сайте эта кнопка откроет форму оплаты.', false);
+        return;
+      }
+      ppHideHint();
+      ppClearCart();
+      /* дальше клик обрабатывает скрипт корзины Tilda */
+    });
+  }
 
   const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
     entries.forEach(entry => {
