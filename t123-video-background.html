@@ -3,10 +3,21 @@
   Готово для вставки целиком в блок T123.
 
   Перед публикацией:
-  1) замените #fp-donate на ссылку формы пожертвования;
-  2) замените #fp-projects на адрес страницы проектов;
-  3) при наличии оригинального видео укажите MP4 в теге <source>;
-  4) замените демонстрационные записи в массиве fpDonations внизу.
+  1) замените #fp-projects на адрес страницы проектов;
+  2) при наличии оригинального видео укажите MP4 в теге <source>;
+  3) замените демонстрационные записи в массиве fpDonations внизу.
+
+  ПОЖЕРТВОВАНИЯ.
+  Блок «Ваш вклад превращает идею в кадр» (#fp-donate) работает через штатную
+  корзину Tilda. На ЭТОЙ ЖЕ странице обязательно должен стоять блок «Корзина»
+  (T706 / ST100) с подключённой платёжной системой — так же, как на текущем
+  сайте fondplatov.ru. Кнопка формирует ссылку #order:Пожертвование=СУММА,
+  скрипт корзины перехватывает клик и открывает окно оплаты.
+  Настройки блока корзины (как на текущем сайте):
+    — «Только один товар в корзине» = да;
+    — поля формы: Имя, Телефон, E-mail, чекбоксы «Политика конфиденциальности»
+      и «Публичная оферта»;
+    — платёжная система: ЮKassa.
 -->
 
 <link rel="preload" as="image" href="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" type="image/svg+xml">
@@ -595,8 +606,9 @@
         </div>
         <label class="fp-give__custom">Своя сумма <input type="number" min="100" step="100" placeholder="Введите сумму" inputmode="numeric"></label>
         <label class="fp-give__regular"><input type="checkbox"><span></span> Помогать ежемесячно</label>
-        <a class="fp-button fp-button--gold fp-give__submit" href="#fp-requisites"><span>Продолжить</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
-        <p class="fp-give__legal">Нажимая кнопку, вы соглашаетесь с публичной офертой и политикой обработки персональных данных.</p>
+        <a class="fp-button fp-button--gold fp-give__submit" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-donate-name="Пожертвование" data-donate-name-regular="Пожертвование (ежемесячно)" data-donate-min="100"><span>Пожертвовать 1 000 ₽</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+        <p class="fp-give__hint" role="status" hidden></p>
+        <p class="fp-give__legal">Нажимая кнопку, вы соглашаетесь с <a href="https://ivanweb1.github.io/fondplatov-t123/assets/documents/fondplatov-public-offer.pdf" target="_blank" rel="noopener">публичной офертой</a> и <a href="https://ivanweb1.github.io/fondplatov-t123/policy/" target="_top">политикой обработки персональных данных</a>.</p>
       </div>
     </div>
   </section>
@@ -2722,6 +2734,12 @@
   #fp-home-v1 .fp-give__regular input:checked + span { background: var(--fp-gold); }
   #fp-home-v1 .fp-give__regular input:checked + span::after { transform: translateX(16px); }
   #fp-home-v1 .fp-give__submit { width: 100%; }
+  #fp-home-v1 .fp-give__submit > span,
+  #fp-home-v1 .fp-give__submit > svg { pointer-events: none; }
+  #fp-home-v1 .fp-give__hint { margin: 12px 0 0 !important; color: #e2c981 !important; font-size: 11px !important; line-height: 1.6 !important; }
+  #fp-home-v1 .fp-give__hint[hidden] { display: none; }
+  #fp-home-v1 .fp-give__hint.is-error { color: #e6866b !important; }
+  #fp-home-v1 .fp-give__legal a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
   #fp-home-v1 .fp-give__legal { margin: 13px 0 0 !important; color: rgba(240,237,230,.32) !important; font-size: 8px !important; line-height: 1.55 !important; }
 
   #fp-home-v1 .fp-footer { padding: 82px 0 30px; background: #050607; border-top: 1px solid rgba(226,201,129,.18); }
@@ -2858,10 +2876,18 @@
     if (!root || root.dataset.initialized === "true") return;
     root.dataset.initialized = "true";
 
-    /* Плавный переход только для внутренних якорей этого блока */
-    root.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    /* Плавный переход только для внутренних якорей этого блока.
+       Ссылки #order:... — это команда корзины Tilda, а не якорь: их пропускаем. */
+    root.querySelectorAll('a[href^="#"]:not([href^="#order"])').forEach(function (link) {
       link.addEventListener("click", function (event) {
-        var target = document.querySelector(link.getAttribute("href"));
+        var href = link.getAttribute("href");
+        if (!href || href === "#" || href.indexOf("#order") === 0) return;
+        var target = null;
+        try {
+          target = document.querySelector(href);
+        } catch (error) {
+          return;
+        }
         if (!target) return;
         event.preventDefault();
         target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -2989,19 +3015,113 @@
       }, 4600);
     }
 
-    /* Выбор суммы в прототипе формы пожертвования */
+    /* --- Форма пожертвования: связка с корзиной Tilda (блок T706) ---
+       Кнопка ведёт на ссылку вида #order:Пожертвование=СУММА — это штатный
+       способ Tilda положить товар в корзину. Скрипт корзины сам перехватывает
+       клик, открывает окно заказа и передаёт сумму в платёжную систему.
+       На демо-странице GitHub Pages корзины нет — показываем подсказку. */
     var amountButtons = root.querySelectorAll(".fp-give__amounts button");
     var customAmount = root.querySelector(".fp-give__custom input");
+    var giveSubmit = root.querySelector(".fp-give__submit");
+    var giveRegular = root.querySelector(".fp-give__regular input");
+    var giveHint = root.querySelector(".fp-give__hint");
+    var defaultAmountButton = root.querySelector(".fp-give__amounts button.is-selected") || amountButtons[0];
+    var donateMin = giveSubmit ? parseInt(giveSubmit.getAttribute("data-donate-min"), 10) || 0 : 0;
+
+    function fpFormatAmount(value) {
+      return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    function fpSelectedAmount() {
+      if (customAmount && customAmount.value.trim() !== "") {
+        return Math.floor(Number(customAmount.value)) || 0;
+      }
+      var active = root.querySelector(".fp-give__amounts button.is-selected");
+      return active ? parseInt(active.getAttribute("data-amount"), 10) || 0 : 0;
+    }
+
+    function fpDonationName() {
+      if (!giveSubmit) return "";
+      var isRegular = giveRegular && giveRegular.checked;
+      return giveSubmit.getAttribute(isRegular ? "data-donate-name-regular" : "data-donate-name") || "";
+    }
+
+    function fpShowHint(text, isError) {
+      if (!giveHint) return;
+      giveHint.textContent = text;
+      giveHint.classList.toggle("is-error", !!isError);
+      giveHint.hidden = false;
+    }
+
+    function fpHideHint() {
+      if (giveHint) giveHint.hidden = true;
+    }
+
+    function fpSyncSubmit() {
+      if (!giveSubmit) return;
+      var amount = fpSelectedAmount();
+      giveSubmit.setAttribute("href", "#order:" + encodeURIComponent(fpDonationName()) + "=" + (amount > 0 ? amount : 0));
+      var label = giveSubmit.querySelector("span");
+      if (label) {
+        label.textContent = amount > 0 ? "Пожертвовать " + fpFormatAmount(amount) + " ₽" : "Пожертвовать";
+      }
+    }
+
+    /* Сумма пожертвования заменяется, а не суммируется: чистим корзину перед добавлением */
+    function fpClearCart() {
+      try {
+        var cart = window.tcart;
+        if (cart && Object.prototype.toString.call(cart.products) === "[object Array]" && cart.products.length) {
+          cart.products = [];
+          if (typeof window.tcart__updateTotalProductsinCartObj === "function") window.tcart__updateTotalProductsinCartObj();
+          if (typeof window.tcart__saveLocalObj === "function") window.tcart__saveLocalObj();
+          if (typeof window.tcart__reDrawProducts === "function") window.tcart__reDrawProducts();
+          if (typeof window.tcart__reDrawCartIcon === "function") window.tcart__reDrawCartIcon();
+        }
+      } catch (error) {}
+    }
+
     amountButtons.forEach(function (button) {
       button.addEventListener("click", function () {
         amountButtons.forEach(function (item) { item.classList.remove("is-selected"); });
         button.classList.add("is-selected");
         if (customAmount) customAmount.value = "";
+        fpHideHint();
+        fpSyncSubmit();
       });
     });
+
     if (customAmount) {
       customAmount.addEventListener("input", function () {
+        var isFilled = customAmount.value.trim() !== "";
         amountButtons.forEach(function (item) { item.classList.remove("is-selected"); });
+        if (!isFilled && defaultAmountButton) defaultAmountButton.classList.add("is-selected");
+        fpHideHint();
+        fpSyncSubmit();
+      });
+    }
+
+    if (giveRegular) giveRegular.addEventListener("change", fpSyncSubmit);
+
+    if (giveSubmit) {
+      fpSyncSubmit();
+      giveSubmit.addEventListener("click", function (event) {
+        var amount = fpSelectedAmount();
+        if (!amount || amount < donateMin) {
+          event.preventDefault();
+          fpShowHint("Укажите сумму пожертвования — от " + fpFormatAmount(donateMin) + " ₽.", true);
+          if (customAmount) customAmount.focus();
+          return;
+        }
+        fpSyncSubmit();
+        if (typeof window.tcart__addProduct !== "function") {
+          event.preventDefault();
+          fpShowHint("Демонстрационная страница: корзина Tilda здесь не подключена. На сайте эта кнопка откроет форму оплаты.", false);
+          return;
+        }
+        fpHideHint();
+        fpClearCart();
+        /* дальше клик обрабатывает скрипт корзины Tilda */
       });
     }
   })();
