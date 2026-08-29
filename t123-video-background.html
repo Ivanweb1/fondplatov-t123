@@ -26,7 +26,10 @@
   подписку должен принимать отдельный сервис (автоплатежи ЮKassa по API либо
   отдельный проект на CloudPayments). Его адрес вписывается в константу
   FP_RECURRING_URL в скрипте внизу файла — тумблер «Помогать ежемесячно»
-  включится автоматически. Пока константа пустая, тумблер скрыт.
+  начнёт вести на него автоматически.
+  Пока константа пустая, тумблер остаётся на месте, но платёж уходит в корзину
+  как разовый — с пометкой «Пожертвование (ежемесячно)» в названии заказа,
+  чтобы фонд видел намерение донора. Автосписания при этом НЕ происходит.
 -->
 
 <link rel="preload" as="image" href="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" type="image/svg+xml">
@@ -615,7 +618,7 @@
         </div>
         <label class="fp-give__custom">Своя сумма <input type="number" min="100" step="100" placeholder="Введите сумму" inputmode="numeric"></label>
         <label class="fp-give__regular"><input type="checkbox"><span></span> Помогать ежемесячно</label>
-        <a class="fp-button fp-button--gold fp-give__submit" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-donate-name="Пожертвование" data-donate-min="100"><span>Пожертвовать 1 000 ₽</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+        <a class="fp-button fp-button--gold fp-give__submit" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-donate-name="Пожертвование" data-donate-name-regular="Пожертвование (ежемесячно)" data-donate-min="100"><span>Пожертвовать 1 000 ₽</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
         <p class="fp-give__hint" role="status" hidden></p>
         <p class="fp-give__legal">Нажимая кнопку, вы соглашаетесь с <a href="https://ivanweb1.github.io/fondplatov-t123/assets/documents/fondplatov-public-offer.pdf" target="_blank" rel="noopener">публичной офертой</a> и <a href="https://ivanweb1.github.io/fondplatov-t123/policy/" target="_top">политикой обработки персональных данных</a>.</p>
       </div>
@@ -3059,12 +3062,21 @@
       return active ? parseInt(active.getAttribute("data-amount"), 10) || 0 : 0;
     }
 
-    function fpDonationName() {
-      return giveSubmit ? giveSubmit.getAttribute("data-donate-name") || "" : "";
+    function fpIsRegular() {
+      return !!(giveRegular && giveRegular.checked);
     }
 
-    function fpIsRegular() {
-      return !!(FP_RECURRING_URL && giveRegular && giveRegular.checked);
+    /* Есть ли куда вести подписку. Пока FP_RECURRING_URL пуст, тумблер остаётся
+       на месте, но платёж уходит в корзину как разовый — с пометкой в названии
+       заказа, чтобы фонд видел намерение донора и связался с ним. */
+    function fpHasSubscriptionService() {
+      return !!FP_RECURRING_URL && fpIsRegular();
+    }
+
+    function fpDonationName() {
+      if (!giveSubmit) return "";
+      var attr = fpIsRegular() ? "data-donate-name-regular" : "data-donate-name";
+      return giveSubmit.getAttribute(attr) || giveSubmit.getAttribute("data-donate-name") || "";
     }
 
     function fpShowHint(text, isError) {
@@ -3081,9 +3093,9 @@
     function fpSyncSubmit() {
       if (!giveSubmit) return;
       var amount = fpSelectedAmount();
-      var isRegular = fpIsRegular();
+      var usesService = fpHasSubscriptionService();
 
-      if (isRegular) {
+      if (usesService) {
         giveSubmit.setAttribute("href", FP_RECURRING_URL.replace("{amount}", amount > 0 ? amount : ""));
         giveSubmit.setAttribute("target", "_top");
         giveSubmit.setAttribute("rel", "noopener");
@@ -3095,11 +3107,8 @@
 
       var label = giveSubmit.querySelector("span");
       if (label) {
-        if (!amount) {
-          label.textContent = isRegular ? "Помогать ежемесячно" : "Пожертвовать";
-        } else {
-          label.textContent = (isRegular ? "Помогать ежемесячно по " : "Пожертвовать ") + fpFormatAmount(amount) + " ₽";
-        }
+        var prefix = usesService ? "Помогать ежемесячно по " : "Пожертвовать ";
+        label.textContent = amount ? prefix + fpFormatAmount(amount) + " ₽" : prefix.trim();
       }
     }
 
@@ -3138,16 +3147,10 @@
     }
 
     if (giveRegular) {
-      var regularToggle = giveRegular.closest(".fp-give__regular");
-      if (!FP_RECURRING_URL) {
-        giveRegular.checked = false;
-        if (regularToggle) regularToggle.hidden = true;
-      } else {
-        giveRegular.addEventListener("change", function () {
-          fpHideHint();
-          fpSyncSubmit();
-        });
-      }
+      giveRegular.addEventListener("change", function () {
+        fpHideHint();
+        fpSyncSubmit();
+      });
     }
 
     if (giveSubmit) {
@@ -3161,7 +3164,7 @@
           return;
         }
         fpSyncSubmit();
-        if (fpIsRegular()) {
+        if (fpHasSubscriptionService()) {
           /* ежемесячное пожертвование оформляет внешний сервис подписок */
           fpHideHint();
           return;
