@@ -18,6 +18,15 @@
     — поля формы: Имя, Телефон, E-mail, чекбоксы «Политика конфиденциальности»
       и «Публичная оферта»;
     — платёжная система: ЮKassa.
+
+  ЕЖЕМЕСЯЧНЫЕ ПОЖЕРТВОВАНИЯ.
+  Корзина Tilda регулярные платежи по ЮKassa не поддерживает: у Tilda рекуррент
+  есть только для CloudPayments и bePaid, и там он включается на весь сайт —
+  выбирать «разово или ежемесячно» для конкретного заказа нельзя. Поэтому
+  подписку должен принимать отдельный сервис (автоплатежи ЮKassa по API либо
+  отдельный проект на CloudPayments). Его адрес вписывается в константу
+  FP_RECURRING_URL в скрипте внизу файла — тумблер «Помогать ежемесячно»
+  включится автоматически. Пока константа пустая, тумблер скрыт.
 -->
 
 <link rel="preload" as="image" href="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" type="image/svg+xml">
@@ -606,7 +615,7 @@
         </div>
         <label class="fp-give__custom">Своя сумма <input type="number" min="100" step="100" placeholder="Введите сумму" inputmode="numeric"></label>
         <label class="fp-give__regular"><input type="checkbox"><span></span> Помогать ежемесячно</label>
-        <a class="fp-button fp-button--gold fp-give__submit" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-donate-name="Пожертвование" data-donate-name-regular="Пожертвование (ежемесячно)" data-donate-min="100"><span>Пожертвовать 1 000 ₽</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
+        <a class="fp-button fp-button--gold fp-give__submit" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-donate-name="Пожертвование" data-donate-min="100"><span>Пожертвовать 1 000 ₽</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
         <p class="fp-give__hint" role="status" hidden></p>
         <p class="fp-give__legal">Нажимая кнопку, вы соглашаетесь с <a href="https://ivanweb1.github.io/fondplatov-t123/assets/documents/fondplatov-public-offer.pdf" target="_blank" rel="noopener">публичной офертой</a> и <a href="https://ivanweb1.github.io/fondplatov-t123/policy/" target="_top">политикой обработки персональных данных</a>.</p>
       </div>
@@ -2738,6 +2747,7 @@
   #fp-home-v1 .fp-give__submit > svg { pointer-events: none; }
   #fp-home-v1 .fp-give__hint { margin: 12px 0 0 !important; color: #e2c981 !important; font-size: 11px !important; line-height: 1.6 !important; }
   #fp-home-v1 .fp-give__hint[hidden] { display: none; }
+  #fp-home-v1 .fp-give__regular[hidden] { display: none; }
   #fp-home-v1 .fp-give__hint.is-error { color: #e6866b !important; }
   #fp-home-v1 .fp-give__legal a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
   #fp-home-v1 .fp-give__legal { margin: 13px 0 0 !important; color: rgba(240,237,230,.32) !important; font-size: 8px !important; line-height: 1.55 !important; }
@@ -3028,6 +3038,15 @@
     var defaultAmountButton = root.querySelector(".fp-give__amounts button.is-selected") || amountButtons[0];
     var donateMin = giveSubmit ? parseInt(giveSubmit.getAttribute("data-donate-min"), 10) || 0 : 0;
 
+    /* Адрес страницы оформления ЕЖЕМЕСЯЧНОГО пожертвования.
+       Корзина Tilda регулярные платежи по ЮKassa не умеет, поэтому подписку
+       принимает отдельный сервис (автоплатежи ЮKassa по API либо CloudPayments).
+       Впишите сюда его адрес — тумблер «Помогать ежемесячно» включится сам.
+       Необязательный плейсхолдер {amount} подставит выбранную сумму, например:
+       var FP_RECURRING_URL = "https://podpiska.fondplatov.ru/?sum={amount}";
+       Пока строка пустая, тумблер скрыт и обещаний донору не даётся. */
+    var FP_RECURRING_URL = "";
+
     function fpFormatAmount(value) {
       return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
@@ -3041,9 +3060,11 @@
     }
 
     function fpDonationName() {
-      if (!giveSubmit) return "";
-      var isRegular = giveRegular && giveRegular.checked;
-      return giveSubmit.getAttribute(isRegular ? "data-donate-name-regular" : "data-donate-name") || "";
+      return giveSubmit ? giveSubmit.getAttribute("data-donate-name") || "" : "";
+    }
+
+    function fpIsRegular() {
+      return !!(FP_RECURRING_URL && giveRegular && giveRegular.checked);
     }
 
     function fpShowHint(text, isError) {
@@ -3060,10 +3081,25 @@
     function fpSyncSubmit() {
       if (!giveSubmit) return;
       var amount = fpSelectedAmount();
-      giveSubmit.setAttribute("href", "#order:" + encodeURIComponent(fpDonationName()) + "=" + (amount > 0 ? amount : 0));
+      var isRegular = fpIsRegular();
+
+      if (isRegular) {
+        giveSubmit.setAttribute("href", FP_RECURRING_URL.replace("{amount}", amount > 0 ? amount : ""));
+        giveSubmit.setAttribute("target", "_top");
+        giveSubmit.setAttribute("rel", "noopener");
+      } else {
+        giveSubmit.setAttribute("href", "#order:" + encodeURIComponent(fpDonationName()) + "=" + (amount > 0 ? amount : 0));
+        giveSubmit.removeAttribute("target");
+        giveSubmit.removeAttribute("rel");
+      }
+
       var label = giveSubmit.querySelector("span");
       if (label) {
-        label.textContent = amount > 0 ? "Пожертвовать " + fpFormatAmount(amount) + " ₽" : "Пожертвовать";
+        if (!amount) {
+          label.textContent = isRegular ? "Помогать ежемесячно" : "Пожертвовать";
+        } else {
+          label.textContent = (isRegular ? "Помогать ежемесячно по " : "Пожертвовать ") + fpFormatAmount(amount) + " ₽";
+        }
       }
     }
 
@@ -3101,7 +3137,18 @@
       });
     }
 
-    if (giveRegular) giveRegular.addEventListener("change", fpSyncSubmit);
+    if (giveRegular) {
+      var regularToggle = giveRegular.closest(".fp-give__regular");
+      if (!FP_RECURRING_URL) {
+        giveRegular.checked = false;
+        if (regularToggle) regularToggle.hidden = true;
+      } else {
+        giveRegular.addEventListener("change", function () {
+          fpHideHint();
+          fpSyncSubmit();
+        });
+      }
+    }
 
     if (giveSubmit) {
       fpSyncSubmit();
@@ -3114,6 +3161,11 @@
           return;
         }
         fpSyncSubmit();
+        if (fpIsRegular()) {
+          /* ежемесячное пожертвование оформляет внешний сервис подписок */
+          fpHideHint();
+          return;
+        }
         if (typeof window.tcart__addProduct !== "function") {
           event.preventDefault();
           fpShowHint("Демонстрационная страница: корзина Tilda здесь не подключена. На сайте эта кнопка откроет форму оплаты.", false);
