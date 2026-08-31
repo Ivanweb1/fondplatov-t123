@@ -1,0 +1,113 @@
+/* Тёмная тема для страниц постов Потоков (адреса /tpost/...) — под оформление
+   сайта фонда. Tilda собирает эти страницы своим стандартным макетом
+   (.t-cms__page-*), поэтому правила здесь глобальные.
+
+   Подключается один раз на весь сайт:
+     Настройки сайта → Ещё → HTML-код для вставки внутрь head
+     <link rel="stylesheet" href="https://ivanweb1.github.io/fondplatov-t123/assets/tilda-post-dark.css?v=1">
+
+   Всё покрашенное ниже живёт только на страницах постов, поэтому остальным
+   страницам сайта файл ничего не меняет: фон и цвет текста применяются через
+   :has(.t-cms__page-container), а прочие правила — по классам самих постов.
+
+   Шрифты подключаются здесь же: страница поста не тянет их сама. */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Prata&display=swap');
+
+:root {
+  --post-bg: #090b0d;
+  --post-panel: #101315;
+  --post-ink: #f0ede6;
+  --post-muted: rgba(240, 237, 230, .58);
+  --post-dim: rgba(240, 237, 230, .38);
+  --post-line: rgba(255, 255, 255, .12);
+  --post-gold: #e2c981;
+  --post-display: 'Prata', Georgia, serif;
+  --post-body: 'Manrope', system-ui, sans-serif;
+}
+
+html:has(.t-cms__page-container),
+body:has(.t-cms__page-container) {
+  background-color: var(--post-bg) !important;
+  color: var(--post-ink);
+}
+
+.t-cms__page-container,
+.t-cms__page,
+.t-cms__page-wrapper {
+  background-color: transparent !important;
+  color: var(--post-ink) !important;
+}
+
+/* шапка страницы поста: кнопка «назад» и название потока */
+.t-cms__page-header {
+  background-color: rgba(9, 11, 13, .72) !important;
+  border-bottom: 1px solid var(--post-line);
+  backdrop-filter: blur(10px);
+}
+.t-cms__page-header__title,
+.t-cms__page-header__back-button {
+  color: var(--post-ink) !important;
+}
+.t-cms__page-header__back-button:hover { color: var(--post-gold) !important; }
+.t-cms__page-header__back-button svg,
+.t-cms__page-header__back-button path { fill: currentColor !important; stroke: currentColor !important; }
+
+/* заголовок поста и дата */
+.t-cms__page__cell_txt .t-title,
+.t-cms__page__cell_txt h1,
+.t-cms__page__cell_txt h2,
+.t-cms__page__cell_txt h3 {
+  color: var(--post-ink) !important;
+  font-family: var(--post-display) !important;
+  font-weight: 400 !important;
+}
+.t-cms__page__cell_txt .t-uptitle {
+  color: var(--post-gold) !important;
+  font-family: var(--post-body) !important;
+  letter-spacing: .12em;
+}
+
+/* тело поста */
+.t-cms__page__text,
+.t-redactor__text,
+.t-cms__page__cell_txt .t-text,
+.t-cms__page__cell_txt .t-descr {
+  color: var(--post-ink) !important;
+  font-family: var(--post-body) !important;
+}
+.t-redactor__text a,
+.t-cms__page__text a {
+  color: var(--post-gold) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.t-redactor__text blockquote {
+  color: var(--post-muted) !important;
+  border-left: 2px solid var(--post-gold);
+  background: rgba(226, 201, 129, .05);
+}
+.t-redactor__text hr { border-color: var(--post-line) !important; }
+.t-redactor__text table td,
+.t-redactor__text table th {
+  color: var(--post-ink) !important;
+  border-color: var(--post-line) !important;
+}
+
+/* галерея и слайдер */
+.t-cms__page__slds-arrow {
+  color: var(--post-ink) !important;
+  background-color: rgba(9, 11, 13, .6) !important;
+}
+.t-cms__page__slds-bullets .t-slds__bullet_body { background-color: var(--post-dim) !important; }
+.t-cms__page__slds-bullets .t-slds__bullet_active .t-slds__bullet_body { background-color: var(--post-gold) !important; }
+
+/* разделители полей, которые Tilda ставит между блоками */
+.t-cms__page__separator { color: var(--post-dim) !important; }
+
+/* плитка «читайте также», если она включена в настройках потока */
+.t-cms__seealso .t-cms__card__atom,
+.t-cms__seealso .t-cms__card__text {
+  color: var(--post-ink) !important;
+}
+.t-cms__seealso .t-cms__card { border-color: var(--post-line) !important; }
