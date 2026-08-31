@@ -14,7 +14,15 @@
      внутри iframe;
   4) подставляет ключ проекта в страницы, собранные из общего шаблона:
      в демо он читался из адреса (?project=facts), а у страницы Tilda
-     такого параметра не будет.
+     такого параметра не будет;
+  5) вшивает наши CSS прямо в блок вместо ссылок на GitHub Pages — так стили
+     не зависят от репозитория и не отвалятся, если он станет недоступен.
+     В исходниках остаются обычные <link>, чтобы демо работало, а стили
+     правились в одном месте.
+
+Дополнительно собирается tilda/head-post-styles.html — тёмная тема страниц
+постов Потоков. Её нужно один раз вставить в Настройки сайта → Ещё →
+HTML-код для вставки внутрь head.
 
 Если адреса страниц в Tilda изменятся — поправьте таблицу PAGES и запустите заново.
 """
@@ -73,6 +81,36 @@ ALIASES = {
 }
 
 ASSET_RE = re.compile(r'\.(css|js|png|jpe?g|webp|svg|pdf|mp4)')
+STYLE_LINK_RE = re.compile(
+    r'[ \t]*<link rel="stylesheet" href="' + re.escape(BASE)
+    + r'/assets/([\w.-]+\.css)(?:\?[^"]*)?">[ \t]*\n?')
+
+FONTS_LINK = (
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+    '<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700'
+    '&family=Prata&display=swap" rel="stylesheet">\n'
+)
+
+POST_STYLES_OUT = 'head-post-styles.html'
+FONT_IMPORT_RE = re.compile(r"@import url\('https://fonts\.googleapis\.com[^']*'\);\n?")
+
+
+def read_css(name):
+    return io.open(os.path.join('assets', name), encoding='utf-8').read().strip()
+
+
+def inline_styles(html):
+    """Меняет ссылки на наши CSS их содержимым."""
+    return STYLE_LINK_RE.sub(lambda m: '<style>\n' + read_css(m.group(1)) + '\n</style>\n', html)
+
+
+def build_post_styles():
+    """Сниппет для head сайта: шрифты ссылкой, тёмная тема постов — текстом."""
+    css = FONT_IMPORT_RE.sub('', read_css('tilda-post-dark.css'))
+    return FONTS_LINK + '<style>\n' + css + '\n</style>\n'
+
+
 TEMPLATE_CALL = "new URLSearchParams(window.location.search).get('project')"
 
 
@@ -101,8 +139,13 @@ def build():
         if key is not None:
             html = html.replace(TEMPLATE_CALL, ("'%s'" % key) if key else 'null')
 
+        html = inline_styles(html)
+
         io.open(os.path.join(OUT_DIR, slug + '.html'), 'w', encoding='utf-8', newline='').write(html)
         rows.append((slug, addr, before - html.count(BASE), html.count(BASE)))
+
+    io.open(os.path.join(OUT_DIR, POST_STYLES_OUT), 'w', encoding='utf-8',
+            newline='').write(build_post_styles())
 
     return rows
 

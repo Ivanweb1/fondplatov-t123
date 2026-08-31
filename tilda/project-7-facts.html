@@ -4,7 +4,139 @@
   ссылку #order:Название=СУММА, её перехватывает скрипт корзины.
   На странице обязателен блок «Корзина» (T706) с платёжной системой.
 -->
-<link rel="stylesheet" href="https://ivanweb1.github.io/fondplatov-t123/assets/tilda-cart-dark.css?v=1">
+<style>
+/* Тёмная тема для корзины Tilda (блок T706) — под оформление сайта фонда.
+   Корзина живёт в своём блоке Tilda, снаружи нашей вёрстки, поэтому селекторы
+   здесь глобальные. Часть значений Tilda подставляет инлайном из настроек
+   блока, поэтому местами нужен !important — иначе инлайн перебьёт файл.
+
+   Цвет кнопки «Оплатить» намеренно не трогаем: он задаётся в настройках
+   блока T706 в Tilda, пусть остаётся управляемым оттуда.
+
+   Подключено на страницах с формой пожертвования: главная и три страницы
+   проектов из шаблона t123-project-platov.html. */
+
+.t706__cartwin {
+  --cart-bg: #101315;
+  --cart-ink: #f0ede6;
+  --cart-muted: rgba(240, 237, 230, .58);
+  --cart-line: rgba(255, 255, 255, .12);
+  --cart-gold: #e2c981;
+}
+
+.t706__cartwin-content {
+  background-color: var(--cart-bg) !important;
+  color: var(--cart-ink);
+}
+
+.t706__cartwin-heading,
+.t706__product-title,
+.t706__product-amount,
+.t706__product-quantity,
+.t706__cartwin-prodamount-wrap,
+.t706__cartwin-prodamount,
+.t706__cartwin-prodamount-label,
+.t706__cartwin-totalamount-wrap,
+.t706__cartwin-totalamount,
+.t706__cartwin-totalamount-label,
+.t706__cartwin-totalamount-info,
+.t706__cartwin-empty {
+  color: var(--cart-ink) !important;
+}
+
+.t706__cartwin-prodamount-label,
+.t706__product-quantity {
+  color: var(--cart-muted) !important;
+}
+
+.t706__product,
+.t706__cartwin-top,
+.t706__cartwin-bottom,
+.t706__cartwin-totalamount-wrap {
+  border-color: var(--cart-line) !important;
+}
+
+/* крестик удаления товара Tilda рисует тёмным — на тёмном фоне не виден */
+.t706__product-del {
+  filter: invert(1) brightness(1.6);
+  opacity: .5;
+}
+.t706__product-del:hover { opacity: .9; }
+
+/* --- поля формы --- */
+.t706__cartwin .t-input,
+.t706__cartwin .t-input-phonemask__wrap {
+  color: var(--cart-ink) !important;
+  background-color: rgba(255, 255, 255, .04) !important;
+  border-color: var(--cart-line) !important;
+}
+.t706__cartwin .t-input:focus,
+.t706__cartwin .t-input-phonemask__wrap:focus-within {
+  border-color: var(--cart-gold) !important;
+}
+.t706__cartwin .t-input-phonemask,
+.t706__cartwin .t-input-phonemask__select-code {
+  color: var(--cart-ink) !important;
+  background-color: transparent !important;
+}
+
+.t706__cartwin input::placeholder,
+.t706__cartwin textarea::placeholder {
+  color: var(--cart-muted) !important;
+  opacity: 1 !important;
+}
+.t706__cartwin input::-webkit-input-placeholder,
+.t706__cartwin textarea::-webkit-input-placeholder {
+  color: var(--cart-muted) !important;
+  opacity: 1 !important;
+}
+
+/* автозаполнение браузера перекрашивает поле в белый — гасим */
+.t706__cartwin input:-webkit-autofill,
+.t706__cartwin input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--cart-ink);
+  -webkit-box-shadow: 0 0 0 1000px #16191c inset;
+}
+
+/* --- согласия --- */
+.t706__cartwin .t-checkbox__control,
+.t706__cartwin .t-checkbox__control span {
+  color: var(--cart-muted) !important;
+}
+.t706__cartwin .t-checkbox__control a {
+  color: var(--cart-gold) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.t706__cartwin .t-checkbox__indicator {
+  background-color: rgba(255, 255, 255, .04);
+  border-color: var(--cart-line) !important;
+}
+
+/* --- сообщения --- */
+.t706__cartwin .t-form__successbox {
+  color: var(--cart-ink) !important;
+  background-color: rgba(255, 255, 255, .04);
+}
+.t706__cartwin .t-form__errorbox-wrapper,
+.t706__cartwin .t-form__errorbox-text,
+.t706__cartwin .t-input-error {
+  color: #e6866b !important;
+}
+
+/* выпадающий список кодов стран Tilda вешает на body, а не внутрь корзины */
+.t-input-phonemask__options-wrap {
+  background-color: #16191c !important;
+  border-color: rgba(255, 255, 255, .12) !important;
+}
+.t-input-phonemask__options-item {
+  color: var(--cart-ink) !important;
+}
+.t-input-phonemask__options-item:hover,
+.t-input-phonemask__options-item_chosen {
+  background-color: rgba(255, 255, 255, .07) !important;
+}
+</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Prata&display=swap" rel="stylesheet">
