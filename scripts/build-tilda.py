@@ -37,7 +37,8 @@ PAGES = [
     ('about',                        't123-project-about.html',                '/about',                       None),
     ('contacts',                     't123-project-contacts.html',             '/contacts',                    None),
     ('documents',                    't123-project-documents.html',            '/documents',                   None),
-    ('news',                         't123-project-news.html',                 '/news',                        None),
+    ('news-top',                     't123-project-news-top.html',             '/news',                        None),
+    ('news-bottom',                  't123-project-news-bottom.html',          '/news',                        None),
     ('policy',                       't123-project-policy.html',               '/politika',                    None),
     ('news-bitva-lukomore',          't123-news-bitva-lukomore.html',          '/news/bitva-lukomore',         None),
     ('news-premiera-rostov',         't123-news-premiera-rostov.html',         '/news/premiera-rostov',        None),
@@ -64,12 +65,20 @@ PAGES = [
     ('project-festival-support',     't123-project-festival-support.html',     '/sup_festival',                None),
 ]
 
+# Папки демо, у которых больше нет собственного файла на выходе, но ссылки на
+# них в вёрстке остались. Страница новостей разрезана на два блока для Tilda,
+# а в демо она по-прежнему одна — /news/.
+ALIASES = {
+    'news': '/news',
+}
+
 ASSET_RE = re.compile(r'\.(css|js|png|jpe?g|webp|svg|pdf|mp4)')
 TEMPLATE_CALL = "new URLSearchParams(window.location.search).get('project')"
 
 
 def build():
     urls = {slug: addr for slug, _, addr, _ in PAGES}
+    urls.update(ALIASES)
     # длинные слаги первыми: иначе /project-postoim/ подменится раньше,
     # чем /project-postoim-details/, и адрес получится битым
     slugs = sorted(urls, key=len, reverse=True)

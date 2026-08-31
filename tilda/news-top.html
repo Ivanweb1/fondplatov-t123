@@ -1,0 +1,190 @@
+<link rel="stylesheet" href="https://ivanweb1.github.io/fondplatov-t123/assets/facts-pages.css?v=8">
+<link rel="stylesheet" href="https://ivanweb1.github.io/fondplatov-t123/assets/postoim-details.css?v=7">
+<link rel="stylesheet" href="https://ivanweb1.github.io/fondplatov-t123/assets/list-pages.css?v=9">
+
+<main class="fx-page fx-page--head">
+  <header class="fx-header">
+    <a class="fx-logo" href="/"><img src="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" alt="Благотворительный фонд имени М. И. Платова"></a>
+    <nav class="fx-nav" aria-label="Основная навигация"><a href="/about">О фонде</a><a href="/#fp-projects">Проекты</a><a href="/news">Новости</a><a href="/documents">Документы</a><a href="/contacts">Контакты</a></nav>
+    <div class="fx-header__actions"><a class="fx-help" href="/#fp-donate">Помочь фонду</a><a class="fx-svo" href="/#fp-svo"><i></i> Помощь казакам СВО</a></div>
+    <button class="fx-menu" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <div class="fx-mobile-nav" aria-hidden="true"><a href="/about">О фонде</a><a href="/#fp-projects">Проекты</a><a href="/news">Новости</a><a href="/documents">Документы</a><a href="/contacts">Контакты</a><a class="fx-mobile-nav__svo" href="/#fp-svo">Помощь казакам — участникам СВО</a><a class="fx-mobile-nav__donate" href="/#fp-donate">Помочь фонду</a></div>
+
+  <section class="fx-hero" aria-labelledby="fn-title">
+    <div class="fx-shell fx-hero__inner">
+      <a class="fx-back" href="/news"><i>←</i> На главную</a>
+      <p class="fx-kicker">Новости и события</p>
+      <h1 id="fn-title">Фонд работает<br><em>История продолжается</em></h1>
+      <p class="fx-hero__lead">Хроника съёмок, премьер, встреч и признаний проектов фонда.</p>
+    </div>
+  </section>
+</main>
+
+<style>
+  /* --- Оформление блока Потоков (T2823) под карточки этого сайта ---
+     Блок Потоков — отдельный блок Tilda, вставить его внутрь нашей вёрстки
+     нельзя, поэтому страница разрезана надвое, а поток стоит между половинами.
+     Селекторы намеренно узкие: трогаем только карточки ленты. */
+
+  .fx-page--head,
+  .fx-page--tail { min-height: 0; }
+
+  .t-cms__wrapper,
+  .t2823 { background: #090b0d; }
+  /* собственный заголовок блока Потоков на тёмном фоне не виден.
+     Лучше очистить его в настройках блока — на странице уже есть свой. */
+  .t2823 .t-section__title { color: var(--text) !important; }
+  .t2823 .t-section__descr { color: rgba(240, 237, 230, .58) !important; }
+  .t2823__container_items { padding-top: 0 !important; }
+
+  .t-cms__card_list {
+    position: relative;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 44px !important;
+    align-items: center !important;
+    min-height: 130px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+    transition: background-color .25s ease, padding .25s ease;
+  }
+  .t-cms__card_list:hover { padding-right: 16px; padding-left: 16px; background: rgba(226, 201, 129, .05); }
+  .t-cms__card_list + .t-cms__card_list { margin-top: 0; }
+
+  /* ссылка-подложка накрывает карточку целиком */
+  .t-cms__card_list .t-cms__card__link { position: absolute; inset: 0; z-index: 2; }
+
+  /* превью не выводим — в этом списке карточки текстовые */
+  .t-cms__card_list .t-cms__card__cell_media { display: none; }
+
+  .t-cms__card_list .t-cms__card__cell_txt {
+    display: grid !important;
+    grid-template-columns: 120px minmax(0, 1fr) !important;
+    column-gap: 28px !important;
+    align-items: center !important;
+  }
+  .t-cms__card_list .fp-feed__date { grid-column: 1; grid-row: 1 / span 2; align-self: center; }
+  .t-cms__card_list .fp-feed__title { grid-column: 2; grid-row: 1; }
+  .t-cms__card_list .fp-feed__descr { grid-column: 2; grid-row: 2; }
+
+  /* дата: крупное число, под ним месяц и год */
+  .t-cms__card_list .fp-feed__date .t-cms__card__atom { display: block; color: var(--gold); font-family: var(--display); }
+  .t-cms__card_list .fp-feed__day { display: block; font-size: 44px; line-height: 1; }
+  .t-cms__card_list .fp-feed__month { display: block; margin-top: 4px; color: rgba(240, 237, 230, .46); font-family: var(--body); font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+
+  .t-cms__card_list .fp-feed__title .t-cms__card__atom { color: var(--text); font-family: var(--display); font-size: 28px; font-weight: 400; line-height: 1.28; }
+  .t-cms__card_list .fp-feed__descr .t-cms__card__atom { display: block; margin-top: 10px; color: rgba(240, 237, 230, .58); font-family: var(--body); font-size: 16px; line-height: 1.65; }
+
+  /* разделители «●», которые Tilda ставит между полями, здесь не нужны */
+  .t-cms__card_list .t-cms__card__separator { display: none; }
+
+  .t-cms__card_list .fp-feed__arrow {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    color: var(--gold);
+    border: 1px solid rgba(255, 255, 255, .14);
+    font-style: normal;
+    font-size: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .t-cms__card_list { grid-template-columns: minmax(0, 1fr) !important; min-height: 0; padding: 20px 0; }
+    .t-cms__card_list:hover { padding-right: 0; padding-left: 0; }
+    .t-cms__card_list .fp-feed__arrow { display: none; }
+    .t-cms__card_list .t-cms__card__cell_txt { grid-template-columns: 64px minmax(0, 1fr) !important; column-gap: 16px !important; }
+    .t-cms__card_list .fp-feed__day { font-size: 28px; }
+    .t-cms__card_list .fp-feed__title .t-cms__card__atom { font-size: 20px; line-height: 1.3; overflow-wrap: anywhere; }
+    .t-cms__card_list .fp-feed__descr .t-cms__card__atom { font-size: 14px; overflow-wrap: anywhere; }
+  }
+  @media (max-width: 520px) {
+    .t-cms__card_list .t-cms__card__cell_txt { grid-template-columns: 48px minmax(0, 1fr) !important; column-gap: 12px !important; }
+    .t-cms__card_list .fp-feed__day { font-size: 25px; }
+    .t-cms__card_list .fp-feed__month { font-size: 9px; overflow-wrap: anywhere; }
+  }
+</style>
+<script>
+(() => {
+  const header = document.querySelector('.fx-header');
+  const menu = document.querySelector('.fx-menu');
+  const nav = document.querySelector('.fx-mobile-nav');
+  const updateHeader = () => header && header.classList.toggle('is-scrolled', window.scrollY > 40);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  if (menu && nav) {
+    const close = () => { menu.setAttribute('aria-expanded','false'); nav.classList.remove('is-open'); nav.setAttribute('aria-hidden','true'); };
+    menu.addEventListener('click', () => {
+      const open = menu.getAttribute('aria-expanded') !== 'true';
+      menu.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+      nav.setAttribute('aria-hidden', String(!open));
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
+  }
+})();
+</script>
+
+<script>
+(() => {
+  /* Размечает карточки Потока так, чтобы к ним применились стили выше:
+     поля Tilda различаются только по data-style, поэтому вешаем свои классы.
+     Дату 29.03.2025 разбираем на «29» и «марта 2025» — как в остальных списках
+     на сайте. Пагинация подгружает карточки позже, поэтому следим за лентой. */
+  const MONTHS = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+                  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+  const ROLES = { title_typo: 'fp-feed__title', descr_typo: 'fp-feed__descr', text_typo: 'fp-feed__date' };
+
+  const decorateDate = atom => {
+    const holder = atom.querySelector('.t-cms__card__text');
+    if (!holder || holder.dataset.fpDate === '1') return;
+    const parts = holder.textContent.trim().match(/^(\d{1,2})[.\/](\d{1,2})[.\/](\d{4})$/);
+    if (!parts) return;
+    const month = MONTHS[Number(parts[2]) - 1];
+    if (!month) return;
+    holder.dataset.fpDate = '1';
+    holder.innerHTML = '';
+    const day = document.createElement('span');
+    day.className = 'fp-feed__day';
+    day.textContent = String(Number(parts[1]));
+    const rest = document.createElement('span');
+    rest.className = 'fp-feed__month';
+    rest.textContent = month + ' ' + parts[3];
+    holder.append(day, rest);
+  };
+
+  const decorate = scope => {
+    scope.querySelectorAll('.t-cms__card').forEach(card => {
+      if (card.dataset.fpReady === '1') return;
+      card.dataset.fpReady = '1';
+      card.querySelectorAll('.t-cms__card__molecule').forEach(molecule => {
+        const atom = molecule.querySelector('[data-style]');
+        if (!atom) return;
+        const role = ROLES[atom.getAttribute('data-style')];
+        if (!role) return;
+        molecule.classList.add(role);
+        if (role === 'fp-feed__date') decorateDate(atom);
+      });
+      if (!card.querySelector('.fp-feed__arrow')) {
+        const arrow = document.createElement('i');
+        arrow.className = 'fp-feed__arrow';
+        arrow.textContent = '\u2192';
+        card.append(arrow);
+      }
+    });
+  };
+
+  const start = () => {
+    decorate(document);
+    const list = document.querySelector('.js-cms-container-cards');
+    if (!list) return;
+    new MutationObserver(() => decorate(document)).observe(list, { childList: true, subtree: true });
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+  /* лента гидрируется скриптом Tilda уже после загрузки — подстраховываемся */
+  window.setTimeout(start, 1200);
+})();
+</script>
