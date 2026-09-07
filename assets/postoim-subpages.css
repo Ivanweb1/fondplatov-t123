@@ -1,6 +1,6 @@
 .ps-page{background:#080a0c}
 .ps-main{position:relative;min-height:760px;padding:176px 0 110px;background:#0a0c0e}
-.ps-main:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,10,12,.1),rgba(8,10,12,.14)),url('https://ivanweb1.github.io/fondplatov-t123/assets/postoim-hero-v1.webp') center/cover no-repeat;opacity:.42}
+.ps-main:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,10,12,.1),rgba(8,10,12,.14)),url('https://static.tildacdn.com/tild3261-3536-4438-b838-393862613137/postoim-hero-v1.webp') center/cover no-repeat;opacity:.42}
 .ps-main:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,12,.25),#0a0c0e 82%)}
 .ps-inner{position:relative;z-index:1}
 .ps-back{display:inline-flex;align-items:center;gap:12px;color:rgba(240,237,230,.52);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.ps-back i{color:var(--gold);font-style:normal}
