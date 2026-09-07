@@ -611,6 +611,7 @@
         <div class="fp-give__tabs" role="tablist" aria-label="Способ пожертвования">
           <button type="button" class="is-active" data-give-tab="online" role="tab" aria-selected="true">Онлайн</button>
           <button type="button" data-give-tab="requisites" role="tab" aria-selected="false">По реквизитам</button>
+          <button type="button" data-give-tab="qr" role="tab" aria-selected="false">QR-код</button>
         </div>
 
         <div class="fp-give__tabpane" data-give-pane="online">
@@ -641,6 +642,18 @@
             <div><dt>Корр. счёт банка</dt><dd>30101810400000000225</dd></div>
           </dl>
           <p class="fp-give__req-note">В назначении платежа укажите «Благотворительное пожертвование». Полный список документов фонда — на <a href="https://ivanweb1.github.io/fondplatov-t123/documents/" target="_top" style="color:inherit;text-decoration:underline;text-underline-offset:2px">странице документов</a>.</p>
+        </div>
+
+        <div class="fp-give__tabpane fp-give__tabpane--qr" data-give-pane="qr" hidden>
+          <div class="fp-give__qr-item">
+            <p>Система Быстрых Платежей</p>
+            <img src="https://ivanweb1.github.io/fondplatov-t123/assets/donate-qr-sbp.png" width="436" height="427" alt="QR-код Системы Быстрых Платежей для пожертвования фонду" loading="lazy">
+          </div>
+          <div class="fp-give__qr-item">
+            <p>Пожертвование по ссылке</p>
+            <img src="https://ivanweb1.github.io/fondplatov-t123/assets/donate-qr-link.png" width="436" height="427" alt="QR-код со ссылкой на пожертвование фонду" loading="lazy">
+          </div>
+          <p class="fp-give__req-note">1. Наведите камеру телефона на QR-код и перейдите по ссылке.<br>2. Подтвердите платёж в приложении банка.</p>
         </div>
       </div>
     </div>
@@ -2766,8 +2779,8 @@
   #fp-home-v1 .fp-give__legal a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
   #fp-home-v1 .fp-give__legal { margin: 13px 0 0 !important; color: rgba(240,237,230,.32) !important; font-size: 8px !important; line-height: 1.55 !important; }
 
-  #fp-home-v1 .fp-give__tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 22px; }
-  #fp-home-v1 .fp-give__tabs button { min-height: 42px; padding: 0 10px; color: rgba(240,237,230,.6); border: 1px solid rgba(255,255,255,.14); background: transparent; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: border-color .25s ease, color .25s ease, background-color .25s ease; }
+  #fp-home-v1 .fp-give__tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 22px; }
+  #fp-home-v1 .fp-give__tabs button { min-height: 42px; padding: 0 8px; color: rgba(240,237,230,.6); border: 1px solid rgba(255,255,255,.14); background: transparent; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: border-color .25s ease, color .25s ease, background-color .25s ease; }
   #fp-home-v1 .fp-give__tabs button.is-active { color: #111416; border-color: var(--fp-gold-light); background: var(--fp-gold-light); }
   #fp-home-v1 .fp-give__tabpane[hidden] { display: none; }
   #fp-home-v1 .fp-give__requisites { display: grid; gap: 12px; margin: 0 0 18px; }
@@ -2775,6 +2788,11 @@
   #fp-home-v1 .fp-give__requisites dt { margin: 0 0 4px; color: rgba(240,237,230,.48); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
   #fp-home-v1 .fp-give__requisites dd { margin: 0; color: rgba(240,237,230,.92); font-size: 13px; line-height: 1.5; }
   #fp-home-v1 .fp-give__req-note { margin: 0; color: rgba(240,237,230,.5); font-size: 11px; line-height: 1.6; }
+  #fp-home-v1 .fp-give__tabpane--qr { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  #fp-home-v1 .fp-give__tabpane--qr .fp-give__req-note { grid-column: 1 / -1; margin-top: 4px; }
+  #fp-home-v1 .fp-give__qr-item p { margin: 0 0 10px; color: rgba(240,237,230,.6); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; text-align: center; }
+  #fp-home-v1 .fp-give__qr-item img { display: block; width: 100%; height: auto; border-radius: 6px; background: #fff; padding: 8px; }
+  @media (max-width: 480px) { #fp-home-v1 .fp-give__tabpane--qr { grid-template-columns: 1fr; } #fp-home-v1 .fp-give__tabs { grid-template-columns: 1fr; } }
 
   #fp-home-v1 .fp-footer { padding: 82px 0 30px; background: #050607; border-top: 1px solid rgba(226,201,129,.18); }
   #fp-home-v1 .fp-footer__top { display: grid; grid-template-columns: 1.15fr .7fr 1fr; gap: 80px; padding-bottom: 58px; }
