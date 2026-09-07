@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="https://ivanweb1.github.io/fondplatov-t123/assets/facts-pages.css?v=8">
+<link rel="stylesheet" href="https://ivanweb1.github.io/fondplatov-t123/assets/postoim-details.css?v=7">
+<link rel="stylesheet" href="https://ivanweb1.github.io/fondplatov-t123/assets/list-pages.css?v=9">
+
+<main class="fx-page">
+  <header class="fx-header">
+    <a class="fx-logo" href="https://ivanweb1.github.io/fondplatov-t123/video/"><img src="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" alt="Благотворительный фонд имени М. И. Платова"></a>
+    <nav class="fx-nav" aria-label="Основная навигация"><a href="https://ivanweb1.github.io/fondplatov-t123/about/">О фонде</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">Проекты</a><a href="https://ivanweb1.github.io/fondplatov-t123/news/">Новости</a><a href="https://ivanweb1.github.io/fondplatov-t123/documents/">Документы</a><a href="https://ivanweb1.github.io/fondplatov-t123/contacts/">Контакты</a></nav>
+    <div class="fx-header__actions"><a class="fx-help" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-donate">Помочь фонду</a><a class="fx-svo" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-svo"><i></i> Помощь казакам СВО</a></div>
+    <button class="fx-menu" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <div class="fx-mobile-nav" aria-hidden="true"><a href="https://ivanweb1.github.io/fondplatov-t123/about/">О фонде</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">Проекты</a><a href="https://ivanweb1.github.io/fondplatov-t123/news/">Новости</a><a href="https://ivanweb1.github.io/fondplatov-t123/documents/">Документы</a><a href="https://ivanweb1.github.io/fondplatov-t123/contacts/">Контакты</a><a class="fx-mobile-nav__svo" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-svo">Помощь казакам — участникам СВО</a><a class="fx-mobile-nav__donate" href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-donate">Помочь фонду</a></div>
+
+  <section class="fx-hero" aria-labelledby="th-title" style="min-height:62vh;display:flex;align-items:center">
+    <div class="fx-shell fx-hero__inner">
+      <p class="fx-kicker">Спасибо</p>
+      <h1 id="th-title">Ваш платёж<br><em>получен</em></h1>
+      <p class="fx-hero__lead">Мы получили ваше пожертвование — спасибо, что поддерживаете проекты фонда. Квитанция об оплате отправлена вам на email платёжной системой.</p>
+    </div>
+  </section>
+
+  <section class="pd-cta"><div class="fx-shell pd-cta__inner"><div><p class="pd-label">Что дальше</p><h2>Следите за новостями<br><em>и результатами проектов</em></h2></div><a href="https://ivanweb1.github.io/fondplatov-t123/video/">Вернуться на главную <i>→</i></a></div></section>
+
+  <footer class="fx-footer"><div class="fx-shell"><div class="fx-footer__top"><div class="fx-footer__brand"><img src="https://ivanweb1.github.io/fondplatov-t123/assets/fondplatov-logo-dark.svg?v=20260805-1" alt="Фонд имени М. И. Платова"><p>Сохраняем историческую память и культурное наследие России.</p></div><nav class="fx-footer__nav"><a href="https://ivanweb1.github.io/fondplatov-t123/about/">О фонде</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-projects">Проекты</a><a href="https://ivanweb1.github.io/fondplatov-t123/news/">Новости</a><a href="https://ivanweb1.github.io/fondplatov-t123/documents/">Документы</a><a href="https://ivanweb1.github.io/fondplatov-t123/video/#fp-svo">Помощь казакам СВО</a></nav><address><a href="tel:+79772505555">+7 (977) 250-55-55</a><a href="mailto:info@fondplatov.ru">info@fondplatov.ru</a>105005, Москва, ул. Бауманская, д. 7, стр. 1, офис 328</address></div><div class="fx-footer__requisites"><div><span>ОГРН</span><strong>1227700559052</strong></div><div><span>ИНН / КПП</span><strong>9701219100 / 770101001</strong></div><div><span>Расчётный счёт</span><strong>40701810638000110111</strong></div><div><span>Банк / БИК</span><strong>ПАО Сбербанк / 044525225</strong></div></div><div class="fx-footer__bottom"><p>© 2022–2026 Благотворительный фонд имени донского атамана М. И. Платова</p><div><a href="https://ivanweb1.github.io/fondplatov-t123/policy/">Политика конфиденциальности</a><a href="https://disk.yandex.ru/i/4EXc2hhZr8b3nA" target="_blank" rel="noopener">Публичная оферта</a></div></div></div></footer>
+</main>
+
+<script>
+(() => {
+  const header = document.querySelector('.fx-header');
+  const menu = document.querySelector('.fx-menu');
+  const nav = document.querySelector('.fx-mobile-nav');
+  const updateHeader = () => header && header.classList.toggle('is-scrolled', window.scrollY > 40);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  if (menu && nav) {
+    const close = () => { menu.setAttribute('aria-expanded','false'); nav.classList.remove('is-open'); nav.setAttribute('aria-hidden','true'); };
+    menu.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; menu.setAttribute('aria-expanded', String(open)); nav.classList.toggle('is-open', open); nav.setAttribute('aria-hidden', String(!open)); });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
+  }
+})();
+</script>
+<button class="fx-totop" id="fx-totop" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<style>
+  .fx-totop{position:fixed;right:20px;bottom:20px;z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid rgba(226,201,129,.4);background:rgba(8,10,12,.82);backdrop-filter:blur(6px);color:#e2c981;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .25s ease,transform .25s ease,border-color .25s ease}
+  .fx-totop.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
+  .fx-totop:hover{border-color:#e2c981}
+  .fx-totop svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  @media(max-width:640px){.fx-totop{right:14px;bottom:14px;width:40px;height:40px}}
+</style>
+<script>
+(() => {
+  var btn = document.getElementById('fx-totop');
+  if (!btn) return;
+  var toggle = function () { btn.classList.toggle('is-visible', window.scrollY > 480); };
+  toggle();
+  window.addEventListener('scroll', toggle, { passive: true });
+  btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>

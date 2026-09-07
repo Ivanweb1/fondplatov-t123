@@ -45,6 +45,7 @@ PAGES = [
     ('about',                        't123-project-about.html',                '/about',                       None),
     ('contacts',                     't123-project-contacts.html',             '/contacts',                    None),
     ('documents',                    't123-project-documents.html',            '/documents',                   None),
+    ('thanks',                       't123-project-thanks.html',               '/thanks',                      None),
     ('news-top',                     't123-project-news-top.html',             '/news',                        None),
     ('news-bottom',                  't123-project-news-bottom.html',          '/news',                        None),
     ('policy',                       't123-project-policy.html',               '/politika',                    None),
