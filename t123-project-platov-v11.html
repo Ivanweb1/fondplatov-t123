@@ -92,22 +92,58 @@
           </div>
 
           <div class="pp-donation-options">
-            <div class="pp-frequency" role="group" aria-label="Периодичность пожертвования">
-              <button class="is-active" type="button" data-frequency="once">Один раз</button>
-              <button type="button" data-frequency="monthly">Ежемесячно</button>
+            <div class="pp-tabs" role="tablist" aria-label="Способ пожертвования">
+              <button type="button" class="is-active" data-pp-tab="online" role="tab" aria-selected="true">Онлайн</button>
+              <button type="button" data-pp-tab="requisites" role="tab" aria-selected="false">По реквизитам</button>
+              <button type="button" data-pp-tab="qr" role="tab" aria-selected="false">QR-код</button>
             </div>
-            <p class="pp-field-label">Выберите сумму</p>
-            <div class="pp-amounts">
-              <button type="button" data-amount="500">500 ₽</button>
-              <button class="is-active" type="button" data-amount="1000">1 000 ₽<small>частый выбор</small></button>
-              <button type="button" data-amount="3000">3 000 ₽</button>
-              <button type="button" data-amount="5000">5 000 ₽</button>
+
+            <div class="pp-tabpane" data-pp-pane="online">
+              <div class="pp-frequency" role="group" aria-label="Периодичность пожертвования">
+                <button class="is-active" type="button" data-frequency="once">Один раз</button>
+                <button type="button" data-frequency="monthly">Ежемесячно</button>
+              </div>
+              <p class="pp-field-label">Выберите сумму</p>
+              <div class="pp-amounts">
+                <button type="button" data-amount="500">500 ₽</button>
+                <button class="is-active" type="button" data-amount="1000">1 000 ₽<small>частый выбор</small></button>
+                <button type="button" data-amount="3000">3 000 ₽</button>
+                <button type="button" data-amount="5000">5 000 ₽</button>
+              </div>
+              <label class="pp-custom">Своя сумма
+                <span><input type="number" min="100" step="100" placeholder="Введите сумму"><b>₽</b></span>
+              </label>
+              <a class="pp-button pp-cart-trigger" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-tilda-cart-trigger data-donate-min="100" data-amount-selected="1000" data-frequency-selected="once"><b class="pp-cart-label">Поддержать проект</b> <span>→</span></a>
+              <p class="pp-hint" role="status" hidden></p>
             </div>
-            <label class="pp-custom">Своя сумма
-              <span><input type="number" min="100" step="100" placeholder="Введите сумму"><b>₽</b></span>
-            </label>
-            <a class="pp-button pp-cart-trigger" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-tilda-cart-trigger data-donate-min="100" data-amount-selected="1000" data-frequency-selected="once"><b class="pp-cart-label">Поддержать проект</b> <span>→</span></a>
-            <p class="pp-hint" role="status" hidden></p>
+
+            <div class="pp-tabpane" data-pp-pane="requisites" hidden>
+              <p class="pp-field-label">Реквизиты фонда</p>
+              <dl class="pp-requisites">
+                <div><dt>Полное наименование</dt><dd>Благотворительный фонд имени донского атамана М. И. Платова, героя Отечественной войны 1812 года</dd></div>
+                <div><dt>Сокращённое наименование</dt><dd>БФ имени донского атамана М. И. Платова</dd></div>
+                <div><dt>ОГРН</dt><dd>1227700559052</dd></div>
+                <div><dt>ИНН</dt><dd>9701219100</dd></div>
+                <div><dt>КПП</dt><dd>770101001</dd></div>
+                <div><dt>Р/С</dt><dd>40701810638000110111</dd></div>
+                <div><dt>Банк</dt><dd>ПАО Сбербанк, г. Москва</dd></div>
+                <div><dt>БИК банка</dt><dd>044525225</dd></div>
+                <div><dt>Корр. счёт банка</dt><dd>30101810400000000225</dd></div>
+              </dl>
+              <p class="pp-req-note">В назначении платежа укажите «Благотворительное пожертвование». Полный список документов фонда — на <a href="https://ivanweb1.github.io/fondplatov-t123/documents/" target="_top" style="color:inherit;text-decoration:underline;text-underline-offset:2px">странице документов</a>.</p>
+            </div>
+
+            <div class="pp-tabpane pp-tabpane--qr" data-pp-pane="qr" hidden>
+              <div class="pp-qr-item">
+                <p>Система Быстрых Платежей</p>
+                <img src="https://static.tildacdn.com/tild6436-6465-4835-b536-333761353136/donate-qr-sbp.png" width="436" height="427" alt="QR-код Системы Быстрых Платежей для пожертвования фонду" loading="lazy">
+              </div>
+              <div class="pp-qr-item">
+                <p>Пожертвование по ссылке</p>
+                <img src="https://static.tildacdn.com/tild3364-6261-4766-b535-613264346234/donate-qr-link.png" width="436" height="427" alt="QR-код со ссылкой на пожертвование фонду" loading="lazy">
+              </div>
+              <p class="pp-req-note">1. Наведите камеру телефона на QR-код и перейдите по ссылке.<br>2. Подтвердите платёж в приложении банка.</p>
+            </div>
           </div>
         </aside>
       </div>
@@ -330,6 +366,21 @@
   .pp-hint { margin: 12px 0 0; color: var(--gold-light); font-size: 12px; line-height: 1.55; }
   .pp-hint[hidden] { display: none; }
   .pp-hint.is-error { color: #e6866b; }
+
+  #fp-project-platov .pp-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 22px; }
+  #fp-project-platov .pp-tabs button { min-height: 42px; padding: 0 6px; color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.13); background: transparent; font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
+  #fp-project-platov .pp-tabs button.is-active { color: #101214; background: var(--gold-light); border-color: var(--gold-light); }
+  #fp-project-platov .pp-tabpane[hidden] { display: none; }
+  #fp-project-platov .pp-requisites { display: grid; gap: 12px; margin: 0 0 16px; }
+  #fp-project-platov .pp-requisites div { padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  #fp-project-platov .pp-requisites dt { margin: 0 0 4px; color: rgba(255,255,255,.42); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+  #fp-project-platov .pp-requisites dd { margin: 0; color: #fff; font-size: 13px; line-height: 1.5; }
+  #fp-project-platov .pp-req-note { margin: 0; color: rgba(255,255,255,.42); font-size: 11px; line-height: 1.6; }
+  #fp-project-platov .pp-tabpane--qr { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  #fp-project-platov .pp-tabpane--qr .pp-req-note { grid-column: 1 / -1; margin-top: 4px; }
+  #fp-project-platov .pp-qr-item p { margin: 0 0 8px; color: rgba(255,255,255,.5); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; text-align: center; }
+  #fp-project-platov .pp-qr-item img { display: block; width: 100%; height: auto; border-radius: 0; background: #fff; padding: 6px; }
+  @media (max-width: 420px) { #fp-project-platov .pp-tabpane--qr { grid-template-columns: 1fr; } #fp-project-platov .pp-tabs { grid-template-columns: 1fr; } }
   #fp-project-platov .pp-support-feed { position: absolute; z-index: 5; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 35px; min-height: 62px; padding: 0 max(48px, calc((100% - 1380px) / 2)); border-top: 1px solid rgba(255,255,255,.13); background: rgba(5,7,8,.76); backdrop-filter: blur(16px); }
   #fp-project-platov .pp-support-feed > span, #fp-project-platov .pp-support-feed > p, #fp-project-platov .pp-support-feed > small { display: flex; align-self: stretch; align-items: center; line-height: 1.2; }
   #fp-project-platov .pp-support-feed > span { color: rgba(255,255,255,.42); font-size: 8px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
@@ -774,6 +825,18 @@
     updateHeader();
     window.addEventListener('scroll', updateHeader, { passive: true });
   }
+
+  root.querySelectorAll('.pp-tabs [data-pp-tab]').forEach(tabButton => {
+    tabButton.addEventListener('click', () => {
+      const target = tabButton.dataset.ppTab;
+      root.querySelectorAll('.pp-tabs [data-pp-tab]').forEach(item => {
+        const isActive = item === tabButton;
+        item.classList.toggle('is-active', isActive);
+        item.setAttribute('aria-selected', String(isActive));
+      });
+      root.querySelectorAll('.pp-tabpane').forEach(pane => { pane.hidden = pane.dataset.ppPane !== target; });
+    });
+  });
 
   root.querySelectorAll('[data-frequency]').forEach(button => button.addEventListener('click', () => {
     frequency = button.dataset.frequency;
