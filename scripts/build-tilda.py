@@ -55,6 +55,7 @@ PAGES = [
     ('project-7-facts-stages',       't123-project-facts-stages-v6.html',      '/step-work',                   None),
     ('project-platov',               't123-project-platov.html',               '/presentation',                ''),
     ('project-postoim',              't123-project-platov-v11.html',           '/project/postoim',             'postoim'),
+    ('project-postoim-presentation', 't123-project-postoim-presentation.html', '/postoim_presentation',        None),
     ('project-postoim-details',      't123-project-postoim-details.html',      '/sinopsis',                    None),
     ('project-postoim-video',        't123-project-postoim-video-v2.html',     '/project/postoim-video',       None),
     ('project-postoim-support',      't123-project-postoim-support-v2.html',   '/sup',                         None),
