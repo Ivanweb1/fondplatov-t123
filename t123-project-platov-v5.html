@@ -99,10 +99,6 @@
             </div>
 
             <div class="pp-tabpane" data-pp-pane="online">
-              <div class="pp-frequency" role="group" aria-label="Периодичность пожертвования">
-                <button class="is-active" type="button" data-frequency="once">Один раз</button>
-                <button type="button" data-frequency="monthly">Ежемесячно</button>
-              </div>
               <p class="pp-field-label">Выберите сумму</p>
               <div class="pp-amounts">
                 <button type="button" data-amount="500">500 ₽</button>
@@ -113,7 +109,7 @@
               <label class="pp-custom">Своя сумма
                 <span><input type="number" min="100" step="100" placeholder="Введите сумму"><b>₽</b></span>
               </label>
-              <a class="pp-button pp-cart-trigger" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-tilda-cart-trigger data-donate-min="100" data-amount-selected="1000" data-frequency-selected="once"><b class="pp-cart-label">Поддержать проект</b> <span>→</span></a>
+              <a class="pp-button pp-cart-trigger" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-tilda-cart-trigger data-donate-min="100" data-amount-selected="1000"><b class="pp-cart-label">Поддержать проект</b> <span>→</span></a>
               <p class="pp-hint" role="status" hidden></p>
             </div>
 
@@ -321,9 +317,6 @@
   #fp-project-platov .pp-progress i { display: block; width: max(6px, .3%); height: 100%; background: var(--gold-light); box-shadow: 0 0 12px rgba(226,201,129,.7); }
   #fp-project-platov .pp-collection > p { margin: 8px 0 0; color: rgba(255,255,255,.35); font-size: 8px; }
   #fp-project-platov .pp-donation-options { padding-top: 22px; }
-  #fp-project-platov .pp-frequency { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 22px; border: 1px solid rgba(255,255,255,.13); }
-  #fp-project-platov .pp-frequency button { min-height: 42px; border: 0; background: transparent; color: rgba(255,255,255,.5); font-size: 9px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
-  #fp-project-platov .pp-frequency button.is-active { color: #101214; background: var(--gold-light); }
   #fp-project-platov .pp-field-label { margin: 0 0 10px; color: rgba(255,255,255,.45); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
   #fp-project-platov .pp-amounts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   #fp-project-platov .pp-amounts button { position: relative; min-height: 58px; padding: 0 5px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.02); font-size: 12px; font-weight: 600; }
@@ -610,7 +603,6 @@
   }
 
   let amount = 1000;
-  let frequency = 'once';
   const cartTrigger = root.querySelector('[data-tilda-cart-trigger]');
   const menu = root.querySelector('.pp-menu');
   const mobileNav = root.querySelector('.pp-mobile-nav');
@@ -649,12 +641,6 @@
     });
   });
 
-  root.querySelectorAll('[data-frequency]').forEach(button => button.addEventListener('click', () => {
-    frequency = button.dataset.frequency;
-    if (cartTrigger) cartTrigger.dataset.frequencySelected = frequency;
-    root.querySelectorAll('[data-frequency]').forEach(item => item.classList.toggle('is-active', item === button));
-  }));
-
   const custom = root.querySelector('.pp-custom input');
   root.querySelectorAll('[data-amount]').forEach(button => button.addEventListener('click', () => {
     amount = Number(button.dataset.amount);
@@ -675,9 +661,7 @@
      Кнопка формирует ссылку #order:Название=СУММА — скрипт корзины Tilda
      перехватывает клик и открывает окно оплаты. Название заказа содержит
      проект, чтобы фонд видел, на что жертвуют: на старом сайте у каждого
-     проекта была своя форма пожертвования.
-     Тумблер «Ежемесячно» помечает заказ, но автосписания не делает —
-     регулярные платежи корзина Tilda по ЮKassa не поддерживает. */
+     проекта была своя форма пожертвования. */
   const ppProjectNames = { facts: '7 фактов о Платове', postoim: 'Постоим за честь державы' };
   const ppProject = ppProjectNames[projectKey] || 'Вихорь-атаман Матвей Платов';
   const ppHint = root.querySelector('.pp-hint');
@@ -692,19 +676,12 @@
     return active ? parseInt(active.dataset.amount, 10) || 0 : 0;
   };
 
-  const ppFrequency = () => {
-    const active = root.querySelector('.pp-frequency [data-frequency].is-active');
-    return active ? active.dataset.frequency : 'once';
-  };
-
-  const ppOrderName = () =>
-    'Пожертвование' + (ppFrequency() === 'monthly' ? ' (ежемесячно)' : '') + ' — ' + ppProject;
+  const ppOrderName = () => 'Пожертвование — ' + ppProject;
 
   const ppSync = () => {
     if (!cartTrigger) return;
     const value = ppAmount();
     cartTrigger.dataset.amountSelected = String(value);
-    cartTrigger.dataset.frequencySelected = ppFrequency();
     cartTrigger.setAttribute('href', '#order:' + encodeURIComponent(ppOrderName()) + '=' + (value > 0 ? value : 0));
     if (ppLabel) ppLabel.textContent = value > 0 ? 'Поддержать на ' + ppFormat(value) + ' ₽' : 'Поддержать проект';
   };
@@ -729,7 +706,7 @@
     } catch (error) {}
   };
 
-  root.querySelectorAll('.pp-amounts [data-amount], .pp-frequency [data-frequency]').forEach(button =>
+  root.querySelectorAll('.pp-amounts [data-amount]').forEach(button =>
     button.addEventListener('click', () => { ppHideHint(); ppSync(); }));
   if (custom) custom.addEventListener('input', () => { ppHideHint(); ppSync(); });
 
