@@ -107,10 +107,28 @@ def inline_styles(html):
     return STYLE_LINK_RE.sub(lambda m: '<style>\n' + read_css(m.group(1)) + '\n</style>\n', html)
 
 
+POST_POPUP_SCRIPT = """<script>
+(function () {
+  /* Попап поста Потоков открывается через AJAX без перезагрузки страницы.
+     CSS :has(.t-cms__page-container) в теории должен реагировать на такое
+     появление контейнера сам, но на практике тёмная тема иногда не
+     подхватывалась, пока страницу не обновляли вручную — подстраховываемся
+     явным классом на <html>, который держим в синхронизации с DOM. */
+  var toggle = function () {
+    document.documentElement.classList.toggle('is-post-popup', !!document.querySelector('.t-cms__page-container'));
+  };
+  toggle();
+  new MutationObserver(toggle).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+"""
+
+
 def build_post_styles():
-    """Сниппет для head сайта: шрифты ссылкой, тёмная тема постов — текстом."""
+    """Сниппет для head сайта: шрифты ссылкой, тёмная тема постов — текстом,
+    плюс скрипт-подстраховка для попапов (см. POST_POPUP_SCRIPT)."""
     css = FONT_IMPORT_RE.sub('', read_css('tilda-post-dark.css'))
-    return FONTS_LINK + '<style>\n' + css + '\n</style>\n'
+    return FONTS_LINK + '<style>\n' + css + '\n</style>\n' + POST_POPUP_SCRIPT
 
 
 TEMPLATE_CALL = "new URLSearchParams(window.location.search).get('project')"

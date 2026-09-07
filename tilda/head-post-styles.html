@@ -30,7 +30,9 @@
 }
 
 html:has(.t-cms__page-container),
-body:has(.t-cms__page-container) {
+body:has(.t-cms__page-container),
+html.is-post-popup,
+html.is-post-popup body {
   background-color: var(--post-bg) !important;
   color: var(--post-ink);
 }
@@ -115,3 +117,17 @@ body:has(.t-cms__page-container) {
 }
 .t-cms__seealso .t-cms__card { border-color: var(--post-line) !important; }
 </style>
+<script>
+(function () {
+  /* Попап поста Потоков открывается через AJAX без перезагрузки страницы.
+     CSS :has(.t-cms__page-container) в теории должен реагировать на такое
+     появление контейнера сам, но на практике тёмная тема иногда не
+     подхватывалась, пока страницу не обновляли вручную — подстраховываемся
+     явным классом на <html>, который держим в синхронизации с DOM. */
+  var toggle = function () {
+    document.documentElement.classList.toggle('is-post-popup', !!document.querySelector('.t-cms__page-container'));
+  };
+  toggle();
+  new MutationObserver(toggle).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>

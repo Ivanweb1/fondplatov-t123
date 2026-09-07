@@ -27,7 +27,9 @@
 }
 
 html:has(.t-cms__page-container),
-body:has(.t-cms__page-container) {
+body:has(.t-cms__page-container),
+html.is-post-popup,
+html.is-post-popup body {
   background-color: var(--post-bg) !important;
   color: var(--post-ink);
 }
