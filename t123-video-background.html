@@ -602,7 +602,7 @@
       <div class="fp-give__copy fp-observe">
         <p class="fp-kicker"><span></span> Стать частью истории</p>
         <h2 id="fp-give-title">Ваш вклад превращает<br><em>идею в кадр</em></h2>
-        <p>Выберите удобную сумму. Поддержать можно один раз или оформить регулярное пожертвование.</p>
+        <p>Выберите удобную сумму пожертвования.</p>
         <div class="fp-give__impact"><span>500 ₽</span><p>помогают оплатить подготовку материалов и архивный поиск</p></div>
       </div>
 
@@ -615,7 +615,6 @@
           <button type="button" data-amount="5000">5 000 ₽</button>
         </div>
         <label class="fp-give__custom">Своя сумма <input type="number" min="100" step="100" placeholder="Введите сумму" inputmode="numeric"></label>
-        <label class="fp-give__regular"><input type="checkbox"><span></span> Помогать ежемесячно</label>
         <a class="fp-button fp-button--gold fp-give__submit" href="#order:%D0%9F%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5=1000" data-donate-name="Пожертвование" data-donate-name-regular="Пожертвование (ежемесячно)" data-donate-min="100"><span>Пожертвовать 1 000 ₽</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg></a>
         <p class="fp-give__hint" role="status" hidden></p>
         <p class="fp-give__legal">Нажимая кнопку, вы соглашаетесь с <a href="https://disk.yandex.ru/i/4EXc2hhZr8b3nA" target="_blank" rel="noopener">публичной офертой</a> и <a href="https://ivanweb1.github.io/fondplatov-t123/policy/" target="_top">политикой обработки персональных данных</a>.</p>
@@ -3175,4 +3174,22 @@
       });
     }
   })();
+</script>
+<button class="fx-totop" id="fx-totop" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<style>
+  .fx-totop{position:fixed;right:20px;bottom:20px;z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid rgba(226,201,129,.4);background:rgba(8,10,12,.82);backdrop-filter:blur(6px);color:#e2c981;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .25s ease,transform .25s ease,border-color .25s ease}
+  .fx-totop.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
+  .fx-totop:hover{border-color:#e2c981}
+  .fx-totop svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  @media(max-width:640px){.fx-totop{right:14px;bottom:14px;width:40px;height:40px}}
+</style>
+<script>
+(() => {
+  var btn = document.getElementById('fx-totop');
+  if (!btn) return;
+  var toggle = function () { btn.classList.toggle('is-visible', window.scrollY > 480); };
+  toggle();
+  window.addEventListener('scroll', toggle, { passive: true });
+  btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
 </script>

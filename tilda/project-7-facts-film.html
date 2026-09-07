@@ -64,3 +64,21 @@
   }
 })();
 </script>
+<button class="fx-totop" id="fx-totop" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<style>
+  .fx-totop{position:fixed;right:20px;bottom:20px;z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid rgba(226,201,129,.4);background:rgba(8,10,12,.82);backdrop-filter:blur(6px);color:#e2c981;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .25s ease,transform .25s ease,border-color .25s ease}
+  .fx-totop.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
+  .fx-totop:hover{border-color:#e2c981}
+  .fx-totop svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  @media(max-width:640px){.fx-totop{right:14px;bottom:14px;width:40px;height:40px}}
+</style>
+<script>
+(() => {
+  var btn = document.getElementById('fx-totop');
+  if (!btn) return;
+  var toggle = function () { btn.classList.toggle('is-visible', window.scrollY > 480); };
+  toggle();
+  window.addEventListener('scroll', toggle, { passive: true });
+  btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>
