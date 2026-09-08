@@ -20,10 +20,6 @@
      В исходниках остаются обычные <link>, чтобы демо работало, а стили
      правились в одном месте.
 
-Дополнительно собирается tilda/head-post-styles.html — тёмная тема страниц
-постов Потоков. Её нужно один раз вставить в Настройки сайта → Ещё →
-HTML-код для вставки внутрь head.
-
 Если адреса страниц в Tilda изменятся — поправьте таблицу PAGES и запустите заново.
 """
 
@@ -87,17 +83,6 @@ STYLE_LINK_RE = re.compile(
     r'[ \t]*<link rel="stylesheet" href="' + re.escape(BASE)
     + r'/assets/([\w.-]+\.css)(?:\?[^"]*)?">[ \t]*\n?')
 
-FONTS_LINK = (
-    '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-    '<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700'
-    '&family=Prata&display=swap" rel="stylesheet">\n'
-)
-
-POST_STYLES_OUT = 'head-post-styles.html'
-FONT_IMPORT_RE = re.compile(r"@import url\('https://fonts\.googleapis\.com[^']*'\);\n?")
-
-
 def read_css(name):
     return io.open(os.path.join('assets', name), encoding='utf-8').read().strip()
 
@@ -105,30 +90,6 @@ def read_css(name):
 def inline_styles(html):
     """Меняет ссылки на наши CSS их содержимым."""
     return STYLE_LINK_RE.sub(lambda m: '<style>\n' + read_css(m.group(1)) + '\n</style>\n', html)
-
-
-POST_POPUP_SCRIPT = """<script>
-(function () {
-  /* Попап поста Потоков открывается через AJAX без перезагрузки страницы.
-     CSS :has(.t-cms__page-container) в теории должен реагировать на такое
-     появление контейнера сам, но на практике тёмная тема иногда не
-     подхватывалась, пока страницу не обновляли вручную — подстраховываемся
-     явным классом на <html>, который держим в синхронизации с DOM. */
-  var toggle = function () {
-    document.documentElement.classList.toggle('is-post-popup', !!document.querySelector('.t-cms__page-container'));
-  };
-  toggle();
-  new MutationObserver(toggle).observe(document.documentElement, { childList: true, subtree: true });
-})();
-</script>
-"""
-
-
-def build_post_styles():
-    """Сниппет для head сайта: шрифты ссылкой, тёмная тема постов — текстом,
-    плюс скрипт-подстраховка для попапов (см. POST_POPUP_SCRIPT)."""
-    css = FONT_IMPORT_RE.sub('', read_css('tilda-post-dark.css'))
-    return FONTS_LINK + '<style>\n' + css + '\n</style>\n' + POST_POPUP_SCRIPT
 
 
 TEMPLATE_CALL = "new URLSearchParams(window.location.search).get('project')"
@@ -163,9 +124,6 @@ def build():
 
         io.open(os.path.join(OUT_DIR, slug + '.html'), 'w', encoding='utf-8', newline='').write(html)
         rows.append((slug, addr, before - html.count(BASE), html.count(BASE)))
-
-    io.open(os.path.join(OUT_DIR, POST_STYLES_OUT), 'w', encoding='utf-8',
-            newline='').write(build_post_styles())
 
     return rows
 
