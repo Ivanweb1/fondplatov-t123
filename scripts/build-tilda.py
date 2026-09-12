@@ -59,6 +59,7 @@ PAGES = [
     ('project-bitva',                't123-project-bitva.html',                '/project/bitva',               None),
     ('project-bitva-presentation',   't123-project-bitva-presentation.html',   '/bitva_presentation',          None),
     ('project-bitva-support',        't123-project-bitva-support.html',        '/sup_bitva',                   None),
+    ('project-bitva-film',           't123-project-bitva-film.html',           '/project/bitva-film',          None),
     ('project-kazak',                't123-project-kazak.html',                '/project/kazak',               None),
     ('project-kazak-presentation',   't123-project-kazak-presentation.html',   '/kazak_presentation',          None),
     ('project-kazak-support',        't123-project-kazak-support.html',        '/sup_kazak',                   None),
