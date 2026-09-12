@@ -59,6 +59,7 @@ ROWS = [
     ('project-bitva', '04 · Битва за Лукоморье', '/project/bitva', 'proj', ''),
     ('project-bitva-presentation', '04 · Презентация', '/bitva_presentation', 'proj', ''),
     ('project-bitva-support', '04 · Нас поддерживают', '/sup_bitva', 'proj', ''),
+    ('project-bitva-film', '04 · Смотреть фильм', '/project/bitva-film', 'proj', ''),
     ('project-kazak', '05 · Удалой казак', '/project/kazak', 'proj', ''),
     ('project-kazak-presentation', '05 · Презентация', '/kazak_presentation', 'proj', ''),
     ('project-kazak-support', '05 · Нас поддерживают', '/sup_kazak', 'proj', ''),
@@ -296,6 +297,16 @@ ROW_TPL = """      <li class="row" data-slug="{slug}">
       </li>"""
 
 
+def plural_pages(n):
+    if 11 <= n % 100 <= 14:
+        return 'страниц'
+    if n % 10 == 1:
+        return 'страница'
+    if 2 <= n % 10 <= 4:
+        return 'страницы'
+    return 'страниц'
+
+
 def collect():
     pages = []
     for slug, name, addr, group, note in ROWS:
@@ -341,6 +352,7 @@ def render(pages):
     return HTML.format(
         css=CSS,
         total=len(pages),
+        total_word=plural_pages(len(pages)),
         sections='\n'.join(sections),
         redirects=redirects,
         payload=payload,
@@ -360,7 +372,7 @@ HTML = """<title>Платов на Tilda</title>
   <div class="shell">
     <p class="eyebrow">Благотворительный фонд имени М. И. Платова</p>
     <h1>Перенос на Tilda</h1>
-    <p class="lead">Двадцать девять страниц, готовых к вставке в блоки&nbsp;T123. Код каждой копируется одной кнопкой, отметки о переносе сохраняются в этом браузере.</p>
+    <p class="lead">{total} {total_word}, готовых к вставке в блоки&nbsp;T123. Код каждой копируется одной кнопкой, отметки о переносе сохраняются в этом браузере.</p>
   </div>
 </header>
 
